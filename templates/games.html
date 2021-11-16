@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+
+
+{% block meta %} 
+<title>Games</title>
+{% endblock %} 
+
+{% block content %}
+
+<h2>Here are a list of all the games on our website. Try some of them out!</h2>
+
+<ul>
+    {% for game in games %}
+    <li><a href="/game/{{ loop.index }}">{{ game.title }} by {{ game.author }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
