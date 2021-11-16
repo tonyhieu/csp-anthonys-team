@@ -1,0 +1,72 @@
+:root{
+    --color1: whitesmoke;
+    --color2: grey;
+    --bgColor: #e0e1dd;
+    --headerColor: #1b263b;
+    --navTextColor: #e0e1dd;
+    --contentTextColor: #0b1d2a;
+    --galleryColor: #778da9;
+}
+
+html, body{
+    margin: 0;
+    height: 100%;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: var(--bgColor);
+    color: var(--textColor);
+}
+
+.content {
+    margin: 1em;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+.navbar-custom {
+    background-color: var(--headerColor);
+}
+
+.navbar a,
+.navbar a:hover,
+.navbar a:active {
+    color: var(--navTextColor);
+    font-family: "Palatino, URW Palladio L, serif";
+}
+
+ul.dropdown-menu {
+    --navTextColor: var(--headerColor);
+}
+.content,
+.content a,
+.content a:hover {
+    color: var(--contentTextColor);
+    font-family: "Palatino, URW Palladio L, serif";
+}
+
+.baseNav {
+    background-color: var(--bgColor); 
+    color: var(--textColor);;
+}
+
+.gallery {
+    background-color: var(--galleryColor);
+    height: 70vh;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
