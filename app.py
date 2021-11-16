@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import requests
-from api.gameapi import api_bp
+from api.webapi import api_bp
 
 
 app = Flask("app")
@@ -29,6 +29,11 @@ def game(id):
         return render_template("game.html", game_data=game_data)
     except:
         return "Invalid ID"
+
+@app.route("/about")
+def about():
+    anthony_response = requests.request("GET", "http://127.0.0.1:8080/api/anthony")
+    return render_template("about.html", anthony=anthony_response.json())
 
 app.register_blueprint(api_bp)
 

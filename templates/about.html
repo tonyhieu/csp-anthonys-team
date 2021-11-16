@@ -1,0 +1,74 @@
+{% extends "layouts/base.html" %}
+
+
+{% block meta %} 
+<title>About Us</title>
+{% endblock %} 
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm">
+        <h3>Ethan Gravin</h3>
+        <h4>Interests</h4>
+        <ul>
+
+        </ul>
+    </div>
+    <div class="col-sm">
+        <h3>Isaac Le</h3>
+        <h4>Interests</h4>
+        <ul>
+
+        </ul>
+    </div>
+    <div class="col-sm">
+        <h3>Erik Peterson</h3>
+        <h4>Interests</h4>
+        <ul>
+
+        </ul>
+    </div>
+    <div class="col-sm">
+        <h3>Anthony Vo</h3>
+        <img src="/static/assets/images/catanthony.png" width="100%" id="anthonyimg" onclick="anthonyImg()" >
+        <h4>Interests</h4>
+        <ul>
+            {% for interest in anthony %}
+            <li>{{ interest }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-sm">
+        <h3>Samuel Wang</h3>
+        <h4>Interests</h4>
+        <ul>
+
+        </ul>
+    </div>
+</div>
+
+<!-- 
+    JavaScript Code
+-->
+
+<script>
+    var anthonyVar = 0;
+    function anthonyImg () {
+        const element = document.getElementById("anthonyimg");
+        if (anthonyVar == 0) {
+            let random = Math.floor(Math.random() * 50);
+            if (random == 1) {
+                element.src = "/static/assets/images/bracesanthony.png";
+                anthonyVar = 1;
+            }
+        } else {
+            element.src = "/static/assets/images/catanthony.png";
+            anthonyVar = 0;
+        }
+    }
+
+
+</script>
+
+{% endblock %}

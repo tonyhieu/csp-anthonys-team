@@ -5,9 +5,12 @@ api_bp = Blueprint('api', __name__,
                    template_folder='templates',
                    static_folder='static', static_url_path='static/api')
 
+
+
+# GAMES API
 games = []
 game_embeds = [
-    '<iframe src="https://scratch.mit.edu/projects/199615756/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>'
+    '<iframe src="https://scratch.mit.edu/projects/199615756/embed" allowtransparency="true" width="700" height="700" frameborder="0" scrolling="no" allowfullscreen></iframe>'
 ]
 game_titles = [
     "Dabbing Tycoon"
@@ -15,7 +18,6 @@ game_titles = [
 game_authors = [
     "Anthony Vo"
 ]
-
 
 def _init_games ():
     for i in range(len(game_embeds)):
@@ -35,3 +37,11 @@ def get_game(id):
         return jsonify(games[int(id)-1])
     except:
         return "Invalid ID"
+
+
+# INTERESTS API
+anthony_interests = ["programming", "League of Legends", "golf", "VOCALOID", "rhythm games", "game development", "web development"]
+
+@api_bp.route("/anthony")
+def get_anthony_interests():
+    return jsonify(anthony_interests)
