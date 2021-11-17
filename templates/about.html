@@ -19,7 +19,9 @@
         <h3>Isaac Le</h3>
         <h4>Interests</h4>
         <ul>
-
+            {% for interest in isaac %}
+            <li>{{ interest }}</li>
+            {% endfor %}
         </ul>
     </div>
     <div class="col-sm">

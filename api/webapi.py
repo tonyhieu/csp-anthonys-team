@@ -45,3 +45,10 @@ anthony_interests = ["programming", "League of Legends", "golf", "VOCALOID", "rh
 @api_bp.route("/anthony")
 def get_anthony_interests():
     return jsonify(anthony_interests)
+
+
+isaac_interests = ["Soccer", "Selling my soul to Riot Games", "Playing games", "Hanging out with friends"]
+
+@api_bp.route("/isaac")
+def get_isaac_interests():
+    return jsonify(isaac_interests)
