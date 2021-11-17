@@ -1,10 +1,10 @@
 :root{
     --color1: whitesmoke;
     --color2: grey;
-    --bgColor: #e0e1dd;
-    --headerColor: #1b263b;
-    --navTextColor: #e0e1dd;
-    --contentTextColor: #0b1d2a;
+    --bgColor: #198da8;
+    --headerColor: black;
+    --navTextColor: #F3F3F3;
+    --contentTextColor: #F3F3F3;
     --galleryColor: #778da9;
 }
 
@@ -16,7 +16,6 @@ html, body{
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
     background-color: var(--bgColor);
-    color: var(--textColor);
 }
 
 .content {
@@ -35,7 +34,7 @@ h1 {
 .navbar a:hover,
 .navbar a:active {
     color: var(--navTextColor);
-    font-family: "Palatino, URW Palladio L, serif";
+    font-family: "Garamond";
 }
 
 ul.dropdown-menu {
@@ -45,16 +44,17 @@ ul.dropdown-menu {
 .content a,
 .content a:hover {
     color: var(--contentTextColor);
-    font-family: "Palatino, URW Palladio L, serif";
+    font-family: "Garamond";
 }
 
 .baseNav {
-    background-color: var(--bgColor); 
-    color: var(--textColor);;
+
+    background-image: linear-gradient(black, black, #1c2e4a, #1c2e4a);
+    color: var(--contentTextColor);
 }
 
 .gallery {
-    background-color: var(--galleryColor);
+    background-image: linear-gradient(black, black, #1c2e4a, #1c2e4a);
     height: 70vh;
 }
 
