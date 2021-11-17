@@ -15,14 +15,14 @@ def not_found(e):
 
 @app.route("/games")
 def games():
-    url = "http://127.0.0.1:8080/api/games"
+    url = "http://127.0.0.1:5000/api/games"
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
 
 @app.route("/game/<id>")
 def game(id):
-    url = "http://127.0.0.1:8080/api/games/" + id
+    url = "http://127.0.0.1:5000/api/games/" + id
     response = requests.request("GET", url)
     try:
         game_data = response.json()
@@ -32,7 +32,7 @@ def game(id):
 
 @app.route("/about")
 def about():
-    anthony_response = requests.request("GET", "http://127.0.0.1:8080/api/anthony")
+    anthony_response = requests.request("GET", "http://127.0.0.1:5000/api/anthony")
     return render_template("about.html", anthony=anthony_response.json())
 
 app.register_blueprint(api_bp)
