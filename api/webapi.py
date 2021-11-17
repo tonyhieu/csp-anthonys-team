@@ -41,7 +41,17 @@ def get_game(id):
 
 # INTERESTS API
 anthony_interests = ["programming", "League of Legends", "golf", "VOCALOID", "rhythm games", "game development", "web development"]
+ethan_interests = ["Running Track", "Valorant", "Wakeboarding", "Lofi", "Climbing/Hiking"]
+isaac_interests = ["Soccer", "Selling my soul to Riot Games", "Playing games", "Hanging out with friends"]
 
 @api_bp.route("/anthony")
 def get_anthony_interests():
     return jsonify(anthony_interests)
+
+@api_bp.route("/ethan")
+def get_ethan_interests():
+    return jsonify(ethan_interests)
+
+@api_bp.route("/isaac")
+def get_isaac_interests():
+    return jsonify(isaac_interests)
