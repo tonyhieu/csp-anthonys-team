@@ -10,9 +10,12 @@
 <div class="row">
     <div class="col-sm">
         <h3>Ethan Gravin</h3>
+        <img src="/static/assets/images/ethantri2photo_1_ADD.jpg" width="100%" >
         <h4>Interests</h4>
         <ul>
-
+            {% for interest in ethan %}
+                <li>{{ interest }}</li>
+            {% endfor %}
         </ul>
     </div>
     <div class="col-sm">
