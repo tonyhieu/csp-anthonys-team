@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-sm">
         <h3>Ethan Gravin</h3>
-        <img src="/static/assets/images/ethantri2photo_1_ADD.jpg" width="100%" >
+        <img src="/static/assets/images/ethantri2photo_1_ADD.jpg" width="100%" id="ethanimg" onclick="ethanImg()" >
         <h4>Interests</h4>
         <ul>
             {% for interest in ethan %}
@@ -30,7 +30,7 @@
     </div>
     <div class="col-sm">
         <h3>Erik Peterson</h3>
-        <img src="/static/assets/images/eiekri%20and%20isaccancanosnacaac.jpg" width="100%">
+        <img src="/static/assets/images/erikfirstimage.jpg" width="100%" id="erikimg" onclick="erikImg()">
         <h4>Interests</h4>
         <ul>
             {% for interest in erik %}
@@ -46,6 +46,8 @@
             {% for interest in anthony %}
             <li>{{ interest }}</li>
             {% endfor %}
+            <br />
+            <a href="/anthony">Link to individual section</a>
         </ul>
     </div>
     <div class="col-sm">
@@ -80,7 +82,31 @@
         }
     }
 
+    var erikVar = 0;
+    function erikImg () {
+        const element = document.getElementById("erikimg");
+        if (erikVar == 0) {
+            element.src = "/static/assets/images/eriksecondimage.jpg";
+            erikVar = 1;
 
+        }   else {
+            element.src = "/static/assets/images/erikfirstimage.jpg";
+            erikVar = 0;
+        }
+    }
+
+    var ethanMask = 1;
+    function ethanImg () {
+        const element = document.getElementById("ethanimg");
+        if (ethanMask == 0) {
+            element.src = "/static/assets/images/ethantri2photo_1_ADD.jpg";
+            ethanMask = 1;
+
+        }   else {
+            element.src = "/static/assets/images/unmaskETHAN.jpg";
+            ethanMask = 0;
+        }
+    }
 </script>
 
 {% endblock %}
