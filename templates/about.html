@@ -30,7 +30,7 @@
     </div>
     <div class="col-sm">
         <h3>Erik Peterson</h3>
-        <img src="/static/assets/images/eiekri%20and%20isaccancanosnacaac.jpg" width="100%">
+        <img src="/static/assets/images/erikfirstimage.jpg" width="100%" id="erikimg" onclick="erikImg()">
         <h4>Interests</h4>
         <ul>
             {% for interest in erik %}
@@ -80,7 +80,18 @@
         }
     }
 
+    var erikVar = 0;
+    function erikImg () {
+        const element = document.getElementById("erikimg");
+        if (erikVar == 0) {
+            element.src = "/static/assets/images/eriksecondimage.jpg";
+            erikVar = 1;
 
+        }   else {
+            element.src = "/static/assets/images/erikfirstimage.jpg";
+            erikVar = 0;
+        }
+    }
 </script>
 
 {% endblock %}
