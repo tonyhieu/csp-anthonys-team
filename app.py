@@ -36,8 +36,9 @@ def about():
     anthony_response = requests.request("GET", "http://127.0.0.1:5000/api/anthony")
     isaac_response = requests.request("GET", "http://127.0.0.1:5000/api/isaac")
     ethan_response = requests.request("GET", "http://127.0.0.1:5000/api/ethan")
+    erik_response = requests.request("GET", "http://127.0.0.1:5000/api/erik")
     samuel_response = requests.request("GET", "http://127.0.0.1:5000/api/samuel")
-    return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), samuel=samuel_response.json())
+    return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
 
 
 app.register_blueprint(api_bp)
