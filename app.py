@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 from api.webapi import api_bp
+from anthony.anthony import anthony_bp
 
 
 app = Flask("app")
@@ -41,5 +42,6 @@ def about():
 
 
 app.register_blueprint(api_bp)
+app.register_blueprint(anthony_bp)
 
 app.run(host="127.0.0.1", port=5000)
