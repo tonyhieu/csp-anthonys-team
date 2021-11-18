@@ -20,7 +20,7 @@
     </div>
     <div class="col-sm">
         <h3>Isaac Le</h3>
-        <img src="/static/assets/images/isaacblanket.jpg" width="100%" >
+        <img src="/static/assets/images/isaacblanket.jpg" width="100%" id="isaacimg" onclick="isaacImg()">
         <h4>Interests</h4>
         <ul>
             {% for interest in isaac %}
@@ -105,6 +105,18 @@
         }   else {
             element.src = "/static/assets/images/unmaskETHAN.jpg";
             ethanMask = 0;
+        }
+    }
+    var isaacVar = 0;
+    function isaacImg () {
+        const element = document.getElementById("isaacimg");
+        if (isaacVar == 0) {
+            element.src = "/static/assets/images/isaacmaskoff.jpeg";
+            isaacVar = 1;
+
+        } else {
+            element.src = "/static/assets/images/isaacblanket.jpg";
+            isaacVar = 0;
         }
     }
 </script>
