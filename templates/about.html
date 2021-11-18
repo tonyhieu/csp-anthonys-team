@@ -30,9 +30,12 @@
     </div>
     <div class="col-sm">
         <h3>Erik Peterson</h3>
+        <img src="/static/assets/images/eiekri%20and%20isaccancanosnacaac.jpg" width="100%">
         <h4>Interests</h4>
         <ul>
-
+            {% for interest in erik %}
+                <li>{{ interest }}</li>
+            {% endfor %}
         </ul>
     </div>
     <div class="col-sm">
@@ -47,9 +50,12 @@
     </div>
     <div class="col-sm">
         <h3>Samuel Wang</h3>
+        <img src="/static/assets/images/samuelpicture.png" width="100%" >
         <h4>Interests</h4>
         <ul>
-
+            {% for interest in samuel %}
+            <li>{{ interest }}</li>
+            {% endfor %}
         </ul>
     </div>
 </div>
