@@ -52,7 +52,7 @@ Click on an Image to change it (you need to click on anthony's multiple times be
     </div>
     <div class="col-sm">
         <h3>Samuel Wang</h3>
-        <img src="/static/assets/images/samuelpicture.png" width="100%" >
+        <img src="/static/assets/images/samuelpicture.png" width="100%" id="samuelpicture" onclick="samuelpic()">
         <h4>Interests</h4>
         <ul>
             {% for interest in samuel %}
@@ -92,6 +92,18 @@ Click on an Image to change it (you need to click on anthony's multiple times be
         }   else {
             element.src = "/static/assets/images/erikfirstimage.jpg";
             erikVar = 0;
+        }
+    }
+    var samuelVar = 0;
+    function samuelpic () {
+        const element = document.getElementById("samuelpicture");
+        if (samuelVar == 0) {
+                element.src = "/static/assets/images/samuelnomask.png";
+                samuelVar = 1;
+
+        }   else {
+            element.src = "/static/assets/images/samuelpicture.png";
+            samuelVar = 0;
         }
     }
 
