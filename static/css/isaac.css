@@ -1,0 +1,63 @@
+:root{
+    --bgColor: #b82424;
+    --headerColor: blue;
+    --navTextColor: white;
+    --contentTextColor: white;
+}
+
+html, body{
+    margin: 0;
+    height: 100%;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: var(--bgColor);
+}
+
+.content {
+    margin: 1em;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+.navbar-custom {
+    background-color: var(--headerColor);
+}
+
+.navbar a,
+.navbar a:hover,
+.navbar a:active {
+    color: var(--navTextColor);
+    font-family: "Impact";
+}
+
+ul.dropdown-menu {
+    --navTextColor: var(--headerColor);
+}
+.content,
+.content a,
+.content a:hover {
+    color: var(--contentTextColor);
+    font-family: "Impact";
+}
+
+.baseNav {
+    background-color: var(--bgColor);
+    color: var(--contentTextColor);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

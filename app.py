@@ -3,6 +3,7 @@ import requests
 from api.webapi import api_bp
 from anthony.anthony import anthony_bp
 from erik.erik import erik_bp
+from isaac.isaac import isaac_bp
 
 app = Flask("app")
 
@@ -44,5 +45,6 @@ def about():
 app.register_blueprint(api_bp)
 app.register_blueprint(anthony_bp)
 app.register_blueprint(erik_bp)
+app.register_blueprint(isaac_bp)
 
 app.run(host="127.0.0.1", port=5000)
