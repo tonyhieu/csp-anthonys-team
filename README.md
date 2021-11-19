@@ -18,7 +18,7 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ## Time Box
 
-### Week 0, October 19
+### Week 0, November 19
 
 This week we started and worked on our about pages as well as our individual pages.
 
