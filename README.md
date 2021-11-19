@@ -21,4 +21,5 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 ### Week 0, October 19
 
 This week we started and worked on our about pages as well as our individual pages.
+
 -[TPT Journal](https://docs.google.com/document/d/1PMD1HX4t9gc3DcYFA1zYERcP6glqdxH7-3V5ujAxo7s/edit?usp=sharing)
