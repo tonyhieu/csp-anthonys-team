@@ -6,7 +6,7 @@
 {% endblock %} 
 
 {% block content %}
-
+Click on an Image to change it (you need to click on anthony's multiple times because he is a weird)
 <div class="row">
     <div class="col-sm">
         <h3>Ethan Gravin</h3>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-sm">
         <h3>Isaac Le</h3>
-        <img src="/static/assets/images/isaacblanket.jpg" width="100%" >
+        <img src="/static/assets/images/isaacblanket.jpg" width="100%" id="isaacimg" onclick="isaacImg()">
         <h4>Interests</h4>
         <ul>
             {% for interest in isaac %}
@@ -52,7 +52,7 @@
     </div>
     <div class="col-sm">
         <h3>Samuel Wang</h3>
-        <img src="/static/assets/images/samuelpicture.png" width="100%" >
+        <img src="/static/assets/images/samuelpicture.png" width="100%" id="samuelpicture" onclick="samuelpic()">
         <h4>Interests</h4>
         <ul>
             {% for interest in samuel %}
@@ -94,6 +94,18 @@
             erikVar = 0;
         }
     }
+    var samuelVar = 0;
+    function samuelpic () {
+        const element = document.getElementById("samuelpicture");
+        if (samuelVar == 0) {
+                element.src = "/static/assets/images/samuelnomask.png";
+                samuelVar = 1;
+
+        }   else {
+            element.src = "/static/assets/images/samuelpicture.png";
+            samuelVar = 0;
+        }
+    }
 
     var ethanMask = 1;
     function ethanImg () {
@@ -105,6 +117,18 @@
         }   else {
             element.src = "/static/assets/images/unmaskETHAN.jpg";
             ethanMask = 0;
+        }
+    }
+    var isaacVar = 0;
+    function isaacImg () {
+        const element = document.getElementById("isaacimg");
+        if (isaacVar == 0) {
+            element.src = "/static/assets/images/isaacmaskoff.jpeg";
+            isaacVar = 1;
+
+        } else {
+            element.src = "/static/assets/images/isaacblanket.jpg";
+            isaacVar = 0;
         }
     }
 </script>
