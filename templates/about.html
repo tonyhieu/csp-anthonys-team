@@ -36,6 +36,7 @@ Click on an Image to change it (you need to click on anthony's multiple times be
             {% for interest in erik %}
                 <li>{{ interest }}</li>
             {% endfor %}
+            <a href="/erik">Link to individual section</a>
         </ul>
     </div>
     <div class="col-sm">
@@ -71,7 +72,7 @@ Click on an Image to change it (you need to click on anthony's multiple times be
     function anthonyImg () {
         const element = document.getElementById("anthonyimg");
         if (anthonyVar == 0) {
-            let random = Math.floor(Math.random() * 50);
+            let random = Math.floor(Math.random() * 10);
             if (random == 1) {
                 element.src = "/static/assets/images/bracesanthony.png";
                 anthonyVar = 1;
