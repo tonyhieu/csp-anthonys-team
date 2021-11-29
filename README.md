@@ -23,3 +23,17 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 This week we started and worked on our about pages as well as our individual pages.
 
 -[TPT Journal](https://docs.google.com/document/d/1PMD1HX4t9gc3DcYFA1zYERcP6glqdxH7-3V5ujAxo7s/edit?usp=sharing)
+
+### Week 1, November 3
+
+#### 10 Key Technicals that we'll be working on
+- Delpoy Website
+- SQL lite database
+- Unity game implemented
+- Log in system
+- Upload system with html pages
+- Sorting system by platform, name, genre, etc.
+- Comments database
+- Moderation powers (delete inappropriate games, comments, usernames)
+- Rating for Games
+- Zip files for games (offline download)
