@@ -45,7 +45,7 @@ ul.dropdown-menu {
 }
 
 .baseNav {
-    background-color: var(--bgColor); 
+    background-color: var(--bgColor);
     color: var(--contentTextColor);
 }
 
@@ -60,4 +60,4 @@ ul.dropdown-menu {
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-  }
+}
