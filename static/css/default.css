@@ -48,8 +48,8 @@ ul.dropdown-menu {
 }
 
 .baseNav {
-
-    background-image: linear-gradient(black, black, #1c2e4a, #1c2e4a);
+    height: fit-content;
+    background-image: repeating-linear-gradient(black, black, #1c2e4a, #1c2e4a);
     color: var(--contentTextColor);
 }
 
