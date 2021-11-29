@@ -25,8 +25,6 @@ This week we started and worked on our about pages as well as our individual pag
 -[TPT Journal](https://docs.google.com/document/d/1PMD1HX4t9gc3DcYFA1zYERcP6glqdxH7-3V5ujAxo7s/edit?usp=sharing)
 
 
-
-
 ### Week 1, November 3
 
 #### 10 Key Technicals that we'll be working on
