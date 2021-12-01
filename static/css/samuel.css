@@ -1,11 +1,8 @@
 :root{
-    --color1: whitesmoke;
-    --color2: grey;
-    --bgColor: #198da8;
-    --headerColor: black;
-    --navTextColor: #F3F3F3;
-    --contentTextColor: #F3F3F3;
-    --galleryColor: #778da9;
+    --bgColor: #ccc417;
+    --headerColor: #e787f1;
+    --navTextColor: white;
+    --contentTextColor: white;
 }
 
 html, body{
@@ -34,7 +31,7 @@ h1 {
 .navbar a:hover,
 .navbar a:active {
     color: var(--navTextColor);
-    font-family: "Garamond";
+    font-family: "SansSerif";
 }
 
 ul.dropdown-menu {
@@ -44,19 +41,12 @@ ul.dropdown-menu {
 .content a,
 .content a:hover {
     color: var(--contentTextColor);
-    font-family: "Garamond";
+    font-family: "Droid Serif";
 }
 
 .baseNav {
-    min-height: 100%;
-    height: fit-content;
-    background-image: repeating-linear-gradient(black, black, #1c2e4a, #1c2e4a);
+    background-color: var(--bgColor);
     color: var(--contentTextColor);
-}
-
-.gallery {
-    background-image: linear-gradient(black, black, #1c2e4a, #1c2e4a);
-    height: 70vh;
 }
 
 .center {
@@ -70,4 +60,4 @@ ul.dropdown-menu {
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-  }
+}

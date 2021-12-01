@@ -18,6 +18,21 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ## Time Box
 
+### Week 1, December 3
+
+#### 10 Key Technicals that we'll be working on
+- Delpoy Website
+- SQL lite database
+- Unity game implemented
+- Log in system
+- Upload system with html pages
+- Sorting system by platform, name, genre, etc.
+- Comments database
+- Moderation powers (delete inappropriate games, comments, usernames)
+- Rating for Games
+- Zip files for games (offline download)
+
+
 ### Week 0, November 19
 
 This week we started and worked on our about pages as well as our individual pages.
