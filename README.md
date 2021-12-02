@@ -20,12 +20,12 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ### Week 1, December 3
 
-| Name | Role | Worked On | Evidence |
+| Name | Role | Contributions | Evidence |
 | - | - | - | - |
-| Ethan Gravin | Deployment Maager| Deployment Plan| [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan)|
-| Isaac Le | GitHub Admin| Contributing Guidelines | [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines)|
-| Erik Peterson | Web Designer|||
-| Anthony Vo | Scrum Master|||
+| Ethan Gravin | Deployment Maager| Deployment Plan| [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan) |
+| Isaac Le | GitHub Admin| Contributing Guidelines | [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines) |
+| Erik Peterson | Web Designer| Brain Write & Wire Frame | [Brain Write (Under Ideation)](https://github.com/tonyhieu/csp-anthonys-harem/projects/1) & [Wire Frame]() |
+| Anthony Vo | Scrum Master| Assignment & Backlogging | [Scrum Board](https://github.com/tonyhieu/csp-anthonys-harem/projects/1) |
 | Samuel Wang | Technical Officer| 10 Key Technicals| Right Below |
 
 #### 10 Key Technicals that we'll be working on
