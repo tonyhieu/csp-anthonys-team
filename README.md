@@ -31,7 +31,13 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 - Moderation powers (delete inappropriate games, comments, usernames)
 - Rating for Games
 - Zip files for games (offline download)
-
+|Name|Role|Worked On|Evidence|
+|-|-|-|-|
+| Ethan Gravin | Deployment Maager|||
+| Isaac Le | GitHub Admin| Contributing Guidelines | [Wiki]()|
+| Erik Peterson | Web Designer|||
+| Anthony Vo | Scrum Master|||
+| Samuel Wang | Technical Officer| 10 Key Technicals| Right Above |
 
 ### Week 0, November 19
 
