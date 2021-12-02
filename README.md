@@ -28,7 +28,7 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 | Anthony Vo | Scrum Master|||
 | Samuel Wang | Technical Officer| 10 Key Technicals| Right Below |
 
-#### 10 Key Technicals that we'll be working on
+##### 10 Key Technicals that we'll be working on
 - Delpoy Website
 - SQL lite database
 - Unity game implemented
