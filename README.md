@@ -20,6 +20,14 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ### Week 1, December 3
 
+| Name | Role | Contributions | Evidence |
+| - | - | - | - |
+| Ethan Gravin | Deployment Manager| Deployment Plan| [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan) |
+| Isaac Le | GitHub Admin| Contributing Guidelines | [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines) |
+| Erik Peterson | Web Designer| Brain Write & Wire Frame | [Brain Write (Under Ideation)](https://github.com/tonyhieu/csp-anthonys-harem/projects/1) & [Wire Frame](https://user-images.githubusercontent.com/89223490/144485571-7f177a73-cf7b-4a97-9e53-8a2d33f2f8c6.png) |
+| Anthony Vo | Scrum Master| Assignment & Backlogging | [Scrum Board](https://github.com/tonyhieu/csp-anthonys-harem/projects/1) |
+| Samuel Wang | Technical Officer| 10 Key Technicals| Right Below |
+
 #### 10 Key Technicals that we'll be working on
 - Delpoy Website
 - SQL lite database
@@ -31,7 +39,6 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 - Moderation powers (delete inappropriate games, comments, usernames)
 - Rating for Games
 - Zip files for games (offline download)
-
 
 ### Week 0, November 19
 
