@@ -35,8 +35,8 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 | Name | Role | Worked On | Evidence |
 | - | - | - | - |
-| Ethan Gravin | Deployment Maager|||
-| Isaac Le | GitHub Admin| Contributing Guidelines | [Wiki]()|
+| Ethan Gravin | Deployment Maager| Deployment Plan| [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment_Plan)|
+| Isaac Le | GitHub Admin| Contributing Guidelines | [Wiki](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines)|
 | Erik Peterson | Web Designer|||
 | Anthony Vo | Scrum Master|||
 | Samuel Wang | Technical Officer| 10 Key Technicals| Right Above |
