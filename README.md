@@ -8,6 +8,8 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ## Contributers
 
+[Group Journal](https://docs.google.com/document/d/1PMD1HX4t9gc3DcYFA1zYERcP6glqdxH7-3V5ujAxo7s/edit?usp=sharing)
+
 | Name | Role | Github Profile | Issues | Scrum Board | Commit History |
 | - | - | - | - | - | - |
 | Ethan Gravin | Deployment Manager | [@Ethan-Gravin25](https://github.com/Ethan-Gravin25) | [Issues](https://github.com/tonyhieu/csp-anthonys-harem/issues?q=assignee%3AEthan-Gravin25) | [Scrum Board](https://github.com/tonyhieu/csp-anthonys-harem/projects/1?card_filter_query=assignee%3AEthan-Gravin25) | [Commits](https://github.com/tonyhieu/csp-anthonys-harem/commits?author=Ethan-Gravin25) |
