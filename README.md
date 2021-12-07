@@ -20,6 +20,15 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ## Time Box
 
+### Week 2, December 10
+| Name | Role | Contributions | Evidence |
+| - | - | - | - |
+| Ethan Gravin | Deployment Manager| | []() |
+| Isaac Le | GitHub Admin |   | [](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines) |
+| Erik Peterson | Web Designer | | []() |
+| Anthony Vo | Scrum Master |  | [ ]() |
+| Samuel Wang | Technical Officer|  |   |
+
 ### Week 1, December 3
 
 | Name | Role | Contributions | Evidence |
