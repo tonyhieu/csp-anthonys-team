@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request
 import requests
+from __init__ import app
+
 from api.webapi import api_bp
 from anthony.anthony import anthony_bp
 from erik.erik import erik_bp
 from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
-
-app = Flask("app")
 
 @app.route("/")
 def index():
