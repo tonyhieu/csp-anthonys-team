@@ -61,3 +61,7 @@ ul.dropdown-menu {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+table, th, td {
+    border: 1px solid black;
+}

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 import requests
+from riotwatcher import LolWatcher, TftWatcher
 
 anthony_bp = Blueprint('anthony', __name__,
                    url_prefix='/anthony',
@@ -8,16 +9,25 @@ anthony_bp = Blueprint('anthony', __name__,
 
 @anthony_bp.route("/")
 def anthony_index():
-    url = "https://the-cocktail-db.p.rapidapi.com/random.php"
+    user_dicts = [{'username':'R04'}, {'username':'ShintaroKisaragi'}, {'username':'so phan bi xoan'}]
+    # golbal variables
+    try:
+        api_key = 'RGAPI-2fbc42f9-e279-44ba-8f3f-fa878f3d9600'
+        # RGAPI-2fbc42f9-e279-44ba-8f3f-fa878f3d9600
+        watcher = LolWatcher(api_key, 5)
+        tft_watcher = TftWatcher(api_key, 5)
+        my_region = 'na1'
 
-    headers = {
-        'x-rapidapi-host': "the-cocktail-db.p.rapidapi.com",
-        'x-rapidapi-key': "f34f39d457msh80116afa9392991p16f534jsn6a54d17a536d"
-        }
+        for user in user_dicts:
+            summoner = watcher.summoner.by_name(my_region, user['username'])
 
-    response = requests.request("GET", url, headers=headers)
+            user['lol_stats'] = watcher.league.by_summoner(my_region, summoner['id'])
+            user['tft_stats'] = tft_watcher.league.by_summoner(my_region, summoner['id'])
+    except:
+        for user in user_dicts:
+            user['lol_stats'] = [{'queueType': 'N/A', 'rank':'N/A', 'tier': 'N/A', 'leaguePoints': 'N/A', 'wins': 0, 'losses': 1}]
+            user['tft_stats'] = []
 
+    mode_dict = {'RANKED_TFT_PAIRS': 'TFT Double Up', 'RANKED_SOLO_5x5':'Ranked Solo/Duo', 'RANKED_FLEX_SR': 'Ranked Flex', 'RANKED_TFT':'Ranked TFT', 'N/A':"Data not found"}
 
-    print(response.json())
-
-    return render_template("anthonyIndex.html")
+    return render_template("anthonyIndex.html", users=user_dicts, mode_dict=mode_dict)
