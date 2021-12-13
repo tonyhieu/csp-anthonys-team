@@ -31,7 +31,7 @@ h1 {
 .navbar a:hover,
 .navbar a:active {
     color: var(--navTextColor);
-    font-family: "Impact";
+    font-family: "Calibri";
 }
 
 ul.dropdown-menu {
