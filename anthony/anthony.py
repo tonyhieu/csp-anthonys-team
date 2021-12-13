@@ -15,7 +15,7 @@ def anthony_index():
         if len(id) != 0:
             user_dicts.append({'username':id})
 
-    api_key = 'RGAPI-2fbc42f9-e279-44ba-8f3f-fa878f3d9600'
+    api_key = 'RGAPI-e76dd7e1-4e8c-42b2-9e68-f3c71cfd03c3'
     # RGAPI-2fbc42f9-e279-44ba-8f3f-fa878f3d9600
     watcher = LolWatcher(api_key, 5)
     tft_watcher = TftWatcher(api_key, 5)
