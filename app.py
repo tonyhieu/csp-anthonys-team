@@ -9,6 +9,14 @@ from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
 
+at_school = False     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
+domain = ""
+
+if at_school:
+    domain = "127.0.0.1:6969"
+else:
+    domain = "anthonysharem.cf"
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -19,14 +27,14 @@ def not_found(e):
 
 @app.route("/games")
 def games():
-    url = "http://127.0.0.1:6969/api/games"
+    url = "http://" + domain + "/api/games"
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
 
 @app.route("/game/<id>")
 def game(id):
-    url = "http://127.0.0.1:6969/api/games/" + id
+    url = "http://" + domain + "/api/games/" + id
     response = requests.request("GET", url)
     try:
         game_data = response.json()
@@ -36,11 +44,11 @@ def game(id):
 
 @app.route("/about")
 def about():
-    anthony_response = requests.request("GET", "http://127.0.0.1:6969/api/anthony")
-    isaac_response = requests.request("GET", "http://127.0.0.1:6969/api/isaac")
-    ethan_response = requests.request("GET", "http://127.0.0.1:6969/api/ethan")
-    erik_response = requests.request("GET", "http://127.0.0.1:6969/api/erik")
-    samuel_response = requests.request("GET", "http://127.0.0.1:6969/api/samuel")
+    anthony_response = requests.request("GET", "http://" + domain + "/api/anthony")
+    isaac_response = requests.request("GET", "http://" + domain + "/api/isaac")
+    ethan_response = requests.request("GET", "http://" + domain + "/api/ethan")
+    erik_response = requests.request("GET", "http://" + domain + "/api/erik")
+    samuel_response = requests.request("GET", "http://" + domain + "/api/samuel")
     return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
 
 
