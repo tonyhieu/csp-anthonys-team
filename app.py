@@ -44,11 +44,11 @@ def game(id):
 
 @app.route("/about")
 def about():
-    anthony_response = requests.request("GET", "http://" + domain + "/api/anthony")
-    isaac_response = requests.request("GET", "http://" + domain + "/api/isaac")
-    ethan_response = requests.request("GET", "http://" + domain + "/api/ethan")
-    erik_response = requests.request("GET", "http://" + domain + "/api/erik")
-    samuel_response = requests.request("GET", "http://" + domain + "/api/samuel")
+    anthony_response = requests.request("GET", "https://" + domain + "/api/anthony")
+    isaac_response = requests.request("GET", "https://" + domain + "/api/isaac")
+    ethan_response = requests.request("GET", "https://" + domain + "/api/ethan")
+    erik_response = requests.request("GET", "https://" + domain + "/api/erik")
+    samuel_response = requests.request("GET", "https://" + domain + "/api/samuel")
     return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
 
 
