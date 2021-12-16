@@ -27,14 +27,14 @@ def not_found(e):
 
 @app.route("/games")
 def games():
-    url = "http://" + domain + "/api/games"
+    url = "https://" + domain + "/api/games"
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
 
 @app.route("/game/<id>")
 def game(id):
-    url = "http://" + domain + "/api/games/" + id
+    url = "https://" + domain + "/api/games/" + id
     response = requests.request("GET", url)
     try:
         game_data = response.json()
@@ -44,11 +44,11 @@ def game(id):
 
 @app.route("/about")
 def about():
-    anthony_response = requests.request("GET", "http://" + domain + "/api/anthony")
-    isaac_response = requests.request("GET", "http://" + domain + "/api/isaac")
-    ethan_response = requests.request("GET", "http://" + domain + "/api/ethan")
-    erik_response = requests.request("GET", "http://" + domain + "/api/erik")
-    samuel_response = requests.request("GET", "http://" + domain + "/api/samuel")
+    anthony_response = requests.request("GET", "https://" + domain + "/api/anthony")
+    isaac_response = requests.request("GET", "https://" + domain + "/api/isaac")
+    ethan_response = requests.request("GET", "https://" + domain + "/api/ethan")
+    erik_response = requests.request("GET", "https://" + domain + "/api/erik")
+    samuel_response = requests.request("GET", "https://" + domain + "/api/samuel")
     return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
 
 
