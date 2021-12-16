@@ -20,6 +20,35 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ## Time Box
 
+### Week 3, December 17
+
+Scrum Master and Technical Officer
+- PBL Highlights.  <readme time box link>
+- Video <link to one minute video>
+ 
+Design Manager tangibles
+- Layout. <source link>
+- Front End Feature Screen <source link> <runtime link>
+- Front End Screen 2: <runtime link>
+- Front End Screen 3: <runtime link>
+- Scrum Master tangibles
+- GitHub Scrum Board <tickets in review link> <in progress link>
+- Scrum Board <post winter break backlog link>
+  
+Technical officer tangibles, database with CRUD:
+- Runtim <link to CRUD page runtime>
+- View <link to code supporting crud routes and logic>
+- Model <link to class and crud>
+  
+Deployment manager tangibles
+- Update procedure: <link to deployment guid that contains procedure for someone to make an update to deployment>
+- Nginx config: <link to deployment guide containing paste of configuration file>
+- Service config: <link to deployment guide containing paste of service file>
+  
+GitHub admin tangibles
+- Commit, pull request procedure <link to deployment guide that shows process>
+- Branching procedure <link to deployment guide that show process to create and merge a branch>
+
 ### Week 2, December 10
 | Name | Role | Contributions | Evidence |
 | - | - | - | - |
