@@ -27,14 +27,14 @@ def not_found(e):
 
 @app.route("/games")
 def games():
-    url = "http://" + domain + "/api/games"
+    url = "https://" + domain + "/api/games"
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
 
 @app.route("/game/<id>")
 def game(id):
-    url = "http://" + domain + "/api/games/" + id
+    url = "https://" + domain + "/api/games/" + id
     response = requests.request("GET", url)
     try:
         game_data = response.json()
