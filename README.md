@@ -46,8 +46,8 @@ Deployment manager tangibles
 - Service config: <link to deployment guide containing paste of service file>
   
 GitHub admin tangibles
-- Commit, pull request procedure <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines>
-- Branching procedure <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines>
+- [Commit, pull request procedure] (https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines)
+- [Branching procedure] (https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines)
 
 ### Week 2, December 10
 | Name | Role | Contributions | Evidence |
