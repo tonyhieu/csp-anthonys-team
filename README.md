@@ -27,10 +27,10 @@ Scrum Master and Technical Officer
 - Video <link to one minute video>
  
 Design Manager tangibles
-- Layout. <source link>
-- Front End Feature Screen <source link> <runtime link>
-- Front End Screen 2: <runtime link>
-- Front End Screen 3: <runtime link>
+- [Layout](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/layouts/base.html)
+- [Front End Feature Screen](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/index.html)
+- [Front End Screen 2](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/about.html)
+- [Front End Screen 3](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/games.html)
 - Scrum Master tangibles
 - GitHub Scrum Board <tickets in review link> <in progress link>
 - Scrum Board <post winter break backlog link>
@@ -46,8 +46,8 @@ Deployment manager tangibles
 - Service config: <link to deployment guide containing paste of service file>
   
 GitHub admin tangibles
-- [Commit, pull request procedure](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines)
-- [Branching procedure](https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines)
+- Commit, pull request procedure <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines>
+- Branching procedure <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines>
 
 ### Week 2, December 10
 | Name | Role | Contributions | Evidence |
