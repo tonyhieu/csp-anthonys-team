@@ -23,17 +23,17 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 ### Week 3, December 17
 
 Scrum Master and Technical Officer
-- PBL Highlights.  <readme time box link>
-- Video <link to one minute video>
+- PBL Highlights: [Time Box](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/README.md#time-box)
+- [Video](https://drive.google.com/file/d/1JMdQ2rvBIdhbw676Sot0zrFXDkpvgPZo/view?usp=sharing)
  
 Design Manager tangibles
 - [Layout](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/layouts/base.html)
 - [Front End Feature Screen](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/index.html)
 - [Front End Screen 2](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/about.html)
 - [Front End Screen 3](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/games.html)
-- Scrum Master tangibles
-- GitHub Scrum Board <tickets in review link> <in progress link>
-- Scrum Board <post winter break backlog link>
+
+Scrum Master tangibles
+- GitHub Scrum Board: [Tickets in review link](https://github.com/tonyhieu/csp-anthonys-harem/projects/1#column-16869138), [in progress link](https://github.com/tonyhieu/csp-anthonys-harem/projects/1#column-16869136), and [backlog link](https://github.com/tonyhieu/csp-anthonys-harem/projects/1#column-16869134)
   
 Technical officer tangibles, database with CRUD:
 - [Runtim](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/games.html)
