@@ -36,9 +36,9 @@ Design Manager tangibles
 - Scrum Board <post winter break backlog link>
   
 Technical officer tangibles, database with CRUD:
-- Runtim <link to CRUD page runtime>
-- View <link to code supporting crud routes and logic>
-- Model <link to class and crud>
+- [Runtim](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/templates/games.html)
+- [View](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/db.py)
+- [Model](https://github.com/tonyhieu/csp-anthonys-harem/blob/main/model/games.db)
   
 Deployment manager tangibles
 - Update procedure: <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan>
