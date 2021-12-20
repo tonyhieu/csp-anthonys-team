@@ -41,9 +41,9 @@ Technical officer tangibles, database with CRUD:
 - Model <link to class and crud>
   
 Deployment manager tangibles
-- Update procedure: <link to deployment guid that contains procedure for someone to make an update to deployment>
-- Nginx config: <link to deployment guide containing paste of configuration file>
-- Service config: <link to deployment guide containing paste of service file>
+- Update procedure: <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan>
+- Nginx config: <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan>
+- Service config: <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Deployment-Plan>
   
 GitHub admin tangibles
 - Commit, pull request procedure <https://github.com/tonyhieu/csp-anthonys-harem/wiki/Contributing-Guidlines>
