@@ -70,4 +70,8 @@ ul.dropdown-menu {
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-  }
+}
+
+table, table th, table td {
+    border: 1px solid white;
+}
