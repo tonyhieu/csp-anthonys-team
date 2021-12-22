@@ -22,6 +22,8 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 
 ### Week 3, December 17
 
+Team score for all: 8/8
+
 <strong>Test corrections are located in [Group Journal](https://docs.google.com/document/d/1PMD1HX4t9gc3DcYFA1zYERcP6glqdxH7-3V5ujAxo7s/edit?usp=sharing)</strong>
 
 Scrum Master and Technical Officer
