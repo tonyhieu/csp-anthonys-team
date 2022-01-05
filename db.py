@@ -6,6 +6,7 @@ from __init__ import app
 
 dbURI = 'sqlite:///model/games.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 Migrate(app, db)
