@@ -11,13 +11,13 @@ from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
 
-at_school = False     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
+at_school = True     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
 domain = ""
 
 if at_school:
-    domain = "127.0.0.1:6969"
+    domain = "http://127.0.0.1:6969"
 else:
-    domain = "www.anthonysharem.cf"
+    domain = "https://www.anthonysharem.cf"
 
 
 @app.route("/")
@@ -47,11 +47,11 @@ def game(id):
 
 @app.route("/about")
 def about():
-    anthony_response = requests.request("GET", "https://" + domain + "/api/anthony")
-    isaac_response = requests.request("GET", "https://" + domain + "/api/isaac")
-    ethan_response = requests.request("GET", "https://" + domain + "/api/ethan")
-    erik_response = requests.request("GET", "https://" + domain + "/api/erik")
-    samuel_response = requests.request("GET", "https://" + domain + "/api/samuel")
+    anthony_response = requests.request("GET", domain + "/api/anthony")
+    isaac_response = requests.request("GET", domain + "/api/isaac")
+    ethan_response = requests.request("GET", domain + "/api/ethan")
+    erik_response = requests.request("GET", domain + "/api/erik")
+    samuel_response = requests.request("GET", domain + "/api/samuel")
     return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
 
 
@@ -78,6 +78,31 @@ def delete(id):
     if game is not None:
         game.delete()
     return redirect("/games_database")
+
+@app.route("/update/<id>", methods=["GET", "POST"])
+def update(id):
+    game = Games.query.filter_by(gameID=id).first()
+    if request.method != "POST":
+        return render_template("update_database.html", game=game, id=id)
+
+    new_title = game.title
+    new_author = game.author
+    new_embed = game.embed
+
+    if request.form["title"] is not None:
+        new_title = request.form["title"]
+    if request.form["author"] is not None:
+        new_author = request.form["author"]
+    if request.form["embed"] is not None:
+        new_embed = request.form["embed"]
+
+    try:
+        game.update(title=new_title, author=new_author, embed=new_embed)
+    except:
+        return render_template("404.html", error_message="Something went wrong with updating your game.")
+
+    return redirect("/games_database")
+
 
 app.register_blueprint(api_bp)
 app.register_blueprint(anthony_bp)
