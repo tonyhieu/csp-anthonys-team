@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+
+{% block meta %} 
+<title>Update Database</title>
+
+<style>
+    input {
+        width: 100%;
+    }
+</style>
+{% endblock %} 
+
+{% block content %}
+
+<form action={{ "/update/" + id|string}} METHOD="POST" class="center">
+    <br />
+    <table>
+        <tr>
+            <td>{{ game.title }}</td>
+            <td>{{ game.author }}</td>
+            <td>{{ game.embed }}</td>
+        </tr>
+        <tr>
+            <td><input type="text" placeholder="New Title" name="title"></td>
+            <td><input type="text" placeholder="New Author" name="author"></td>
+            <td><input type="text" placeholder="New Embed" name="embed"></td>
+        </tr>
+        <tr>
+            <td colspan=3>
+                <input type="submit" value="Update Game">
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

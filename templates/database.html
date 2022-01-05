@@ -25,7 +25,7 @@
         <td>{{ game.title }}</td>
         <td>{{ game.author }}</td>
         <td>{{ game.embed }}</td>
-        <td>Update TBA</td>
+        <td><a href={{ '/update/' + loop.index|string }}>Update</a></td>
         <td><a href={{ '/delete/' + loop.index|string }}>Delete</a></td>
     </tr>
 {% endfor %}
