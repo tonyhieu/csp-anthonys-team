@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for, session
 import requests
 from __init__ import app
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
+import re
 
 from db import Games
 
@@ -11,13 +14,81 @@ from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
 
-at_school = False     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
+at_school = True     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
 domain = ""
 
 if at_school:
     domain = "127.0.0.1:6969"
 else:
     domain = "www.anthonysharem.cf"
+
+#Login System Code
+app = Flask('login')
+app.secret_key= 'joebidenshusband'
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'pythonlogin'
+
+mysql = MySQL(app)
+
+@app.route('/csp-anthonys-harem/', methods=['GET', 'POST'])
+def login():
+    msg = ''
+    if request.method == 'POST' and ' username' in request.form and 'password in request.form':
+        username = request.form['username']
+        password = request.form['password']
+        cursor = mysql.connecction.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accoutns WHERE usernmane = %s AND password = %s', (username, password,))
+        account = cursor.fetchone()
+    if account:
+        session['loggedin'] = True
+        session['id'] = account['id']
+        session['username'] = account['username']
+        return 'Log in successful!'
+    else:
+        msg = 'Incorrect username or password.'
+    return render_template ('login.html', msg='')
+
+#Logout system
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+#Register system
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    msg = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE username = %s', (username,))
+        account = cursor.fetchone()
+        # If account exists show error and validation checks
+        if account:
+            msg = 'Account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address!'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers!'
+        elif not username or not password or not email:
+            msg = 'Please fill out all areas!'
+        else:
+            # Account doesnt exists and the form data is valid, now insert new account into accounts table
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, email,))
+            mysql.connection.commit()
+            msg = 'Thank you for Registering!'
+    elif request.method == 'POST':
+        msg = 'Please fill out all areas!'
+    return render_template('register.html', msg=msg)
+
+
 
 
 @app.route("/")
