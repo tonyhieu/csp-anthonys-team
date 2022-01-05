@@ -3,7 +3,6 @@ import requests
 from __init__ import app
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import re
 
 from db import Games
 
