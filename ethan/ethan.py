@@ -8,3 +8,7 @@ ethan_bp = Blueprint('ethan', __name__,
 @ethan_bp.route("/")
 def ethan_index():
     return render_template("ethanIndex.html")
+
+@ethan_bp.route("/textAdventureEthan")
+def text_adventure():
+    return render_template("textAdventureEthan.html")

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan's Text Adventure</title>
+    <link rel="stylesheet" href="/static/css/ethan.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+</head>
+
+<body class="baseNav">
+<nav class="navbar navbar-expand-lg navbar-custom ">
+
+    <a class="navbar-brand" style="margin-left: 1em;">Ethan Gravin</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item navbar-text">
+            <a class="nav-link" href={{ url_for('index') }}>Home</a>
+        </li>
+    </ul>
+
+</nav>
+
+<button id="but" onclick="begin()">Begin the Text Adventure!!</button>
+<p id="showTheTextMessage"></p>
+<button id="but1" onclick="choice1()"></button>
+<button id="but2" onclick="choice2()"></button>
+</body>
+<script>
+
+    document.getElementById('but1').style.display = "none";
+    document.getElementById('but2').style.display = "none";
+
+    var step = 0;
+
+
+
+    function begin() {
+        const showMessage = document.getElementById('showTheTextMessage');
+        showMessage.innerHTML = 'In the ruins of the buildings around you, you spot a grocery store that looks completely perfect. You also notice a sign that says the store is cursed, end it’s legacy!';
+        showMessage.style.display = 'block';
+        const bttn = document.getElementById('but1');
+        bttn.innerHTML = 'Walk to the store';
+        bttn.style.display = 'block';
+        const bttn2 = document.getElementById('but2');
+        bttn2.innerHTML = 'End its legacy';
+        bttn2.style.display = 'block';
+        document.getElementById('but').style.display = 'none';
+
+    }
+
+    function choice1(){
+        if(step == 0) {
+            const showMessage = document.getElementById('showTheTextMessage');
+            showMessage.innerHTML = 'Upon entering the store you see a group of people turn towards you. They ask if you want free samples.';
+            showMessage.style.display = 'block';
+            const bttn = document.getElementById('but1');
+            bttn.innerHTML = 'Accept the samples';
+            bttn.style.display = 'block';
+            const bttn2 = document.getElementById('but2');
+            bttn2.innerHTML = 'Run away';
+            bttn2.style.display = 'block';
+            step = 2;
+            return;
+        }
+
+        if(step == 2) {
+            const showMessage = document.getElementById('showTheTextMessage');
+            showMessage.innerHTML = 'Upon accepting the samples, your vision blurs and your senses dull. You wake up in a cold frosted area. You wipe in front of you and the condensation wipes off the window revealing you’re trapped inside of a freezer! You lose.';
+            showMessage.style.display = 'block';
+            const bttn = document.getElementById('but1');
+            bttn.style.display = 'none';
+            const bttn2 = document.getElementById('but2');
+            bttn2.style.display = 'none';
+        }
+
+        if(step == 3) {
+            const showMessage = document.getElementById('showTheTextMessage');
+            showMessage.innerHTML = 'The man hands you the bottle and a lighter and tells you to go ham. You light your cocktail and the place burns, freeing all the trapped souls. You win!';
+            showMessage.style.display = 'block';
+            const bttn = document.getElementById('but1');
+            bttn.style.display = 'none';
+            const bttn2 = document.getElementById('but2');
+            bttn2.style.display = 'none';
+        }
+
+    }
+
+    function choice2(){
+        if(step == 0) {
+            const showMessage = document.getElementById('showTheTextMessage');
+            showMessage.innerHTML = 'You walk towards the sign and see a very sketchy looking man with a bottle of unknown liquid. He asks for your help.';
+            showMessage.style.display = 'block';
+            const bttn = document.getElementById('but1');
+            bttn.innerHTML = 'Help the man';
+            bttn.style.display = 'block';
+            const bttn2 = document.getElementById('but2');
+            bttn2.innerHTML = 'Run away';
+            bttn2.style.display = 'block';
+            step = 3;
+            return;
+        }
+
+        if(step == 2) {
+            const showMessage = document.getElementById('showTheTextMessage');
+            showMessage.innerHTML = 'You run away in fear, your primal instincts flaring up. You almost make it to the door before al the lights shut off. You hear scuttling behind you and you slowly drift off into wonderland. You lose.';
+            showMessage.style.display = 'block';
+            const bttn = document.getElementById('but1');
+            bttn.style.display = 'none';
+            const bttn2 = document.getElementById('but2');
+            bttn2.style.display = 'none';
+        }
+
+        if(step == 3) {
+            const showMessage = document.getElementById('showTheTextMessage');
+            showMessage.innerHTML = 'You flee in terror, the sight of a man bringing you to complete and utter fear. You hear a click behind you and everything goes up in flames. You lose.';
+            showMessage.style.display = 'block';
+            const bttn = document.getElementById('but1');
+            bttn.style.display = 'none';
+            const bttn2 = document.getElementById('but2');
+            bttn2.style.display = 'none';
+        }
+    }
+
+</script>
+</html>

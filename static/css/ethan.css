@@ -1,8 +1,8 @@
 :root{
-    --bgColor: #ad27c4;
-    --headerColor: #5c046b;
-    --navTextColor: #9e9404;
-    --contentTextColor: #c4ba27;
+    --bgColor: #464646;
+    --headerColor: #000000;
+    --navTextColor: #d7d7d7;
+    --contentTextColor: #b2b2b2;
 }
 
 html, body{
