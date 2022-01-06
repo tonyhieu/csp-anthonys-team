@@ -1,8 +1,8 @@
 :root{
-    --bgColor: #b82424;
-    --headerColor: #691515;
-    --navTextColor: #ffdf77;
-    --contentTextColor: rgb(250, 151, 69);
+    --bgColor: #ce231c;
+    --headerColor: #f1f102;
+    --navTextColor: white;
+    --contentTextColor: white;
 }
 
 html, body{
@@ -31,7 +31,7 @@ h1 {
 .navbar a:hover,
 .navbar a:active {
     color: var(--navTextColor);
-    font-family: "Comic Sans MS";
+    font-family: "Calibri";
 }
 
 ul.dropdown-menu {
@@ -41,7 +41,7 @@ ul.dropdown-menu {
 .content a,
 .content a:hover {
     color: var(--contentTextColor);
-    font-family: "Comic Sans MS";
+    font-family: "Impact";
 }
 
 .baseNav {
@@ -60,8 +60,4 @@ ul.dropdown-menu {
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-}
-
-table, table th, table td {
-    border: 1px solid black;
 }

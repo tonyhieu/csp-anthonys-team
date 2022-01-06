@@ -9,4 +9,44 @@
 
 <p>Hi! My name's Anthony Vo. Welcome to my individual section!</p>
 
+<p>Here are my TFT and League statistics</p>
+
+{% for user in users %}
+<p>Username: {{ user.username }}</p>
+<table>
+    <tr>
+        <th>Gamemode</th>
+        <th>Rank</th>
+        <th>LP</th>
+        <th>Winrate</th>
+    </tr>
+    {% for gamemode in user.lol_stats %}
+    {% if mode_dict[gamemode.queueType] != 'TFT Double Up' %}
+    <tr>
+        <td>{{mode_dict[gamemode.queueType]}}</th>
+        <td>{{gamemode.tier}} {{gamemode.rank}}</th>
+        <td>{{gamemode.leaguePoints}} LP</th>
+        <td>{{ gamemode.wins / (gamemode.losses + gamemode.wins) * 100 }}%</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+
+    {% for gamemode in user.tft_stats %}
+    <tr>
+        <td>{{mode_dict[gamemode.queueType]}}</th>
+        <td>{{gamemode.tier}} {{gamemode.rank}}</th>
+        <td>{{gamemode.leaguePoints}} LP</th>
+        <td>{{ gamemode.wins / (gamemode.losses + gamemode.wins) * 100 }}%</td>
+    </tr>
+    {% endfor %}
+</table>
+<br />
+<br />
+{% endfor %}
+
+<form id="form" method="post">
+    <input type="text" name="accountId" required>
+    <input type="submit" value="Look up your own account!">
+</form>
+
 {% endblock %}

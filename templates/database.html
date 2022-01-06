@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+
+
+{% block meta %} 
+<title>Games Database</title>
+{% endblock %} 
+
+{% block content %}
+
+<h2 class="center">Use this page to submit games to be reviewed by our staff!</h2>
+
+<table style="margin-left: auto; margin-right: auto">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Embed</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+{% for game in games %}
+    <tr>
+        <td>{{ game.gameID }}</td>
+        <td>{{ game.title }}</td>
+        <td>{{ game.author }}</td>
+        <td>{{ game.embed }}</td>
+        <td><a href={{ '/update/' + loop.index|string }}>Update</a></td>
+        <td><a href={{ '/delete/' + loop.index|string }}>Delete</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+<form action="/games_database" METHOD="POST" class="center">
+    <input type="text" placeholder="Title" name="title">
+    <input type="text" placeholder="Author" name="author">
+    <input type="text" placeholder="Embed" name="embed">
+    <input type="submit" value="Add Game">
+</form>
+
+{% endblock %}

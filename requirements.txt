@@ -1,2 +1,5 @@
 Flask
 requests
+flask_sqlalchemy
+Flask_Migrate
+riotwatcher
