@@ -1,5 +1,7 @@
-Flask
-requests
+Flask~=2.0.1
+requests~=2.26.0
 flask_sqlalchemy
 Flask_Migrate
-riotwatcher
+riotwatcher~=3.2.0
+SQLAlchemy~=1.4.28
+mysqlclient~=2.1.0
