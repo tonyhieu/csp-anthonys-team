@@ -23,7 +23,6 @@ else:
     domain = "https://www.anthonysharem.cf"
 
 #Login System Code
-app = Flask('login')
 app.secret_key= 'joebidenshusband'
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -101,14 +100,14 @@ def not_found(e):
 
 @app.route("/games")
 def games():
-    url = "https://" + domain + "/api/games"
+    url = domain + "/api/games"
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
 
 @app.route("/game/<id>")
 def game(id):
-    url = "https://" + domain + "/api/games/" + id
+    url = domain + "/api/games/" + id
     response = requests.request("GET", url)
     try:
         game_data = response.json()
