@@ -1,0 +1,150 @@
+html, body{
+    margin: 0;
+    height: 100%;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+$bg-color-light: #198da8;
+$header-color-light: black;
+$nav-text-color-light: #F3F3F3;
+$content-text-color-light: #F3F3F3;
+$top-gradient-color-light: black;
+$bottom-gradient-color-light: #1c2e4a;
+
+$bg-color-dark: #198da8;
+$header-color-dark: #fff9d4;
+$nav-text-color-dark: #0e1f33;
+$content-text-color-dark: #0e1f33;
+$top-gradient-color-dark: #fff9d4;
+$bottom-gradient-color-dark: #fbf4b5;
+
+$themes: (
+    dark: (
+        bg-color: $bg-color-dark,
+        header-color: $header-color-dark,
+        nav-text-color: $nav-text-color-dark,
+        content-text-color: $content-text-color-dark,
+        top-gradient-color: $top-gradient-color-dark,
+        bottom-gradient-color: $bottom-gradient-color-dark
+    ),
+    light: (
+        bg-color: $bg-color-light,
+        header-color: $header-color-light,
+        nav-text-color: $nav-text-color-light,
+        content-text-color: $content-text-color-light,
+        top-gradient-color: $top-gradient-color-light,
+        bottom-gradient-color: $bottom-gradient-color-light
+    )
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .#{$theme}-mode & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
+
+
+// $bg-color: #198da8;
+// $header-color: black;
+// $nav-text-color: #F3F3F3;
+// $content-text-color: #F3F3F3;
+// $top-gradient-color: black;
+// $bottom-gradient-color: #1c2e4a;
+.base {
+    //background-color: $bg-color;
+
+    .content {
+        margin: 1em;
+    }
+
+    h1 {
+        font-size: 5em;
+    }
+
+    .navbar-custom {
+        // @include themed() {
+        //     background-color: t($header-color);
+        // }
+    }
+
+    .navbar a,
+    .navbar a:hover,
+    .navbar a:active {
+        // @include themed() {
+        //     color: t($nav-text-color);
+        // }
+        font-family: "Garamond";
+    }
+
+    ul.dropdown-menu {
+        @include themed() {
+            --nav-text-color: t($header-color);
+        }
+    }
+    .content,
+    .content a,
+    .content a:hover {
+        @include themed() {
+            color: t($content-text-color);
+        }
+        font-family: "Garamond";
+    }
+
+    .baseNav {
+        @include themed() {
+            background-image: repeating-linear-gradient(t($top-gradient-color), t($top-gradient-color), t($bottom-gradient-color), t($bottom-gradient-color));
+            color: t($content-text-color);
+        }
+        min-height: 100%;
+        height: fit-content;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+
+    .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    table, table th, table td {
+        border: 1px solid white;
+    }
+}
+
+
+// :root{
+//     --bgColor: #198da8;
+//     --header-color: black;
+//     --nav-text-color: #F3F3F3;
+//     --content-text-color: #F3F3F3;
+// }
+
+// $bg-color: #198da8;
+// $header-color: #fff9d4;
+// $nav-text-color: #0e1f33;
+// $content-text-color: #0e1f33;
+// $top-gradient-color: #fff9d4;
+// $bottom-gradient-color: #fbf4b5;
+// .light-mode {
+//     @extend .dark-mode;
+// }

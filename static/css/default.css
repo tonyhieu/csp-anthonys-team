@@ -1,77 +1,77 @@
 :root{
-    --color1: whitesmoke;
-    --color2: grey;
-    --bgColor: #198da8;
-    --headerColor: black;
-    --navTextColor: #F3F3F3;
-    --contentTextColor: #F3F3F3;
-    --galleryColor: #778da9;
+  --color1: whitesmoke;
+  --color2: grey;
+  --bgColor: #198da8;
+  --headerColor: black;
+  --navTextColor: #F3F3F3;
+  --contentTextColor: #F3F3F3;
+  --galleryColor: #778da9;
 }
 
 html, body{
-    margin: 0;
-    height: 100%;
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
-    background-color: var(--bgColor);
+  margin: 0;
+  height: 100%;
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+  background-color: var(--bgColor);
 }
 
 .content {
-    margin: 1em;
+  margin: 1em;
 }
 
 h1 {
-    font-size: 5em;
+  font-size: 5em;
 }
 
 .navbar-custom {
-    background-color: var(--headerColor);
+  background-color: var(--headerColor);
 }
 
 .navbar a,
 .navbar a:hover,
 .navbar a:active {
-    color: var(--navTextColor);
-    font-family: "Garamond";
+  color: var(--navTextColor);
+  font-family: "Garamond";
 }
 
 ul.dropdown-menu {
-    --navTextColor: var(--headerColor);
+  --navTextColor: var(--headerColor);
 }
 .content,
 .content a,
 .content a:hover {
-    color: var(--contentTextColor);
-    font-family: "Garamond";
+  color: var(--contentTextColor);
+  font-family: "Garamond";
 }
 
 .baseNav {
-    min-height: 100%;
-    height: fit-content;
-    background-image: repeating-linear-gradient(black, black, #1c2e4a, #1c2e4a);
-    color: var(--contentTextColor);
+  min-height: 100%;
+  height: fit-content;
+  background-image: repeating-linear-gradient(black, black, #1c2e4a, #1c2e4a);
+  color: var(--contentTextColor);
 }
 
 .gallery {
-    background-image: linear-gradient(black, black, #1c2e4a, #1c2e4a);
-    height: 70vh;
+  background-image: linear-gradient(black, black, #1c2e4a, #1c2e4a);
+  height: 70vh;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .vertical-center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 table, table th, table td {
-    border: 1px solid white;
+  border: 1px solid white;
 }
