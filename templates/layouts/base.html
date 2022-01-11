@@ -21,6 +21,8 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="/static/assets/images/favicon.ico" />
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         {% block meta %}{% endblock %}
     </head>
 
@@ -72,19 +74,53 @@
         </div>
 
         <script>
-            let mode = "dark";
             function toggleMode() {
-                alert(mode);
-                if (mode == "dark") {
+                let mode = getCookie("mode");
+                if (mode == "dark" || mode == "") {
                     document.body.classList.toggle("light");
                     document.getElementById("toggler").innerHTML = "Dark Mode";
                     mode = "light";
+                    setModeCookie("light");
                 } else {
                     document.body.classList.toggle("light");
                     document.getElementById("toggler").innerHTML = "Light Mode";
                     mode = "dark";
+                    setModeCookie("dark");
                 }
             }
+
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                let expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let ca = document.cookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function setModeCookie(mode) {
+                setCookie("mode", mode, 365);
+            }
+
+            $(document).ready(function() {
+                let mode = getCookie("mode");
+                if (mode == "light") {
+                    document.body.classList.toggle("light");
+                }
+            });
         </script>
     </body>
 </html>

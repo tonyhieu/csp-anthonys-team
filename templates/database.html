@@ -9,7 +9,7 @@
 
 <h2 class="center">Use this page to submit games to be reviewed by our staff!</h2>
 
-<table style="margin-left: auto; margin-right: auto">
+<table style="margin-left: auto; margin-right: auto" class="content">
     <tr>
         <th>ID</th>
         <th>Title</th>
@@ -20,7 +20,7 @@
     </tr>
 
 {% for game in games %}
-    <tr>
+    <tr class="text">
         <td>{{ game.gameID }}</td>
         <td>{{ game.title }}</td>
         <td>{{ game.author }}</td>

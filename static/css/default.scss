@@ -20,6 +20,7 @@ $content-text-color-light: #0e1f33;
 $top-gradient-color-light: #fff9d4;
 $bottom-gradient-color-light: #fbf4b5;
 
+
 :root {
     --bg-color: #{$bg-color-dark};
     --header-color: #{$header-color-dark};
@@ -67,7 +68,7 @@ $bottom-gradient-color-light: #fbf4b5;
 //       }
 //       @content;
 //       $theme-map: null !global;
-//     }
+//     }e
 //   }
 // }
 
@@ -116,7 +117,8 @@ $bottom-gradient-color-light: #fbf4b5;
     }
 
     ul.dropdown-menu {
-        --nav-text-color: var(--header-color);
+        --nav-text-color: black;
+        color: black;
     }
     .content,
     .content a,
@@ -126,10 +128,7 @@ $bottom-gradient-color-light: #fbf4b5;
     }
 
     .baseNav {
-        background: repeating-linear-gradient(var(--top-gradient-color), 
-            var(--top-gradient-color), 
-            var(--bottom-gradient-color), 
-            var(--bottom-gradient-color));
+        background-image: linear-gradient(var(--top-gradient-color), var(--bottom-gradient-color));
         color: var(--content-text-color);
         min-height: 100%;
         height: fit-content;
@@ -148,8 +147,12 @@ $bottom-gradient-color-light: #fbf4b5;
         transform: translateY(-50%);
     }
 
-    table, table th, table td {
+    table {
         border: 1px solid var(--content-text-color);
+
+        tr, th, td {
+            border: 1px solid var(--content-text-color);
+        }
     }
 }
 
@@ -163,7 +166,7 @@ $bottom-gradient-color-light: #fbf4b5;
 
 // $bg-color: #198da8;
 // $header-color: #fff9d4;
-// $nav-text-color: #0e1f33;
+// $nav-text-color: #0e1f33; t
 // $content-text-color: #0e1f33;
 // $top-gradient-color: #fff9d4;
 // $bottom-gradient-color: #fbf4b5;

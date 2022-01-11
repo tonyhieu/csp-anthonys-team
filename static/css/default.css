@@ -60,7 +60,8 @@ html, body {
 }
 
 .base ul.dropdown-menu {
-  --nav-text-color: var(--header-color);
+  --nav-text-color: black;
+  color: black;
 }
 
 .base .content,
@@ -71,7 +72,8 @@ html, body {
 }
 
 .base .baseNav {
-  background: repeating-linear-gradient(var(--top-gradient-color), var(--top-gradient-color), var(--bottom-gradient-color), var(--bottom-gradient-color));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--top-gradient-color)), to(var(--bottom-gradient-color)));
+  background-image: linear-gradient(var(--top-gradient-color), var(--bottom-gradient-color));
   color: var(--content-text-color);
   min-height: 100%;
   height: -webkit-fit-content;
@@ -96,7 +98,11 @@ html, body {
           transform: translateY(-50%);
 }
 
-.base table, .base table th, .base table td {
+.base table {
+  border: 1px solid var(--content-text-color);
+}
+
+.base table tr, .base table th, .base table td {
   border: 1px solid var(--content-text-color);
 }
 /*# sourceMappingURL=default.css.map */
