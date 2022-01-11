@@ -61,7 +61,6 @@ html, body {
 
 .base ul.dropdown-menu {
   --nav-text-color: black;
-  color: black;
 }
 
 .base .content,
