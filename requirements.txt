@@ -5,3 +5,4 @@ Flask_Migrate
 riotwatcher~=3.2.0
 SQLAlchemy~=1.4.28
 mysqlclient~=2.1.0
+crud~=0.1
