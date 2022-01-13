@@ -49,4 +49,41 @@
     <input type="submit" value="Look up your own account!">
 </form>
 
+<p>Create a procedure given a random number between 1-100 determine if its an even or odd, also determine if it is prime number</p>
+<p id="guessNumber">Number</p>
+<button onclick="randomNumber()">Generate Number</button>
+
+<script>
+    function randomNumber() {
+        const rand = Math.floor(Math.random() * 100) + 1;
+        let even = rand % 2 == 0;
+        let prime = checkPrime(rand);
+
+        let numberInfo = "";
+        
+        if (even && prime) {
+            numberInfo = "The number " + rand + " is even and prime.";
+        }
+        if (even && !prime) {
+            numberInfo = "The number " + rand + " is even and not prime.";
+        }
+        if (!even && prime) {
+            numberInfo = "The number " + rand + " is odd and prime.";
+        }
+        if (!even && !prime) {
+            numberInfo = "The number " + rand + " is odd and not prime.";
+        }
+
+        document.getElementById("guessNumber").innerHTML = numberInfo;
+    }
+
+    function checkPrime(number) {
+        for (i = 1; i <= number; i++) {
+            if (number % i == 0 && number != i && i != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
 {% endblock %}
