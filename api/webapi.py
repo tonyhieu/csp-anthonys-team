@@ -41,7 +41,7 @@ def get_game(id):
 
 # INTERESTS API
 anthony_interests = ["programming", "League of Legends", "golf", "VOCALOID", "rhythm games", "game development", "web development"]
-ethan_interests = ["Running Track", "Video Games", "Wakeboarding", "Lofi", "Climbing/Hiking", "Attempt to learn violin"]
+ethan_interests = ["Running Track", "Video Games", "Wakeboarding", "Lofi", "Climbing/Hiking", "Attempting to learn violin"]
 isaac_interests = ["Soccer", "Selling my soul to Riot Games", "Playing games", "Hanging out with friends", "Engineering"]
 erik_interests = ["Memes", "Video games", "Karate", "Engineering", "Driving"]
 samuel_interests = ["soccer", "games"]
