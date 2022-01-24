@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, render_template
 
 api_bp = Blueprint('api', __name__,
                    url_prefix='/api',
@@ -10,13 +10,13 @@ api_bp = Blueprint('api', __name__,
 # GAMES API
 games = []
 game_embeds = [
-    '<iframe src="https://scratch.mit.edu/projects/199615756/embed" allowtransparency="true" width="700" height="700" frameborder="0" scrolling="no" allowfullscreen></iframe>'
+    "<iframe src='https://scratch.mit.edu/projects/199615756/embed' allowtransparency='true' width='700' height='700' frameborder='0' scrolling='no' allowfullscreen></iframe>", "/api/games/embeds/2"
 ]
 game_titles = [
-    "Dabbing Tycoon"
+    "Dabbing Tycoon", "Snake"
 ]
 game_authors = [
-    "Anthony Vo"
+    "Anthony Vo", "John Mortensen"
 ]
 
 def _init_games ():
@@ -38,6 +38,10 @@ def get_game(id):
     except:
         return "Invalid ID"
 
+@api_bp.route('/games/embeds/2')
+def embed2():
+    return render_template("snake.html")
+# make it so that we can check whether the embed is actually in the database or if its in an html file, use that to determine how to load webpage
 
 # INTERESTS API
 anthony_interests = ["programming", "League of Legends", "golf", "VOCALOID", "rhythm games", "game development", "web development"]

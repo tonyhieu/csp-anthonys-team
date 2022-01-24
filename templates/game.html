@@ -9,9 +9,16 @@
 <div>
     <h1 class="center">{{ game_data.title }}</h1>
     <h2 class="center">By {{ game_data.author }}</h2>
-    <div class="center">
+    <div class="center" id="game">
         {{ game_data.embed | safe }}
     </div>
 </div>
+
+<script>
+    const game = "{{ game_data.embed | safe }}";
+    $(document).ready(function(){
+        $("#game").load(game);
+    });
+</script>
 
 {% endblock %}
