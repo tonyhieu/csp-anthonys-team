@@ -38,9 +38,9 @@ def get_game(id):
     except:
         return "Invalid ID"
 
-@api_bp.route('/games/embeds/2')
-def embed2():
-    return render_template("snake.html")
+@api_bp.route('/games/embeds/<id>')
+def embed(id):
+    return render_template(str(id) + ".html")
 # make it so that we can check whether the embed is actually in the database or if its in an html file, use that to determine how to load webpage
 
 # INTERESTS API
