@@ -25,8 +25,6 @@ else:
 
 #Login System Code
 
-app = Flask(__name__)
-
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':

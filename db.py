@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from flask_migrate import Migrate
 
-from __init__ import app 
+from __init__ import app
 
 dbURI = 'sqlite:///model/games.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
