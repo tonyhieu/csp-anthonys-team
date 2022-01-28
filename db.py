@@ -17,6 +17,7 @@ class Games(db.Model):
     author = db.Column(db.String(255), unique=False, nullable=False)
     embed = db.Column(db.String(255), unique=False, nullable=False)
 
+
     def __init__ (self, title, author, embed):
         self.title = title
         self.author = author
@@ -74,3 +75,4 @@ def create_db():
 
 if __name__ == "__main__":
     create_db()
+

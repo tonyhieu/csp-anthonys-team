@@ -1,12 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import session, render_template, request, redirect, url_for, Flask
 import requests
 from __init__ import app
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
+import MySQLdb
 import re
 
 from db import Games
-
 from api.webapi import api_bp
 from anthony.anthony import anthony_bp
 from erik.erik import erik_bp
@@ -14,7 +14,9 @@ from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
 
-at_school = True     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
+app = Flask(__name__)
+
+at_school = True  # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
 domain = ""
 
 if at_school:
@@ -22,15 +24,16 @@ if at_school:
 else:
     domain = "https://www.anthonysharem.cf"
 
-#Login System Code
-app.secret_key= 'joebidenshusband'
+# Login System Code
+app.secret_key = 'csp123'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'pythonlogin'
+app.config['MYSQL_PASSWORD'] = 'csp123'
+app.config['MYSQL_DB'] = 'login'
 
-mysql = MySQL(app)
+db = MySQL(app)
+
 
 @app.route('/csp-anthonys-harem/', methods=['GET', 'POST'])
 def login():
@@ -48,44 +51,9 @@ def login():
         return 'Log in successful!'
     else:
         msg = 'Incorrect username or password.'
-    return render_template ('login.html', msg='')
+    return render_template('login.html', msg='')
 
-#Logout system
-@app.route('/logout')
-def logout():
-    session.pop('loggedin', None)
-    session.pop('id', None)
-    session.pop('username', None)
-    return redirect(url_for('login'))
 
-#Register system
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    msg = ''
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE username = %s', (username,))
-        account = cursor.fetchone()
-        # If account exists show error and validation checks
-        if account:
-            msg = 'Account already exists!'
-        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            msg = 'Invalid email address!'
-        elif not re.match(r'[A-Za-z0-9]+', username):
-            msg = 'Username must contain only characters and numbers!'
-        elif not username or not password or not email:
-            msg = 'Please fill out all areas!'
-        else:
-            # Account doesnt exists and the form data is valid, now insert new account into accounts table
-            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, email,))
-            mysql.connection.commit()
-            msg = 'Thank you for Registering!'
-    elif request.method == 'POST':
-        msg = 'Please fill out all areas!'
-    return render_template('register.html', msg=msg)
 
 
 
@@ -94,9 +62,50 @@ def register():
 def index():
     return render_template("index.html")
 
+
+@app.route('/log1', methods=['GET', 'POST'])
+def log1():
+    if request.method == 'POST':
+        if 'username' in request.form and 'password' in request.form:
+            username = request.form['username']
+            password = request.form['password']
+            cursor = db.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT * FROM logininfo WHERE email=%s AND password=%s", (username, password))
+            info = cursor.fetchone()
+            if info is not None:
+                    if info['email'] == username and info['password'] == password:
+                        session['loginsuccess'] = True
+                        return redirect(url_for('index'))
+            else:
+                return "login unsuccessful"
+    return render_template("log1.html")
+
+
+@app.route('/new', methods=['GET', 'POST'])
+def new_user():
+    if request.method == "POST":
+        if "one" in request.form and "two" in request.form and "three" in request.form:
+            username = request.form['one']
+            email = request.form['two']
+            password = request.form['three']
+            cur = db.connection.cursor(MySQLdb.cursors.DictCursor)
+            cur.execute("INSERT INTO login.logininfo(name, password, email)VALUES(%s,%s,%s)",(username,password,email))
+            db.connection.commit()
+            return redirect(url_for('log1'))
+    return render_template("reg1.html")
+
+
+@app.route('/new/profile')
+def profile():
+    if session['loginsuccess'] == True:
+        return render_template("profile1.html")
+
+
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template("404.html", error_message="Oops! We hit a roadblock. Try accessing this page later.")
+
 
 @app.route("/games")
 def games():
@@ -104,6 +113,7 @@ def games():
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
+
 
 @app.route("/game/<id>")
 def game(id):
@@ -115,6 +125,7 @@ def game(id):
     except:
         return "Invalid ID"
 
+
 @app.route("/about")
 def about():
     anthony_response = requests.request("GET", domain + "/api/anthony")
@@ -122,7 +133,8 @@ def about():
     ethan_response = requests.request("GET", domain + "/api/ethan")
     erik_response = requests.request("GET", domain + "/api/erik")
     samuel_response = requests.request("GET", domain + "/api/samuel")
-    return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(), ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
+    return render_template("about.html", anthony=anthony_response.json(), isaac=isaac_response.json(),
+                           ethan=ethan_response.json(), erik=erik_response.json(), samuel=samuel_response.json())
 
 
 def get_all_games_json():
@@ -148,6 +160,7 @@ def delete(id):
     if game is not None:
         game.delete()
     return redirect("/games_database")
+
 
 @app.route("/update/<id>", methods=["GET", "POST"])
 def update(id):
@@ -180,7 +193,5 @@ app.register_blueprint(erik_bp)
 app.register_blueprint(samuel_bp)
 app.register_blueprint(ethan_bp)
 app.register_blueprint(isaac_bp)
-
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=6969)
-

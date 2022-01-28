@@ -1,7 +1,16 @@
-
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-from __init__ import db
+from flask_migrate import Migrate
 
+from __init__ import app
+
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
+
+
+db = SQLAlchemy(app)
+Migrate(app, db)
 
 class Users(db.Model):
     userID = db.Column(db.Integer, primary_key=True)
@@ -54,16 +63,9 @@ class Users(db.Model):
         db.session.commit()
         return None
 
-
-"""Database Creation and Testing section"""
-
-
 def model_tester():
-    print("--------------------------")
-    print("Seed Data for Table: users")
-    print("--------------------------")
     db.create_all()
-    """Tester data for table"""
+
     u1 = Users(name='joe', email='123@example.com', password='12345')
 
     table = [u1]
@@ -73,16 +75,7 @@ def model_tester():
             db.session.commit()
         except IntegrityError:
             db.session.remove()
-            print(f"error {row.email}")
-
-
-def model_printer():
-    result = db.session.execute('select * from users')
-    print(result.keys())
-    for row in result:
-        print(row)
-
+            print("error")
 
 if __name__ == "__main__":
     model_tester()  # builds model of Users
-    model_printer()
