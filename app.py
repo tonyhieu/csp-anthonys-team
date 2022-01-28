@@ -4,6 +4,8 @@ from __init__ import app
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+import models as dbHandler
+import sqlite3
 
 from db import Games
 
@@ -30,7 +32,7 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'csp123'
 app.config['MYSQL_DB'] = 'login'
-app = Flask(__name__)
+
 
 db = MySQL(app)
 
@@ -45,12 +47,6 @@ def login():
             users = dbHandler.retrieveUsers()
             return render_template('index.html', users=users)
     else:
-        msg = 'Incorrect username or password.'
-    return render_template('login.html', msg='')
-
-
-
-
         return render_template('login.html')
 
 
@@ -102,14 +98,12 @@ def profile():
 def not_found(e):
     return render_template("404.html", error_message="Oops! We hit a roadblock. Try accessing this page later.")
 
-
 @app.route("/games")
 def games():
     url = domain + "/api/games"
     response = requests.request("GET", url)
     print(response)
     return render_template("games.html", games=response.json())
-
 
 @app.route("/game/<id>")
 def game(id):
@@ -120,7 +114,6 @@ def game(id):
         return render_template("game.html", game_data=game_data)
     except:
         return "Invalid ID"
-
 
 @app.route("/about")
 def about():
@@ -188,5 +181,7 @@ app.register_blueprint(erik_bp)
 app.register_blueprint(samuel_bp)
 app.register_blueprint(ethan_bp)
 app.register_blueprint(isaac_bp)
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=6969)
+

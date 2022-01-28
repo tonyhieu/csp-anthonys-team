@@ -33,6 +33,7 @@
 
     // Add CSS to container to make it a grid
     container.style["grid-template-columns"] = `repeat(${GRID_SIZE}, ${CELL_SIZE})`;
+    container.style["grid-template-rows"] = `repeat(${GRID_SIZE}, ${CELL_SIZE})`;
     // Add squares to grid
     for(let i=0; i<GRID_SIZE*GRID_SIZE; i++) {
         let di = document.createElement('div');

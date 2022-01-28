@@ -1,26 +1,24 @@
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from flask_migrate import Migrate
 
 from __init__ import app
 
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
-
-
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///login.db'
 db = SQLAlchemy(app)
-Migrate(app, db)
 
-class Users(db.Model):
-    userID = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), unique=False, nullable=False)
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    password = db.Column(db.String(255), unique=False, nullable=False)
 
-    def __init__(self, name, email, password):
-        self.name = name
-        self.email = email
+# create model
+class Logins(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # characters for name, also cant have blank name
+    username = db.Column(db.String(200), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+
+    def __init__(self, username, password):
+        self.username = username
         self.password = password
 
     # CRUD create/add a new record to the table
@@ -39,18 +37,15 @@ class Users(db.Model):
     # returns dictionary
     def read(self):
         return {
-            "userID": self.userID,
-            "name": self.name,
-            "email": self.email,
+            "username": self.username,
             "password": self.password,
         }
 
     # CRUD update: updates users name, password, phone
     # returns self
-    def update(self, name, password=""):
-        """only updates values with length"""
-        if len(name) > 0:
-            self.name = name
+    def update(self, username, password=""):
+        if len(username) > 0:
+            self.username = username
         if len(password) > 0:
             self.password = password
         db.session.commit()
@@ -63,10 +58,11 @@ class Users(db.Model):
         db.session.commit()
         return None
 
+
 def model_tester():
     db.create_all()
 
-    u1 = Users(name='joe', email='123@example.com', password='12345')
+    u1 = Logins(username='joe', password='12345')
 
     table = [u1]
     for row in table:
@@ -77,5 +73,19 @@ def model_tester():
             db.session.remove()
             print("error")
 
+
+def model_printer():
+    print("------------")
+    print("Table: users with SQL query")
+    print("------------")
+    result = db.session.execute('select * from users')
+    print(result.keys())
+    for row in result:
+        print(row)
+
+
 if __name__ == "__main__":
     model_tester()  # builds model of Users
+    model_printer()
+
+
