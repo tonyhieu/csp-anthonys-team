@@ -24,9 +24,8 @@ if at_school:
 else:
     domain = "https://www.anthonysharem.cf"
 
-# Login System Code
+
 app.secret_key = 'csp123'
-#Login System Code
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -35,19 +34,6 @@ app.config['MYSQL_DB'] = 'login'
 
 
 db = MySQL(app)
-
-
-@app.route('/csp-anthonys-harem/', methods=['GET', 'POST'])
-@app.route("/login", methods=['POST', 'GET'])
-def login():
-    if request.method == 'POST':
-            username = request.form['username']
-            password = request.form['password']
-            dbHandler.insertUser(username, password)
-            users = dbHandler.retrieveUsers()
-            return render_template('index.html', users=users)
-    else:
-        return render_template('login.html')
 
 
 @app.route("/")
