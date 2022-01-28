@@ -1,0 +1,55 @@
+<style>
+    #container {
+        display: grid;
+    }
+
+    .cell {
+        background-color: royalblue;
+        border: 1px solid black;
+    }
+</style>
+
+<div class="container py-4">
+
+<div id="container" class="container py-4"></div>
+
+</div>
+
+<script>
+    const GRID_SIZE = 40;
+    const CELL_SIZE = "15px";
+    const container = document.getElementById("container");
+
+    // Add CSS to container to make it a grid
+    container.style["grid-template-columns"] = `repeat(${GRID_SIZE}, ${CELL_SIZE})`;
+    // Add squares to grid
+    for(let i=0; i<GRID_SIZE*GRID_SIZE; i++) {
+        console.log();
+        let di = document.createElement('div');
+        di.style['width'] = CELL_SIZE;
+        di.style['height'] = CELL_SIZE;
+        // di.onclick = clicked;
+        // di.ondragstart = dragged;
+        // di.ondragover = dragged;
+        di.className = 'cell';
+        di.id = 'cell-'+i;
+        container.appendChild(di)
+    }
+
+    let CELLS = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0)); // create 2D array filled with '0'
+
+    function updateContainer() {
+        CELLS.forEach((arr, r) => {
+            arr.forEach((val, c) => {
+                let n = r*GRID_SIZE + c;
+                if(val === 1) {
+                    document.getElementById("cell-"+n).style['background-color'] = 'yellow';
+                }else {
+                    document.getElementById("cell-"+n).style['background-color'] = 'royalblue'
+                }
+            });
+        })
+    }
+
+    updateContainer();
+</script>
