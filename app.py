@@ -1,12 +1,12 @@
-from flask import session, render_template, request, redirect, url_for, Flask
+from flask import Flask, render_template, request, redirect, url_for, session
 import requests
 from __init__ import app
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import MySQLdb
 import re
 
 from db import Games
+
 from api.webapi import api_bp
 from anthony.anthony import anthony_bp
 from erik.erik import erik_bp
@@ -14,9 +14,7 @@ from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
 
-app = Flask(__name__)
-
-at_school = True  # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
+at_school = True     # CHANGE THIS VARIABLE DEPENDING IF YOURE AT SCHOOL OR AT HOME, SHOULD BE SET TO FALSE ON GITHUB
 domain = ""
 
 if at_school:
@@ -26,29 +24,26 @@ else:
 
 # Login System Code
 app.secret_key = 'csp123'
+#Login System Code
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'csp123'
 app.config['MYSQL_DB'] = 'login'
+app = Flask(__name__)
 
 db = MySQL(app)
 
 
 @app.route('/csp-anthonys-harem/', methods=['GET', 'POST'])
+@app.route("/login", methods=['POST', 'GET'])
 def login():
-    msg = ''
-    if request.method == 'POST' and ' username' in request.form and 'password in request.form':
-        username = request.form['username']
-        password = request.form['password']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE usernmane = %s AND password = %s', (username, password,))
-        account = cursor.fetchone()
-    if account:
-        session['loggedin'] = True
-        session['id'] = account['id']
-        session['username'] = account['username']
-        return 'Log in successful!'
+    if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            dbHandler.insertUser(username, password)
+            users = dbHandler.retrieveUsers()
+            return render_template('index.html', users=users)
     else:
         msg = 'Incorrect username or password.'
     return render_template('login.html', msg='')
@@ -56,6 +51,7 @@ def login():
 
 
 
+        return render_template('login.html')
 
 
 @app.route("/")
@@ -160,7 +156,6 @@ def delete(id):
     if game is not None:
         game.delete()
     return redirect("/games_database")
-
 
 @app.route("/update/<id>", methods=["GET", "POST"])
 def update(id):

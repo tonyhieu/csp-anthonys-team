@@ -1,0 +1,28 @@
+{% extends "ethanBase.html" %}
+
+
+{% block meta %}
+    <title>Ethan Gravin</title>
+{% endblock %}
+
+<script>
+
+</script>
+
+{% block content %}
+
+    <p>This is the NBA Teams API!</p>
+
+    <div class="col-12" style="text-align: center; ">
+        <table>
+            <tr>
+                <th>NBA Teams</th>
+            </tr>
+            {% for team in teams %}
+            <tr>
+                <td>{{ team['full_name']}}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
