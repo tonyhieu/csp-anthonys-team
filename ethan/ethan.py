@@ -17,15 +17,17 @@ def text_adventure():
 @ethan_bp.route("/videogamesApiEthan")
 def videogamesApiEthan():
 
-    url = "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random"
+    url = "https://free-nba.p.rapidapi.com/teams"
+
+    querystring = {"page":"0"}
 
     headers = {
-        'accept': "application/json",
-        'x-rapidapi-host': "matchilling-chuck-norris-jokes-v1.p.rapidapi.com",
+        'x-rapidapi-host': "free-nba.p.rapidapi.com",
         'x-rapidapi-key': "f843e28f92mshd3de980258688f8p118a28jsn305a11f8326b"
     }
 
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=headers, params=querystring)
 
-    output = json.loads(response.text)
-    return render_template("videogamesApiEthan.html", haha=output)
+    output = response.json()
+    print(output['data'])
+    return render_template("videogamesApiEthan.html", teams=response.json()['data'])

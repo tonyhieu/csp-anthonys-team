@@ -11,16 +11,18 @@
 
 {% block content %}
 
-    <p>This is the Chuck Norris Jokes API! I couldn't find any other ones that work that are good.</p>
+    <p>This is the NBA Teams API!</p>
 
     <div class="col-12" style="text-align: center; ">
-        <table style="margin-left:5%">
+        <table>
             <tr>
-                <th>Joke</th>
+                <th>NBA Teams</th>
             </tr>
-
+            {% for team in teams %}
             <tr>
-                <td>{{ haha['value'] }}
+                <td>{{ team['full_name']}}
             </tr>
-
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
