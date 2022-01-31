@@ -21,7 +21,7 @@ Hello! We are the Anthony's Harem scrum team. We want to create a space for aspi
 ## Time Box
 
 ### Week 7, January 28
-#### Week 7 Review Ticket on [GitHub](https://github.com/tonyhieu/csp-anthonys-harem/issues/24) and [Jekyll](https://maboinjd.github.io/wiki/week-seven)
+#### Week 7 Review Ticket on [GitHub](https://github.com/tonyhieu/csp-anthonys-harem/issues/24) and [Jekyll](https://maboinjd.github.io/review-tickets/week-seven)
 
 ### Week 3, December 17
 
