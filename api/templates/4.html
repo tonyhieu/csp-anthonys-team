@@ -10,15 +10,28 @@
 </style>
 
 <div class="container py-4">
+    <button onclick="togglePaintbrush()" id="paintbrush">Paintbrush Color: White</button>
+    <button onclick="clearCanvas()">Clear Canvas</button>
+    <button onclick="saveWork()">Save Work</button>
+    <!-- im pretty sure saveWork must be inside of a button instead of being constantly updated, as it takes too long to parse through all of the cells every time you click -->
 
-<div id="container" class="container py-4"></div>
-
+    <div id="container" class="container py-4"></div>
 </div>
 
 <script>
     const GRID_SIZE = 40;
     const CELL_SIZE = "15px";
     const container = document.getElementById("container");
+
+    // colors
+    const WHITE = 0;
+    const BLACK = 1;
+    const RED = 2;
+    const GREEN = 3;
+    const BLUE = 4;
+
+    // global paintbrush variable for dragging
+    let paintbrush = WHITE;
 
     // Add CSS to container to make it a grid
     container.style["grid-template-columns"] = `repeat(${GRID_SIZE}, ${CELL_SIZE})`;
@@ -28,27 +41,149 @@
         let di = document.createElement('div');
         di.style['width'] = CELL_SIZE;
         di.style['height'] = CELL_SIZE;
-        // di.onclick = clicked;
-        // di.ondragstart = dragged;
-        // di.ondragover = dragged;
+        di.onclick = clicked;
+        di.ondragstart = dragged;
+        di.ondragover = dragged;
         di.className = 'cell';
         di.id = 'cell-'+i;
         container.appendChild(di)
     }
 
+    // localStorage.clear();
     let CELLS = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0)); // create 2D array filled with '0'
+    if (localStorage.getItem("grid") != null) {
+        loadWork();
+    }
+
 
     function updateContainer() {
         CELLS.forEach((arr, r) => {
             arr.forEach((val, c) => {
                 let n = r*GRID_SIZE + c;
-                if(val === 1) {
-                    document.getElementById("cell-"+n).style['background-color'] = 'yellow';
-                }else {
-                    document.getElementById("cell-"+n).style['background-color'] = 'royalblue'
+
+                switch (val) {
+                    case WHITE:
+                        document.getElementById("cell-"+n).style['background-color'] = 'white';
+                        break;
+                    case BLACK:
+                        document.getElementById("cell-"+n).style['background-color'] = 'black';
+                        break;
+                    case RED:
+                        document.getElementById("cell-"+n).style['background-color'] = 'red';
+                        break;
+                    case GREEN:
+                        document.getElementById("cell-"+n).style['background-color'] = 'green';
+                        break;
+                    case BLUE:
+                        document.getElementById("cell-"+n).style['background-color'] = 'blue';
+                        break;
+                    default:
+                        document.getElementById("cell-"+n).style['background-color'] = 'white';
+                        break;
                 }
             });
         })
+    }
+
+    // helper function to get value of a square
+    function getCell(n) {
+        let row = Math.floor(n/GRID_SIZE);
+        let col = n%GRID_SIZE;
+        return CELLS[row][col];
+    }
+    
+    // helper function to set a square on the grid
+    function setCell(n, v) {
+        let row = Math.floor(n/GRID_SIZE);
+        let col = n%GRID_SIZE;
+        CELLS[row][col] = v;
+    }
+
+    // updates color of a cell
+    function updateCell(n) {
+        let color = getCell(n);
+        color++;
+        if (color > BLUE) { // check for if color is out of bounds
+            color = WHITE;
+        }
+        setCell(n, color);
+    }
+
+    function clicked() {
+        const id = parseInt(this.id.substring(5), 10); // the id of a cell is "cell-XX" where XX is the index
+        updateCell(id);
+        updateContainer();
+    }
+
+    // used to "drag" across canvas with a specific color
+    function dragged() {
+        const id = parseInt(this.id.substring(5), 10);
+        setCell(id, paintbrush);
+        updateContainer();
+    }
+
+    // updates paintbrush color
+    function togglePaintbrush() {
+        const pb = document.getElementById("paintbrush");
+        paintbrush++;
+        if (paintbrush > BLUE) {
+            paintbrush = WHITE;
+        }
+        
+        let buttonText = "Paintbrush Color: ";
+        switch (paintbrush) {
+            case WHITE:
+                buttonText += "White";
+                break;
+            case BLACK:
+                buttonText += "Black";
+                break;
+            case RED:
+                buttonText += "Red";
+                break;
+            case BLUE:
+                buttonText += "Blue";
+                break;
+            case GREEN:
+                buttonText += "Green";
+                break;
+            default:
+                buttonText += "White";
+                break;
+        }
+
+        pb.innerHTML = buttonText;
+    }
+
+    // function to clear all (uses crappy nested for loops for O(n^2) complexity.... but idk how to use this lang well)
+    function clearCanvas() {
+
+        CELLS = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0));
+        updateContainer();
+    }
+
+    // function to save all of your work. creates an array instead of a 2d array
+    function saveWork() {
+        localStorage.clear();
+        let storedGrid = "";
+        for (let i = 0; i < GRID_SIZE; i++) {
+            for (let j = 0; j < GRID_SIZE; j++) {
+                storedGrid += (CELLS[i][j]);
+            }
+        }
+        localStorage.setItem("grid", storedGrid);
+    }
+
+    // function to load all of your work back in
+    function loadWork() {
+        let storedString = localStorage.getItem("grid");
+        let storedGrid = storedString.split('');
+        for (let i = 0; i < GRID_SIZE; i++) {
+            for (let j = 0; j < GRID_SIZE; j++) {
+                CELLS[i][j] = parseInt(storedGrid[i * GRID_SIZE + j]);
+            }
+        }
+        updateContainer();
     }
 
     updateContainer();
