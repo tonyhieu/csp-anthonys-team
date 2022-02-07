@@ -1,0 +1,122 @@
+<canvas id="canvas" width="500" height="500" style="border:1px solid black;">
+</canvas>
+
+<button onclick="clearCanvas()" style="position: absolute; transform: translateY(510px);">Clear Canvas</button>
+
+<script>
+    // initialize important variables (the canvas, context, and lines)
+    let c = document.getElementById("canvas");
+    let ctx = c.getContext("2d");
+    ctx.lineWidth = 2;
+    let lines = [];
+    const lineLength = 300;
+    const lineSpacing = 30;
+    const numberOfNotches = 10; // i dont really know what to call a position where you can put a ghost leg, so im just calling it a "notch"
+
+    // set background color of the canvas
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    /*
+        DRAWING FUNCTIONS - functions relating to the creation of lines/ghost legs and changing the canvas
+    */
+
+    function drawLine(startingX, startingY, direction, length, color) { // helper function for creating a line based on position, direction, length, and color
+        ctx.strokeStyle = color;
+        console.log(color);
+        ctx.beginPath();
+        ctx.moveTo(startingX, startingY);
+        switch(direction) {
+            case "up":
+                ctx.lineTo(startingX, startingY - length);
+                break;
+            case "down":
+                ctx.lineTo(startingX, startingY + length);
+                break;
+            case "right":
+                ctx.lineTo(startingX + length, startingY);
+                console.log("test")
+                break;
+            case "left":
+                ctx.lineTo(startingX - length, startingY);
+                break;
+        }
+        ctx.stroke();
+    }
+
+    function createLines(numberOfLines) { // helper function to create the vertical lines in amidakuji
+        startX = (500 - (numberOfLines - 1) * lineSpacing)/2;
+        for (let i = 0; i < numberOfLines; i++) {
+            drawLine(startX + i * lineSpacing, (500 - lineLength)/2, "down", lineLength, "black");
+        }
+    }
+
+    function createGhostLeg(line1, line2, position) { // creates a ghost leg connecting two vertical lines
+        // series of checks to make sure this function works as intended...
+        if (Math.abs(line1-line2) != 1) // check for if the two lines are next to each other
+            return;
+        if (line1 < 0 || line2 < 0 || line1 >= lines.length || line2 >= lines.length)  // check for boundaries; is the line youre trying to access a valid one?
+            return;
+        if (lines[line1][position] != -1 || lines[line2][position] != -1) // check for if theres already an existing line there
+            return;
+
+        lines[line1][position] = line2;
+        lines[line2][position] = line1; // creates a "line" connecting the two arrays, points to the other line 
+
+        startLine = 0;
+        if (line1 < line2)
+            startLine = line1;
+        else   
+            startLine = line2; // used to create the ghost leg (go to the leftmost line and draw the leg from there)
+
+        legX = (500 - (lines.length - 1) * lineSpacing)/2 + startLine * lineSpacing;
+        legY = (500 - lineLength)/2 + lineLength/(lines.length + 1) * (position + 1);  // calculations to find where the ghost leg should start from
+        drawLine(legX, legY, "right", lineSpacing, "black")
+    }
+
+    function clearCanvas() { // clears canvas (duh)
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, c.width, c.height);
+    }
+
+    function initializeAmidakuji(numberOfLines) { // initializes the board
+        createLines(numberOfLines);
+        for (let i = 0; i < numberOfLines; i++)
+            lines.push(new Array(numberOfNotches).fill(-1)); // we need to create an array for each line to keep track of the ghost legs
+    }
+    
+    /*
+        ONCLICK FUNCTIONS - functions to track where the user clicks to place/delete ghost legs
+    */
+
+    let canvasElem = document.querySelector("canvas");
+
+    let selectMode = 0; // variable that toggles between the modes of the selector. default means nothing will happen on click, add means it'll add a leg, delete means it'll delete a leg
+    const DEFAULT = 0;
+    const ADD = 1;
+    const DELETE = 2;
+
+    canvasElem.addEventListener("mousedown", function()
+    {
+        editGhostLegs(getMousePosition(canvasElem));
+    });
+
+    function getMousePosition(canvas) { // ripped this off of geeksforgeeks https://www.geeksforgeeks.org/how-to-get-the-coordinates-of-a-mouse-click-on-a-canvas-element/
+        let rect = canvas.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+        return [x, y]
+    }
+    
+    function editGhostLegs(position) { // function that edits ghost legs depending on what mode the user selects
+        let x = position[0];
+        let y = position[1];
+        console.log("x: " + x + " y: " + y)
+    }
+
+    initializeAmidakuji(10);
+    createGhostLeg(0, 1, 0);
+    createGhostLeg(1, 2, 1)
+
+</script>

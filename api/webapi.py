@@ -10,13 +10,25 @@ api_bp = Blueprint('api', __name__,
 # GAMES API
 games = []
 game_embeds = [
-    "<iframe src='https://scratch.mit.edu/projects/199615756/embed' allowtransparency='true' width='700' height='700' frameborder='0' scrolling='no' allowfullscreen></iframe>", "/api/games/embeds/2", "/api/games/embeds/3", "/api/games/embeds/4"
+    "<iframe src='https://scratch.mit.edu/projects/199615756/embed' allowtransparency='true' width='700' height='700' frameborder='0' scrolling='no' allowfullscreen></iframe>", 
+    "/api/games/embeds/2", 
+    "/api/games/embeds/3", 
+    "/api/games/embeds/4",
+    "/api/games/embeds/5"
 ]
 game_titles = [
-    "Dabbing Tycoon", "Snake", "Conway's Game of Life", "Pixel Art"
+    "Dabbing Tycoon", 
+    "Snake", 
+    "Conway's Game of Life", 
+    "Pixel Art",
+    "Amidakuji"
 ]
 game_authors = [
-    "Anthony Vo", "John Mortensen", "Nathaniel Cherian", "Anthony Vo"
+    "Anthony Vo", 
+    "John Mortensen", 
+    "Nathaniel Cherian", 
+    "Anthony Vo",
+    "Anthony Vo"
 ]
 
 def _init_games ():
