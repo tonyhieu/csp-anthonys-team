@@ -1,0 +1,83 @@
+{% extends "layouts/base.html" %}
+
+
+{% block meta %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Drawing Board</title>
+{% endblock %}
+    {% block content %}
+    <div id="board">
+        <canvas id="myCanvas" width="1000%" height="800%">
+        </canvas>
+        <p>Color picker: <select id="selectColor">
+            <option id="colBlack" value="black" selected="selected">Black</option>
+            <option id="colRed" value="red">Red</option>
+            <option id="colBlue" value="blue">Blue</option>
+            <option id="colGreen" value="green">Green</option>
+            <option id="colOrange" value="orange">Orange</option>
+            <option id="colYellow" value="yellow">Yellow</option>
+            <option id="colPink" value="pink">Pink</option>
+            <option id="colTeal" value="teal">Teal</option>
+            <option id="colPurple" value="Purple">Purple</option>
+            <option id="colGreen" value="#cedec4">Eraser</option>
+        </select>
+        </p>
+    </div><!-- END board -->
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #board {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        #myCanvas {
+            border: 3px solid #000;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var myCanvas = document.getElementById("myCanvas");
+            var curColor = $('#selectColor option:selected').val();
+            if(myCanvas){
+                var isDown  = false;
+                var ctx = myCanvas.getContext("2d");
+                var canvasX, canvasY;
+                ctx.lineWidth = 5;
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, myCanvas.width, myCanvas.height)
+
+                $(myCanvas)
+                    .mousedown(function(e){
+                        isDown = true;
+                        ctx.beginPath();
+                        canvasX = e.pageX - myCanvas.offsetLeft;
+                        canvasY = e.pageY - myCanvas.offsetTop;
+                        ctx.moveTo(canvasX, canvasY);
+                    })
+                    .mousemove(function(e){
+                        if(isDown != false) {
+                            canvasX = e.pageX - myCanvas.offsetLeft;
+                            canvasY = e.pageY - myCanvas.offsetTop;
+                            ctx.lineTo(canvasX, canvasY);
+                            ctx.strokeStyle = curColor;
+                            ctx.stroke();
+                        }
+                    })
+                    .mouseup(function(e){
+                        isDown = false;
+                        ctx.closePath();
+                    });
+            }
+
+            $('#selectColor').change(function () {
+                curColor = $('#selectColor option:selected').val();
+            });
+
+        };
+    </script>
+{% endblock %}
