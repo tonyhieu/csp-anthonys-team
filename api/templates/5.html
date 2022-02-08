@@ -2,6 +2,11 @@
 </canvas>
 
 <button onclick="clearCanvas()" style="position: absolute; transform: translateY(510px);">Clear Canvas</button>
+<select id="selectMode" style="position: absolute; transform: translateY(550px);">
+    <option id="none" value="none" selected="selected">No Changes</option>
+    <option id="add" value="add">Add Legs</option>
+    <option id="delete" value="delete">Delete Legs</option>
+</select>
 
 <script>
     // initialize important variables (the canvas, context, and lines)
@@ -11,7 +16,7 @@
     let lines = [];
     const lineLength = 300;
     const lineSpacing = 30;
-    const numberOfNotches = 10; // i dont really know what to call a position where you can put a ghost leg, so im just calling it a "notch"
+    const numberOfNotches = 20; // i dont really know what to call a position where you can put a ghost leg, so im just calling it a "notch"
 
     // set background color of the canvas
     ctx.fillStyle = "white";
@@ -23,7 +28,6 @@
 
     function drawLine(startingX, startingY, direction, length, color) { // helper function for creating a line based on position, direction, length, and color
         ctx.strokeStyle = color;
-        console.log(color);
         ctx.beginPath();
         ctx.moveTo(startingX, startingY);
         switch(direction) {
@@ -35,7 +39,6 @@
                 break;
             case "right":
                 ctx.lineTo(startingX + length, startingY);
-                console.log("test")
                 break;
             case "left":
                 ctx.lineTo(startingX - length, startingY);
@@ -70,8 +73,41 @@
             startLine = line2; // used to create the ghost leg (go to the leftmost line and draw the leg from there)
 
         legX = (500 - (lines.length - 1) * lineSpacing)/2 + startLine * lineSpacing;
-        legY = (500 - lineLength)/2 + lineLength/(lines.length + 1) * (position + 1);  // calculations to find where the ghost leg should start from
+        legY = (500 - lineLength)/2 + lineLength/(lines[0].length + 1) * (position + 1);  // calculations to find where the ghost leg should start from
         drawLine(legX, legY, "right", lineSpacing, "black")
+    }
+
+    function deleteGhostLeg(line1, line2, position) { // deletes a ghost leg 
+        // series of checks to make sure this function works as intended...
+        if (Math.abs(line1-line2) != 1) { // check for if the two lines are next to each other
+            return;
+        }
+        if (line1 < 0 || line2 < 0 || line1 >= lines.length || line2 >= lines.length) { // check for boundaries; is the line youre trying to access a valid one?
+            return;
+        }
+        if (position < 0 || position >= numberOfNotches) { // check for if the notch is in a valid position
+            return;
+        }
+
+        lines[line1][position] = -1;
+        lines[line2][position] = -1; // deletes references in the lines to each other
+
+        startLine = 0;
+        if (line1 < line2)
+            startLine = line1;
+        else   
+            startLine = line2; // used to delete the ghost leg (go to the leftmost line and draw the leg from there)
+
+        legX = (500 - (lines.length - 1) * lineSpacing)/2 + startLine * lineSpacing;
+        legY = (500 - lineLength)/2 + lineLength/(lines[0].length + 1) * (position + 1);  // calculations to find where the ghost leg should start from
+        
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(legX + 1, legY);
+        ctx.lineTo(legX + lineSpacing - 1, legY);
+        ctx.stroke();
+        ctx.lineWidth = 2; // draw over (delete) the line
     }
 
     function clearCanvas() { // clears canvas (duh)
@@ -86,16 +122,31 @@
             lines.push(new Array(numberOfNotches).fill(-1)); // we need to create an array for each line to keep track of the ghost legs
     }
     
+    $('#selectMode').change(function () {
+        mode = $('#selectMode option:selected').val();
+        switch (mode) {
+            case "none":
+                selectMode = DEFAULT;
+                break;
+            case "add":
+                selectMode = ADD;
+                break;
+            case "delete":
+                selectMode = DELETE;
+                break;
+        }
+    }); // changes mode of adding/deleting legs
+
     /*
         ONCLICK FUNCTIONS - functions to track where the user clicks to place/delete ghost legs
     */
 
     let canvasElem = document.querySelector("canvas");
 
-    let selectMode = 0; // variable that toggles between the modes of the selector. default means nothing will happen on click, add means it'll add a leg, delete means it'll delete a leg
     const DEFAULT = 0;
     const ADD = 1;
     const DELETE = 2;
+    let selectMode = DEFAULT; // variable that toggles between the modes of the selector. default means nothing will happen on click, add means it'll add a leg, delete means it'll delete a leg
 
     canvasElem.addEventListener("mousedown", function()
     {
@@ -110,13 +161,44 @@
     }
     
     function editGhostLegs(position) { // function that edits ghost legs depending on what mode the user selects
+        if (selectMode == DEFAULT)
+            return;
+
         let x = position[0];
-        let y = position[1];
-        console.log("x: " + x + " y: " + y)
+        let y = position[1]; // takes position off of above function
+
+        let startingX = (500 - (lines.length - 1) * lineSpacing)/2;
+        let startingY = (500 - lineLength)/2; // calculates starting x and y to base spacing off of
+
+        let leftLine = Math.floor((x - startingX)/lineSpacing); // calculates the two lines the leg is between
+
+        let notch = -1;
+        let i = 0;
+        let notchSpacing = lineLength/(lines[0].length + 1);
+        while (i < numberOfNotches) {
+            if (startingY + notchSpacing/2 + notchSpacing * i < y && y < startingY + notchSpacing/2 + notchSpacing * (i+1)) {
+                notch = i;
+                break;
+            }
+            
+            i = i + 1;
+        } // calculates the notch that the cursor is on; checks each notch and sees if the mouse is in the space
+
+        if (selectMode == ADD) {
+            createGhostLeg(leftLine, leftLine + 1, notch);
+        } // adds a ghost leg if the mode is add
+
+        if (selectMode == DELETE) {
+            deleteGhostLeg(leftLine, leftLine + 1, notch);
+        } // deletes a ghost leg if the mode is deletes
     }
 
     initializeAmidakuji(10);
     createGhostLeg(0, 1, 0);
-    createGhostLeg(1, 2, 1)
+    createGhostLeg(1, 2, 1);
+    createGhostLeg(8, 9, 9);
+    for (let i = 0; i < 10; i++) {
+        createGhostLeg(3, 4, i);
+    }
 
 </script>
