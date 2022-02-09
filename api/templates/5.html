@@ -7,6 +7,8 @@
     <option id="add" value="add">Add Legs</option>
     <option id="delete" value="delete">Delete Legs</option>
 </select>
+<button onclick="findConnections()" style="position: absolute; transform: translateY(600px);">Calculate Pairings</button>
+<button onclick="resetLinesAndLegs()" style="position: absolute; transform: translateY(650px);">Reset Board</button>
 
 <script>
     // initialize important variables (the canvas, context, and lines)
@@ -26,7 +28,8 @@
         DRAWING FUNCTIONS - functions relating to the creation of lines/ghost legs and changing the canvas
     */
 
-    function drawLine(startingX, startingY, direction, length, color) { // helper function for creating a line based on position, direction, length, and color
+    function drawLine(startingX, startingY, direction, length, color, width) { // helper function for creating a line based on position, direction, length, and color
+        ctx.lineWidth = width || 2;
         ctx.strokeStyle = color;
         ctx.beginPath();
         ctx.moveTo(startingX, startingY);
@@ -137,6 +140,20 @@
         }
     }); // changes mode of adding/deleting legs
 
+    function resetLinesAndLegs() { // redraws the amidakuji lines + legs
+        clearCanvas();
+        createLines(10); // draw vertical lines
+        for (let line = 0; line < lines.length; line++) { // for loop to draw legs
+            for (let notch = 0; notch < lines[0].length; notch++) {
+                if (lines[line][notch] != -1 && lines[line][notch] > line) {
+                    legX = (500 - (lines.length - 1) * lineSpacing)/2 + line * lineSpacing; // these three lines are copied from createGhostLeg()
+                    legY = (500 - lineLength)/2 + lineLength/(lines[0].length + 1) * (notch + 1);  
+                    drawLine(legX, legY, "right", lineSpacing, "black")
+                }
+            }
+        }
+    }
+
     /*
         ONCLICK FUNCTIONS - functions to track where the user clicks to place/delete ghost legs
     */
@@ -193,12 +210,64 @@
         } // deletes a ghost leg if the mode is deletes
     }
 
+    /*
+    LOGICAL FUNCTIONS - functions to track the path of the lines
+    */
+
+    let pairings = [];
+
+    function findConnections () { // finds connections between inputs and outputs
+        pairings = new Array(lines.length).fill(-1); // array to keep track of all of the pairings (input to output)
+
+        for (let i = 0; i < pairings.length; i++) { // for loop to go thru each input and match it to an output
+            let currentLine = i;
+            let x = 0;
+            while (x < numberOfNotches) { // actual matching algorithm; checks if the notch corresponds to a different line and moves to that line
+                if (lines[currentLine][x] != -1) {
+                    currentLine = lines[currentLine][x];
+                }
+                x++;
+            }
+            pairings[i] = currentLine;
+        }
+        console.log(pairings);
+    }
+
+    function findPath (startingLine) { // draws line connecting input and output
+        let currentLine = startingLine;
+        let notch = 0;
+        let currentY = (500 - lineLength)/2;
+        let ySpacing = lineLength/(lines[0].length + 1);
+        let xPos = 0;
+
+        while (notch < numberOfNotches) {
+            xPos = (500 - (lines.length - 1) * lineSpacing)/2 + currentLine * lineSpacing;
+            drawLine(xPos, currentY, "down", ySpacing, "red", 4);
+            currentY += ySpacing; // goes down one segment
+
+            if (lines[currentLine][notch] != -1) { // goes left or right if there is a ghost leg present
+                if (currentLine < lines[currentLine][notch]) {
+                    drawLine(xPos, currentY, "right", lineSpacing, "red", 4);
+                } else {
+                    drawLine(xPos, currentY, "left", lineSpacing, "red", 4);
+                }
+
+                currentLine = lines[currentLine][notch];
+            }
+
+            notch++;
+        }
+        drawLine((500 - (lines.length - 1) * lineSpacing)/2 + currentLine * lineSpacing, currentY, "down", ySpacing, "red", 4);
+    }
+
     initializeAmidakuji(10);
     createGhostLeg(0, 1, 0);
-    createGhostLeg(1, 2, 1);
-    createGhostLeg(8, 9, 9);
-    for (let i = 0; i < 10; i++) {
-        createGhostLeg(3, 4, i);
-    }
+    createGhostLeg(4, 5, 0);
+    createGhostLeg(5, 6, 1);
+    // createGhostLeg(1, 2, 1);
+    // createGhostLeg(8, 9, 9);
+    // for (let i = 0; i < 10; i++) {
+    //     createGhostLeg(3, 4, i);
+    // }
 
 </script>
