@@ -32,3 +32,7 @@ def derek():
 @create_task_bp.route("/erik")
 def erik():
     return render_template("erik.html")
+
+@create_task_bp.route("/SamuelIsaac")
+def SamuelIsaac():
+    return render_template("Samuel_Isaac.html")
