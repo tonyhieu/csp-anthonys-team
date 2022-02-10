@@ -29,6 +29,6 @@ def tigran():
 def derek():
     return render_template("derek.html")
 
-@create_task_bp.route("/erikandethan")
-def erikandethan():
-    return render_template("erikandethan.html")
+@create_task_bp.route("/erik_ethan")
+def erik_ethan():
+    return render_template("erik_ethan.html")
