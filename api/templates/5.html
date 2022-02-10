@@ -1,28 +1,12 @@
 <canvas id="canvas" width="500" height="500" style="border:1px solid black;">
 </canvas>
 
-<button onclick="initializeAmidakuji()" style="position: absolute; transform: translateY(510px);">Reset Legs</button>
-
+<button onclick="clearCanvas()" style="position: absolute; transform: translateY(510px);">Clear Canvas</button>
 <select id="selectMode" style="position: absolute; transform: translateY(550px);">
     <option id="none" value="none" selected="selected">No Changes</option>
     <option id="add" value="add">Add Legs</option>
     <option id="delete" value="delete">Delete Legs</option>
 </select>
-<button onclick="findConnections()" style="position: absolute; transform: translateY(580px);">Calculate Pairings</button>
-
-<input type="number" id="linesInput" placeholder="10" min="2" max="15" style="position: absolute; transform: translateY(620px);">
-
-<select id="selectPath" style="position: absolute; transform: translateY(660px);">
-    <option id="path0" value="0" selected="selected">Pick a Path</option>
-</select>
-
-<div id="firstRow" style="position: absolute; transform: translate(-200px, 700px);">
-    
-</div>
-<div id="secondRow" style="position: absolute; transform: translate(200px, 700px);">
-    
-</div>
-
 
 <script>
     // initialize important variables (the canvas, context, and lines)
@@ -33,7 +17,6 @@
     const lineLength = 300;
     const lineSpacing = 30;
     const numberOfNotches = 20; // i dont really know what to call a position where you can put a ghost leg, so im just calling it a "notch"
-    let numberOfLines = 10;
 
     // set background color of the canvas
     ctx.fillStyle = "white";
@@ -43,8 +26,7 @@
         DRAWING FUNCTIONS - functions relating to the creation of lines/ghost legs and changing the canvas
     */
 
-    function drawLine(startingX, startingY, direction, length, color, width) { // helper function for creating a line based on position, direction, length, and color
-        ctx.lineWidth = width || 2; // if a width isnt given, it automatically makes it 2
+    function drawLine(startingX, startingY, direction, length, color) { // helper function for creating a line based on position, direction, length, and color
         ctx.strokeStyle = color;
         ctx.beginPath();
         ctx.moveTo(startingX, startingY);
@@ -66,7 +48,6 @@
     }
 
     function createLines(numberOfLines) { // helper function to create the vertical lines in amidakuji
-        ctx.strokeStyle = "black";
         startX = (500 - (numberOfLines - 1) * lineSpacing)/2;
         for (let i = 0; i < numberOfLines; i++) {
             drawLine(startX + i * lineSpacing, (500 - lineLength)/2, "down", lineLength, "black");
@@ -135,18 +116,14 @@
         ctx.fillRect(0, 0, c.width, c.height);
     }
 
-    function initializeAmidakuji() { // initializes the board
-        clearCanvas();
+    function initializeAmidakuji(numberOfLines) { // initializes the board
         createLines(numberOfLines);
-        let placeholder = [];
         for (let i = 0; i < numberOfLines; i++)
-            placeholder.push(new Array(numberOfNotches).fill(-1)); // we need to create an array for each line to keep track of the ghost legs
-        lines = placeholder;
-        updatePathsMenu();
+            lines.push(new Array(numberOfNotches).fill(-1)); // we need to create an array for each line to keep track of the ghost legs
     }
     
     $('#selectMode').change(function () {
-        let mode = $('#selectMode option:selected').val();
+        mode = $('#selectMode option:selected').val();
         switch (mode) {
             case "none":
                 selectMode = DEFAULT;
@@ -159,20 +136,6 @@
                 break;
         }
     }); // changes mode of adding/deleting legs
-
-    function resetLinesAndLegs() { // redraws the amidakuji lines + legs
-        clearCanvas();
-        createLines(numberOfLines); // draw vertical lines
-        for (let line = 0; line < lines.length; line++) { // for loop to draw legs
-            for (let notch = 0; notch < lines[0].length; notch++) {
-                if (lines[line][notch] != -1 && lines[line][notch] > line) {
-                    legX = (500 - (lines.length - 1) * lineSpacing)/2 + line * lineSpacing; // these three lines are copied from createGhostLeg()
-                    legY = (500 - lineLength)/2 + lineLength/(lines[0].length + 1) * (notch + 1);  
-                    drawLine(legX, legY, "right", lineSpacing, "black")
-                }
-            }
-        }
-    }
 
     /*
         ONCLICK FUNCTIONS - functions to track where the user clicks to place/delete ghost legs
@@ -230,118 +193,12 @@
         } // deletes a ghost leg if the mode is deletes
     }
 
-    /*
-        LOGICAL FUNCTIONS - functions to track the path of the lines
-    */
-
-    let pairings = [];
-
-    function findConnections () { // finds connections between inputs and outputs
-        pairings = new Array(lines.length).fill(-1); // array to keep track of all of the pairings (input to output)
-
-        for (let i = 0; i < pairings.length; i++) { // for loop to go thru each input and match it to an output
-            let currentLine = i;
-            let x = 0;
-            while (x < numberOfNotches) { // actual matching algorithm; checks if the notch corresponds to a different line and moves to that line
-                if (lines[currentLine][x] != -1) {
-                    currentLine = lines[currentLine][x];
-                }
-                x++;
-            }
-            pairings[i] = currentLine;
-        }
-        console.log(pairings);
-    }
-
-    function findPath (startingLine) { // draws line connecting input and output
-        let currentLine = startingLine;
-        let notch = 0;
-        let currentY = (500 - lineLength)/2;
-        let ySpacing = lineLength/(lines[0].length + 1);
-        let xPos = 0;
-
-        while (notch < numberOfNotches) {
-            xPos = (500 - (lines.length - 1) * lineSpacing)/2 + currentLine * lineSpacing;
-            drawLine(xPos, currentY, "down", ySpacing, "red", 4);
-            currentY += ySpacing; // goes down one segment
-
-            if (lines[currentLine][notch] != -1) { // goes left or right if there is a ghost leg present
-                if (currentLine < lines[currentLine][notch]) {
-                    drawLine(xPos, currentY, "right", lineSpacing, "red", 4);
-                } else {
-                    drawLine(xPos, currentY, "left", lineSpacing, "red", 4);
-                }
-
-                currentLine = lines[currentLine][notch];
-            }
-
-            notch++;
-        }
-        drawLine((500 - (lines.length - 1) * lineSpacing)/2 + currentLine * lineSpacing, currentY, "down", ySpacing, "red", 4);
-    }
-
-    /*
-        DOM MODIFYING FUNCTIONS - getting input from the dom and creating elements that allow for input
-    */
-
-    $('#linesInput').change(function () { // if someone changes the number of lines, the visible lines will change
-        numberOfLines = parseInt(document.getElementById("linesInput").value);
-        initializeAmidakuji(); 
-    });
-
-    function makeElement(tag, id, text) { // helper function to create elements
-        let element = document.createElement(tag);
-        element.setAttribute("id", id);
-        return element;
-    }
-
-    function updatePathsMenu() { // updates the menu to show which paths are which
-        for (let i = 1; i <= 15; i++) { // deletes any past options that might still be in the menu
-            try {
-                let option = document.getElementById("path" + i);
-                option.parentNode.removeChild(option);
-            } catch {
-            }
-        }
-
-        for (let i = 1; i <= numberOfLines; i++) { // creates options for how many ever paths there are
-            let option = makeElement("option", "path" + i);
-            option.setAttribute("value", i)
-            let textNode = document.createTextNode("Path " + i);
-            option.appendChild(textNode);
-            let selector = document.getElementById("selectPath");
-            selector.appendChild(option); 
-        }
-    }
-
-    $('#selectPath').change(function () { // if the paths menu changes then the path shown changes to reflect it
-        let path = parseInt($('#selectPath option:selected').val());
-        resetLinesAndLegs(); 
-
-        if (path == -1) // test case for if "Pick a Path" is chosen
-            return;
-
-        findPath(path-1);
-    });
-
-    function updateInputs() { // updates number of inputs for the two rows
-        for (let i = 0; i < numberOfLines; i++) {
-            // <input type="text" id="first0">
-            let firstInput = makeElement("input", "first" + i);
-            
-        }
-    }
-
-    initializeAmidakuji();
+    initializeAmidakuji(10);
     createGhostLeg(0, 1, 0);
-    createGhostLeg(4, 5, 0);
-    createGhostLeg(5, 6, 1);
-    // createGhostLeg(1, 2, 1);
-    // createGhostLeg(8, 9, 9);
-    // for (let i = 0; i < 10; i++) {
-    //     createGhostLeg(3, 4, i);
-    // }
-
-    findPath(4);
+    createGhostLeg(1, 2, 1);
+    createGhostLeg(8, 9, 9);
+    for (let i = 0; i < 10; i++) {
+        createGhostLeg(3, 4, i);
+    }
 
 </script>
