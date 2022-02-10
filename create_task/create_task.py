@@ -85,3 +85,7 @@ def spotifyfinder():
     # print(response.text)
     # output = json.loads(response.text)
     return render_template('spotifyfinder.html')
+
+@create_task_bp.route("/erik_ethan")
+def erik_ethan():
+    return render_template("erik_ethan.html")
