@@ -17,10 +17,10 @@
 </select>
 
 <div id="firstRow" style="position: absolute; transform: translate(-200px, 700px);">
-    
+    <h3>First Row of Options</h3>
 </div>
 <div id="secondRow" style="position: absolute; transform: translate(200px, 700px);">
-    
+    <h3>Second Row of Options</h3>
 </div>
 
 
@@ -143,6 +143,7 @@
             placeholder.push(new Array(numberOfNotches).fill(-1)); // we need to create an array for each line to keep track of the ghost legs
         lines = placeholder;
         updatePathsMenu();
+        updateInputs();
     }
     
     $('#selectMode').change(function () {
@@ -280,6 +281,29 @@
         drawLine((500 - (lines.length - 1) * lineSpacing)/2 + currentLine * lineSpacing, currentY, "down", ySpacing, "red", 4);
     }
 
+    function displayConnections () {
+        let firstInputs = [];
+        let secondInputs = [];
+
+        for (let i = 0; i < numberOfLines; i++) {
+            firstInputs[i] = document.getElementById("first" + i).value;
+            secondInputs[i] = document.getElementById("second" + i).value;
+        } // gets inputs from the input boxes
+
+        let randomizedFirst = [];
+        let randomizedSecond = [];
+
+        for (let i = 0; i < numberOfLines; i++) {
+            let rand1 = Math.floor(Math.random() * firstInputs.length);
+            let rand2 = Math.floor(Math.random() * secondInputs.length);
+
+            randomizedFirst.push(firstInputs[rand1]);
+            randomizedSecond.push(secondInputs[rand2]);
+            firstInputs.splice(rand1, 1);
+            secondInputs.splice(rand2, 1);
+        } // randomizes inputs for the two rows
+    }
+
     /*
         DOM MODIFYING FUNCTIONS - getting input from the dom and creating elements that allow for input
     */
@@ -318,30 +342,47 @@
         let path = parseInt($('#selectPath option:selected').val());
         resetLinesAndLegs(); 
 
-        if (path == -1) // test case for if "Pick a Path" is chosen
+        if (path == 0) // test case for if "Pick a Path" is chosen
             return;
 
         findPath(path-1);
     });
 
     function updateInputs() { // updates number of inputs for the two rows
-        for (let i = 0; i < numberOfLines; i++) {
-            // <input type="text" id="first0">
+        for (let i = 0; i < 15; i++) {
+            try { // deletes existing inputs
+                let firstDelete = document.getElementById("first" + i);
+                let secondDelete = document.getElementById("second" + i);
+                firstDelete.parentNode.removeChild(firstDelete);
+                secondDelete.parentNode.removeChild(secondDelete);
+            } catch {}
+        }
+
+        for (let i = 0; i < numberOfLines; i++) { // adds new inputs based on number of lines
             let firstInput = makeElement("input", "first" + i);
-            
+            firstInput.setAttribute("type", "text");
+            firstInput.setAttribute("style", "display: block;")
+            let firstRow = document.getElementById("firstRow");
+            firstRow.appendChild(firstInput);
+
+            let secondInput = makeElement("input", "second" + i);
+            secondInput.setAttribute("type", "text");
+            secondInput.setAttribute("style", "display: block;")
+            let secondRow = document.getElementById("secondRow");
+            secondRow.appendChild(secondInput);
         }
     }
 
     initializeAmidakuji();
-    createGhostLeg(0, 1, 0);
-    createGhostLeg(4, 5, 0);
-    createGhostLeg(5, 6, 1);
+    // createGhostLeg(0, 1, 0);
+    // createGhostLeg(4, 5, 0);
+    // createGhostLeg(5, 6, 1);
     // createGhostLeg(1, 2, 1);
     // createGhostLeg(8, 9, 9);
     // for (let i = 0; i < 10; i++) {
     //     createGhostLeg(3, 4, i);
     // }
 
-    findPath(4);
+    // findPath(4);
 
 </script>
