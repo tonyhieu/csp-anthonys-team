@@ -1,7 +1,8 @@
 <canvas id="canvas" width="500" height="500" style="border:1px solid black;">
 </canvas>
 
-<button onclick="clearCanvas()" style="position: absolute; transform: translateY(510px);">Clear Canvas</button>
+<button onclick="initializeAmidakuji()" style="position: absolute; transform: translateY(510px);">Reset Legs</button>
+
 <select id="selectMode" style="position: absolute; transform: translateY(550px);">
     <option id="none" value="none" selected="selected">No Changes</option>
     <option id="add" value="add">Add Legs</option>
@@ -32,6 +33,7 @@
     const lineLength = 300;
     const lineSpacing = 30;
     const numberOfNotches = 20; // i dont really know what to call a position where you can put a ghost leg, so im just calling it a "notch"
+    let numberOfLines = 10;
 
     // set background color of the canvas
     ctx.fillStyle = "white";
@@ -41,7 +43,8 @@
         DRAWING FUNCTIONS - functions relating to the creation of lines/ghost legs and changing the canvas
     */
 
-    function drawLine(startingX, startingY, direction, length, color) { // helper function for creating a line based on position, direction, length, and color
+    function drawLine(startingX, startingY, direction, length, color, width) { // helper function for creating a line based on position, direction, length, and color
+        ctx.lineWidth = width || 2; // if a width isnt given, it automatically makes it 2
         ctx.strokeStyle = color;
         ctx.beginPath();
         ctx.moveTo(startingX, startingY);
@@ -63,6 +66,7 @@
     }
 
     function createLines(numberOfLines) { // helper function to create the vertical lines in amidakuji
+        ctx.strokeStyle = "black";
         startX = (500 - (numberOfLines - 1) * lineSpacing)/2;
         for (let i = 0; i < numberOfLines; i++) {
             drawLine(startX + i * lineSpacing, (500 - lineLength)/2, "down", lineLength, "black");
@@ -131,8 +135,10 @@
         ctx.fillRect(0, 0, c.width, c.height);
     }
 
-    function initializeAmidakuji(numberOfLines) { // initializes the board
+    function initializeAmidakuji() { // initializes the board
+        clearCanvas();
         createLines(numberOfLines);
+        let placeholder = [];
         for (let i = 0; i < numberOfLines; i++)
             placeholder.push(new Array(numberOfNotches).fill(-1)); // we need to create an array for each line to keep track of the ghost legs
         lines = placeholder;
@@ -141,7 +147,7 @@
     }
     
     $('#selectMode').change(function () {
-        mode = $('#selectMode option:selected').val();
+        let mode = $('#selectMode option:selected').val();
         switch (mode) {
             case "none":
                 selectMode = DEFAULT;
@@ -154,6 +160,20 @@
                 break;
         }
     }); // changes mode of adding/deleting legs
+
+    function resetLinesAndLegs() { // redraws the amidakuji lines + legs
+        clearCanvas();
+        createLines(numberOfLines); // draw vertical lines
+        for (let line = 0; line < lines.length; line++) { // for loop to draw legs
+            for (let notch = 0; notch < lines[0].length; notch++) {
+                if (lines[line][notch] != -1 && lines[line][notch] > line) {
+                    legX = (500 - (lines.length - 1) * lineSpacing)/2 + line * lineSpacing; // these three lines are copied from createGhostLeg()
+                    legY = (500 - lineLength)/2 + lineLength/(lines[0].length + 1) * (notch + 1);  
+                    drawLine(legX, legY, "right", lineSpacing, "black")
+                }
+            }
+        }
+    }
 
     /*
         ONCLICK FUNCTIONS - functions to track where the user clicks to place/delete ghost legs

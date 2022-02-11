@@ -8,3 +8,5 @@ mysqlclient~=2.1.0
 crud~=0.1
 mysql~=0.0.3
 mysql-connector-python~=8.0.27
+spotipy
+pandas
