@@ -5,290 +5,209 @@
 {% endblock %}
 
 {% block content %}
-<style>
-    * {
-        border: 0;
-        padding: 0;
-    }
+<html>
+    <body>
+        <style>
+            body {
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
 
-    #game-board {
-        background: #0074B3;
-        width: 730px;
-        cursor: pointer;
-        text-align: center;
-    }
+            button {
+                background-color: dimgray;
+                color: white;
+            }
+        </style>
+        <div style="text-align: center;">
+            <br>
+            <br>
+            <button class="box" style='transform: scale(1.4);' onclick="myfunction()">
+                <img src="../static/assets/images/catanthony.png">
+            </button>
+            <br>
+            <br>
+            <br>
+            <div style='transform: scale(1.25);'>
+                <br>
+                <br>
+                <div class="texty" style="font-size: 30px" id="var">Clicks: 0</div>
+                <br>
+                <div class="texty" style="font-size: 25px" id="var">
+                    <h1 style="font-size: 35px">U p g r a d e s !</h1>
+                </div>
+                <button type="button" onclick="upgradeclick()">
+                    <div class="inline" id="upgrade">Anthony Button Upgrades: 0</div>
+                </button>
+                <div class="texty" style="font-size: 20px" id="var">
+                    <div id="cost">cost: 10</div>
+                </div>
+                <br>
+                <button type="button" onclick="buyupgrade()">
+                    <div class="inline" id="buttonupgrade">Auto Anthony Clickers: 0</div>
+                </button>
+                <div class="texty" style="font-size: 20px" id="var">
+                    <div id="cost4">cost: 50</div>
+                </div>
+                <br>
+                    <div id="hiddentest">
+                        <button type="button" onclick="buyupgrade1()">
+                            <div id="ultra" class="inline">Mega Anthony Clickers: 0</div>
+                        </button>
+                        <div class="texty" style="font-size: 20px" id="var">
+                            <div id="cost2">cost: 100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</span>
 
-    .column {
-        width: 100px;
-        display: inline-block;
-    }
-
-    .column:hover  circle.free{
-        fill: #D5E4ED;
-    }
-
-    circle.free {
-        fill: #fff;
-    }
-
-    circle.red {
-        fill: red;
-    }
-
-    circle.yellow {
-        fill: yellow;
-    }
-</style>
-<body>
-<div id="game-board">
-    <div class="column" id="column-0" data-x="0">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-    <div class="column"  id="column-1" data-x="1">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-    <div class="column" id="column-2" data-x="2">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-    <div class="column" id="column-3" data-x="3">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-    <div class="column" id="column-4" data-x="4">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-    <div class="column" id="column-5" data-x="5">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-    <div class="column" id="column-6" data-x="6">
-        <svg height="100" width="100" class="row-5">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-4">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-3">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-2">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-1">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-        <svg height="100" width="100" class="row-0">
-            <circle cx="50" cy="50" r="40" stroke="#0B4E72" stroke-width="3" class="free" />
-        </svg>
-    </div>
-</div>
-</body>
-</html>
 <script>
-    (function() {
-        var ConnectFour = function() {
-            gameBoard = {};
-            currentPlayer = 'red';
-            numRows = 6;
-            numCols = 7;
-            numTurns = 0;
-            _init = function() {
-                var columns;
-                columns = document.querySelectorAll('.column');
-                Array.prototype.forEach.call(columns, function(col) {
-                    col.addEventListener('click', function() {
-                        markNextFree(col.getAttribute('data-x'));
-                    });
-                });
-                for(var x = 0; x <= numRows; x++) {
-                    gameBoard[x] = {};
-                    for(var y = 0; y <= numCols; y++) {
-                        gameBoard[x][y] = 'free';
-                    }
-                }
-            };
-            var markNextFree = function(x) {
-                var nextY;
-                nextY = false;
-                for(var y = 0; y < numRows; y++) {
-                    if(gameBoard[x][y] === 'free') {
-                        nextY = y;
-                        break;
-                    }
-                }
-                if(nextY === false) {
-                    alert('No free spaces in this column. Try another.');
-                    return false;
-                }
-                gameBoard[x][nextY] = currentPlayer;
-                document.querySelector('#column-'+x+' .row-'+nextY+' circle').setAttribute(
-                    'class', currentPlayer
-                );
-                if(isWinner(parseInt(x), nextY)) {
-                    alert(currentPlayer+' wins!');
-                    clearBoard();
-                    return true;
-                }
-                numTurns = numTurns + 1;
-                if(numTurns >= numRows * numCols) {
-                    alert('It\'s a tie!');
-                    clearBoard();
-                    return true;
-                }
-                currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
-            };
-            var clearBoard = function() {
-                Array.prototype.forEach.call(document.querySelectorAll('circle'), function(piece) {
-                    piece.setAttribute('class', 'free');
-                });
-                gameBoard = {};
-                for(var x = 0; x <= numRows; x++) {
-                    gameBoard[x] = {};
-                    for(var y = 0; y <= numCols; y++) {
-                        gameBoard[x][y] = 'free';
-                    }
-                    console.log(gameBoard);
-                }
-                numTurns = 0;
-                return gameBoard;
-            };
-            var isWinner = function(currentX, currentY) {
-                return checkDirection(currentX, currentY, 'vertical') ||
-                    checkDirection(currentX, currentY, 'diagonal') ||
-                    checkDirection(currentX, currentY, 'horizontal');
-            };
-            var isBounds = function(x, y) {
-                return (gameBoard.hasOwnProperty(x) && typeof gameBoard[x][y] !== 'undefined');
-            };
-            var checkDirection = function(currentX, currentY, direction) {
-                var chainLength, directions;
-                directions = {
-                    horizontal: [
-                        [0, -1], [0, 1]
-                    ],
-                    vertical: [
-                        [-1, 0], [1, 0]
-                    ],
-                    diagonal: [
-                        [-1, -1], [1, 1], [-1, 1], [1, -1]
-                    ]
-                };
-                chainLength = 1;
-                directions[direction].forEach(function(coords) {
-                    var i = 1;
-                    while( isBounds(currentX + (coords[0] * i), currentY + (coords[1] * i)) &&
-                        (gameBoard[currentX + (coords[0] * i)][currentY + (coords[1] * i)] === currentPlayer)
-                        ) {
-                        chainLength = chainLength + 1;
-                        i = i + 1;
-                    };
-                });
-                return (chainLength >= 4);
-            };
-            _init();
-        };
-        ConnectFour();
-    })();
-</script>
+    var e = 0;
+    var upg = 0;
+    var upg2 = 0;
+    var upg3 = 0;
+    var upg4 = 0;
+    var upg5 = 0;
+    var upg6 = 0;
+    var clickval = 0;
+    var clickval1 = 0;
+    var clickval3 = 0;
+    var clickval4 = 0;
+    var clickval6 = 0;
+    var speed = 1010;
+    var cost = 10;
+    var cost2 = 100;
+    var cost3 = 1000;
+    var cost4 = 50;
+    var cost5 = 5000;
+    var cost6 = 10000;
 
+    var buttonvalue = 1;
+    var hide = document.getElementById("hiddentest");
+    var up = document.getElementById("ultra");
+    var up4 = document.getElementById("buttonupgrade");
+    var cst2 = document.getElementById("cost2");
+    var cst3 = document.getElementById("cost3");
+    var cst4 = document.getElementById("cost4");
+    var cst5 = document.getElementById("cost5");
+    var cst6 = document.getElementById("cost6");
+    var upgbuy2 = false;
+    var check = false;
+    var check1 = false;
+    var check3 = false;
+    var check4 = false;
+    var check6 = false;
+    var upgbuy3 = false;
+    var upgbuy4 = false;
+    var upgbuy6 = false;
+    var upgbuy = false;
+    var hiddenoof = false;
+
+    hide2.style.visibility = 'hidden';
+
+    //  Changing the value of clicks
+    function click() {
+        e = e + clickval1;
+        updac();
+    }
+    function click1() {
+        e = e + clickval;
+        updac();
+    }
+    function click3() {
+        e = e + clickval3;
+        updac();
+    }
+    function click4() {
+        e += clickval4;
+        updac();
+    }
+    function click6() {
+        e += clickval6;
+        updac();
+    }
+    hide.style.visibility = 'hidden';
+
+    //  Changes the the number of Clicks when button is pressed
+    function myfunction() {
+        e = e + buttonvalue;
+        document.getElementById("var").innerHTML = "Clicks: " + e;
+        if (e >= 100) {
+            hide.style.visibility = 'visible';
+        }
+    }
+
+    function updac() {
+        document.getElementById("var").innerHTML = "Clicks: " + e;
+    }
+
+    //  Sets cost value and increases the number of clicks gained from one click for the Rice Button Upgrades
+    function upgradeclick() {
+        if (e >= cost) {
+            upg = upg + 1;
+            e = e - cost;
+            cost = cost + 10;
+            buttonvalue = buttonvalue + 1;
+            document.getElementById("upgrade").innerHTML = "Rice Button Upgrades: " + upg;
+            document.getElementById("cost").innerHTML = "cost: " + cost;
+            updac();
+
+        } else {
+            alert(mtl+"\"Rice Button Upgrades\"!");
+        }
+    }
+
+    //  Sets cost value and adds 1 to the number of clicks with each Auto Rice Clickers automatically
+    function buyupgrade() {
+        if (e >= cost4) {
+            e = e - cost4;
+            upg4 = upg4 + 1;
+            upgbuy = true;
+            clickval = clickval + 1;
+            cost4 = cost4 + 25;
+            up4.innerHTML = "Auto Rice Clickers: " + upg4;
+            cst4.innerHTML = "cost: " + cost4;
+            updac();
+
+            if (check1 === false) {
+                if (upgbuy === true) {
+                    setInterval(click1, 2000);
+                    check1 = true;
+
+                }
+            }
+
+        } else {
+            alert(mtl + "\"Auto Rice Clickers\"!");
+        }
+    }
+
+    //  Sets cost and adds 5 to the number of clicks with each Mega Rice Clicker at a faster rate automatically
+    function buyupgrade1() {
+        if (e >= cost2) {
+            upg2 = upg2 + 1;
+            e = e - cost2;
+            cost2 = cost2 + 50;
+            clickval1 = clickval1 + 5;
+            upgbuy2 = true;
+            cst2.innerHTML = "cost: " + cost2;
+            up.innerHTML = "Mega Rice Clickers: " + upg2;
+            updac();
+            if (check === false) {
+                if (upgbuy2 === true) {
+
+                    setInterval(click, 1000);
+                    check = true;
+                }
+            }
+        } else {
+            alert(mtl+"\"Mega Rice Clickers\"!");
+        }
+    }
+</script>
+</html>
 {% endblock %}
