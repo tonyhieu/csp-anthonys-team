@@ -144,24 +144,24 @@
     function updac() {
         document.getElementById("var").innerHTML = "Clicks: " + e;
     }
-
-    //  Sets cost value and increases the number of clicks gained from one click for the Rice Button Upgrades
+5
+    //  Sets cost value and increases the number of clicks gained from one click for the Anthony Button Upgrades
     function upgradeclick() {
         if (e >= cost) {
             upg = upg + 1;
             e = e - cost;
             cost = cost + 10;
             buttonvalue = buttonvalue + 1;
-            document.getElementById("upgrade").innerHTML = "Rice Button Upgrades: " + upg;
+            document.getElementById("upgrade").innerHTML = "Anthony Button Upgrades: " + upg;
             document.getElementById("cost").innerHTML = "cost: " + cost;
             updac();
 
         } else {
-            alert(mtl+"\"Rice Button Upgrades\"!");
+            alert(mtl+"\"Anthony Button Upgrades\"!");
         }
     }
 
-    //  Sets cost value and adds 1 to the number of clicks with each Auto Rice Clickers automatically
+    //  Sets cost value and adds 1 to the number of clicks with each Auto Anthony Clickers automatically
     function buyupgrade() {
         if (e >= cost4) {
             e = e - cost4;
@@ -169,7 +169,7 @@
             upgbuy = true;
             clickval = clickval + 1;
             cost4 = cost4 + 25;
-            up4.innerHTML = "Auto Rice Clickers: " + upg4;
+            up4.innerHTML = "Auto Anthony Clickers: " + upg4;
             cst4.innerHTML = "cost: " + cost4;
             updac();
 
@@ -182,11 +182,11 @@
             }
 
         } else {
-            alert(mtl + "\"Auto Rice Clickers\"!");
+            alert(mtl + "\"Auto Anthony Clickers\"!");
         }
     }
 
-    //  Sets cost and adds 5 to the number of clicks with each Mega Rice Clicker at a faster rate automatically
+    //  Sets cost and adds 5 to the number of clicks with each Mega Anthony Clicker at a faster rate automatically
     function buyupgrade1() {
         if (e >= cost2) {
             upg2 = upg2 + 1;
@@ -195,7 +195,7 @@
             clickval1 = clickval1 + 5;
             upgbuy2 = true;
             cst2.innerHTML = "cost: " + cost2;
-            up.innerHTML = "Mega Rice Clickers: " + upg2;
+            up.innerHTML = "Mega Anthony Clickers: " + upg2;
             updac();
             if (check === false) {
                 if (upgbuy2 === true) {
@@ -205,7 +205,7 @@
                 }
             }
         } else {
-            alert(mtl+"\"Mega Rice Clickers\"!");
+            alert(mtl+"\"Mega Anthony Clickers\"!");
         }
     }
 </script>
