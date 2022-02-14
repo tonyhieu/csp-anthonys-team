@@ -165,7 +165,7 @@ def update(id):
 
 app.register_blueprint(api_bp)
 app.register_blueprint(anthony_bp)
-app.register_blueprint(erik_bp)
+app.register_blueprint
 app.register_blueprint(samuel_bp)
 app.register_blueprint(ethan_bp)
 app.register_blueprint(isaac_bp)

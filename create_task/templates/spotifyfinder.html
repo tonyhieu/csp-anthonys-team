@@ -19,16 +19,43 @@
         max-height: 100px;
         margin-right:10px;
     }
+    .allList {
+        width: 50%;
+    }
+    .indList {
+        float: left;
+        width: 50%;
+    }
+    .listStyle {
+        background-color: red;
+        margin-left: 50%;
+        height: 100px;
+        font-family: DengXian;
+        font-size:15px;
+    }
 </style>
 <div style="display:inline-block;vertical-align:top;">
     <img src="/static/assets/images/spotify.png">
 </div>
 <h1>Spotify Finder</h1>
 <body>
+<h3>How to use:</h3>
+<br>
+<p style="font-family:Ebrima;font-size:15px;">Input an artist's full artist name into the search box. Then click on the submit button to get some of this artist's songs. You can then search a couple of these songs up and for the ones you like, you can put them in the notepad and continue looking for more songs.</p>
+<br>
 <form id="form" method="post">
     <input type="text" name="accountId" required>
     <input type="submit" value="Look up an artist!">
 </form>
+
+<div class="allList">
+    <div class="indList">
+        <div class="listStyle">Float Column 1</div>
+    </div>
+    <div class="indList">
+        <div class="listStyle">Float Column 2</div>
+    </div>
+</div>
 </body>
 </html>
 
