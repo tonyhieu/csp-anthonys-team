@@ -15,6 +15,7 @@ from erik.erik import erik_bp
 from isaac.isaac import isaac_bp
 from samuel.samuel import samuel_bp
 from ethan.ethan import ethan_bp
+from create_task.create_task import create_task_bp
 
 
 
@@ -169,7 +170,7 @@ app.register_blueprint
 app.register_blueprint(samuel_bp)
 app.register_blueprint(ethan_bp)
 app.register_blueprint(isaac_bp)
-
+app.register_blueprint(create_task_bp)
 
 
 if __name__ == "__main__":
