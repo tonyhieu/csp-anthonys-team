@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+{% extends "layouts/base.html" %}
+
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-<div>
+<div style="font-size: 125%">
     <form action="" method="post">
         <label>Username</label><br>
         <input name="username" type="email" placeholder="username"><br><br>
@@ -22,3 +24,4 @@
 </div>
 </body>
 </html>
+{% endblock %}
