@@ -23,13 +23,16 @@
             <br>
             <br>
             <button class="box" style='transform: scale(1.4); position: center;' onclick="myfunction()">
-                <img src="../static/assets/images/catanthony.png">
+                <img id="anthonyphoto" src="../static/assets/images/catanthony.png">
             </button>
             <br>
             <br>
             <br>
-            <button class="box" onclick="buybruhPhoto()" style="position: relative; left:450px; bottom:240px;">
+            <button class="box" onclick="buybruhPhoto()" style="position: relative; left:500px; bottom:240px;">
                 <div id="bruhh"> Buy Bruh Anthony: 1,000,000 </div>
+            </button>
+            <button class="box" onclick="swapAnthonyPhoto()" style="position: relative; left:320px; bottom:180px;">
+                <div> Swap Anthony's Photo </div>
             </button>
             <div style='transform: scale(1.25);'>
                 <br>
@@ -89,11 +92,14 @@
     var cost5 = 5000;
     var cost6 = 10000;
     var bruhPhoto = 0;
+    var currentPhoto = 0;
+    var tempPhoto = 0
 
     var buttonvalue = 1;
     var hide = document.getElementById("hiddentest");
     var up = document.getElementById("ultra");
     var BRUHH = document.getElementById("bruhh");
+    var anthonyPhoto = document.getElementById("anthonyphoto")
     var up4 = document.getElementById("buttonupgrade");
     var cst2 = document.getElementById("cost2");
     var cst3 = document.getElementById("cost3");
@@ -111,7 +117,6 @@
     var upgbuy6 = false;
     var upgbuy = false;
     var hiddenoof = false;
-    var lmao = 0;
 
     hide2.style.visibility = 'hidden';
 
@@ -217,12 +222,25 @@
     }
 
     function buybruhPhoto() {
-        if (e >= 1000000 && bruhPhoto == 0) {
-            e = e - 1000000;
+        if (e >= 1 && bruhPhoto == 0) {
+            e = e - 1;
             bruhPhoto++;
             BRUHH.innerHTML = "You have bought Bruh Anthony!";
             updac();
         }
+    }
+
+    function swapAnthonyPhoto() {
+        if (currentPhoto == 0 && bruhPhoto == 1) {
+            document.getElementById("anthonyphoto").src="../static/assets/images/bruhAnthony.jpg";
+            currentPhoto ++;
+        }
+        if (currentPhoto == 1 && tempPhoto == 1) {
+            document.getElementById("anthonyphoto").src="../static/assets/images/catanthony.png";
+            currentPhoto --;
+            tempPhoto = -1
+        }
+        tempPhoto ++;
     }
 
 </script>
