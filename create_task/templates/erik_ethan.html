@@ -22,8 +22,10 @@
         <div style="text-align: center;">
             <br>
             <br>
-            <button class="box" style='transform: scale(1.4); position: center;' onclick="myfunction()">
-                <img id="anthonyphoto" src="../static/assets/images/catanthony.png">
+            <button class="box" style='transform: scale(1.02); position: center;' onclick="myfunction()">
+                <div id="clickerImage">
+                    <img src="../static/assets/images/catanthony.png">
+                </div>
             </button>
             <br>
             <br>
@@ -35,7 +37,6 @@
                 <div> Swap Anthony's Photo </div>
             </button>
             <div style='transform: scale(1.25);'>
-                <br>
                 <br>
                 <div class="texty" style="font-size: 30px" id="var">Clicks: 0</div>
                 <br>
@@ -222,8 +223,8 @@
     }
 
     function buybruhPhoto() {
-        if (e >= 1 && bruhPhoto == 0) {
-            e = e - 1;
+        if (e >= 1000000 && bruhPhoto == 0) {
+            e = e - 1000000;
             bruhPhoto++;
             BRUHH.innerHTML = "You have bought Bruh Anthony!";
             updac();
