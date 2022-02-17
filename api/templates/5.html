@@ -16,13 +16,14 @@
     <option id="path0" value="0" selected="selected">Pick a Path</option>
 </select>
 
-<div id="firstRow" style="position: absolute; transform: translate(-200px, 700px);">
+<div id="firstRow" style="position: absolute; transform: translate(-200px, 750px);">
     <h3>First Row of Options</h3>
 </div>
-<div id="secondRow" style="position: absolute; transform: translate(200px, 700px);">
+<div id="secondRow" style="position: absolute; transform: translate(200px, 750px);">
     <h3>Second Row of Options</h3>
 </div>
 
+<div id="results" style="position: absolute; transform: translateY(700px);"></div>
 
 <script>
     // initialize important variables (the canvas, context, and lines)
@@ -252,6 +253,7 @@
             pairings[i] = currentLine;
         }
         console.log(pairings);
+        displayConnections();
     }
 
     function findPath (startingLine) { // draws line connecting input and output
@@ -299,9 +301,32 @@
 
             randomizedFirst.push(firstInputs[rand1]);
             randomizedSecond.push(secondInputs[rand2]);
+            document.getElementById("first" + i).value = firstInputs[rand1];
+            document.getElementById("second" + i).value = secondInputs[rand2];
             firstInputs.splice(rand1, 1);
             secondInputs.splice(rand2, 1);
         } // randomizes inputs for the two rows
+        
+        let pairString = "RESULTS: ";
+        for (let i = 0; i < numberOfLines; i++) {
+            let first = randomizedFirst[i];
+            let second = randomizedSecond[pairings[i]];
+
+            if (i == numberOfLines - 1) {
+                pairString += first + " - " + second;
+                continue;
+            }
+            pairString += first + " - " + second + ", ";
+        }
+
+        try {
+            let result = document.getElementById("result");
+            result.parentNode.removeChild(result);
+        } catch {}
+        let displayedResult = makeElement("strong", "result");
+        let textNode = document.createTextNode(pairString);
+        displayedResult.appendChild(textNode);
+        document.getElementById("results").appendChild(displayedResult);
     }
 
     /*
@@ -313,7 +338,7 @@
         initializeAmidakuji(); 
     });
 
-    function makeElement(tag, id, text) { // helper function to create elements
+    function makeElement(tag, id) { // helper function to create elements
         let element = document.createElement(tag);
         element.setAttribute("id", id);
         return element;
@@ -362,12 +387,14 @@
             let firstInput = makeElement("input", "first" + i);
             firstInput.setAttribute("type", "text");
             firstInput.setAttribute("style", "display: block;")
+            firstInput.setAttribute("placeholder", "Input " + parseInt(i + 1));
             let firstRow = document.getElementById("firstRow");
             firstRow.appendChild(firstInput);
 
             let secondInput = makeElement("input", "second" + i);
             secondInput.setAttribute("type", "text");
             secondInput.setAttribute("style", "display: block;")
+            secondInput.setAttribute("placeholder", "Input " + parseInt(i + 1));
             let secondRow = document.getElementById("secondRow");
             secondRow.appendChild(secondInput);
         }

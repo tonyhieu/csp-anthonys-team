@@ -8,6 +8,12 @@
 <html>
     <body>
         <style>
+            body {
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
+
             button {
                 background-color: dimgray;
                 color: white;
@@ -102,17 +108,9 @@
     var upgbuy6 = false;
     var upgbuy = false;
     var hiddenoof = false;
-
-    var pictures = [
-        '<img src="../static/assets/images/bracesanthony.png">',
-        '<img src="../static/assets/images/catanthony.png">'
-    ]
+    var lmao = 0;
 
     hide2.style.visibility = 'hidden';
-
-    function clickerPicture() {
-        document.getElementById('clickerImage').innerHTML = pictures[randomNumber];
-    }
 
     //  Changing the value of clicks
     function click() {
@@ -149,7 +147,7 @@
     function updac() {
         document.getElementById("var").innerHTML = "Clicks: " + e;
     }
-5
+
     //  Sets cost value and increases the number of clicks gained from one click for the Anthony Button Upgrades
     function upgradeclick() {
         if (e >= cost) {
@@ -212,7 +210,18 @@
         } else {
             alert(mtl+"\"Mega Anthony Clickers\"!");
         }
+
     }
+
+    function buybruhPhoto() {
+        if (e >= 1000000 && bruhPhoto == 0) {
+            e = e - 1000000;
+            bruhPhoto++;
+            BRUHH.innerHTML = "You have bought Bruh Anthony!";
+            updac();
+        }
+    }
+
 </script>
 </html>
 {% endblock %}

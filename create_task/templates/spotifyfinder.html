@@ -19,19 +19,31 @@
         max-height: 100px;
         margin-right:10px;
     }
-    .allList {
-        width: 50%;
-    }
-    .indList {
+    .indList1 {
         float: left;
-        width: 50%;
+        width:500px;
+        margin-left:20px;
+        margin-bottom:20px;
+    }
+    .indList2 {
+        float: right;
+        width:500px;
+        margin-right:50px;
+        margin-bottom:20px;
     }
     .listStyle {
-        background-color: red;
-        margin-left: 50%;
-        height: 100px;
+        background-color: #1DB954;
+        height: 350px;
         font-family: DengXian;
         font-size:15px;
+    }
+    .lookUp {
+        margin-left:20px;
+        float:left;
+    }
+    .albumInput {
+        float:right;
+        margin-right: 50px;
     }
 </style>
 <div style="display:inline-block;vertical-align:top;">
@@ -40,21 +52,22 @@
 <h1>Spotify Finder</h1>
 <body>
 <h3>How to use:</h3>
-<br>
 <p style="font-family:Ebrima;font-size:15px;">Input an artist's full artist name into the search box. Then click on the submit button to get some of this artist's songs. You can then search a couple of these songs up and for the ones you like, you can put them in the notepad and continue looking for more songs.</p>
 <br>
-<form id="form" method="post">
+<form id="form" method="post" class="lookUp">
     <input type="text" name="accountId" required>
     <input type="submit" value="Look up an artist!">
 </form>
-
-<div class="allList">
-    <div class="indList">
-        <div class="listStyle">Float Column 1</div>
-    </div>
-    <div class="indList">
-        <div class="listStyle">Float Column 2</div>
-    </div>
+<form id="form" method="post" class="albumInput">
+    <input type="text">
+    <input type="submit" value="Input the album you liked!">
+</form>
+<br>
+<div class="indList1">
+    <div class="listStyle">Float Column 1</div>
+</div>
+<div class="indList2">
+    <div class="listStyle">Float Column 2</div>
 </div>
 </body>
 </html>

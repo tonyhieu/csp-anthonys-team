@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, json
 import requests
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import pandas as pd
 
 create_task_bp = Blueprint('create_task_home', __name__,
                        url_prefix='/create-task',
@@ -105,3 +104,7 @@ def spotifyfinder():
 @create_task_bp.route("/erik_ethan")
 def erik_ethan():
     return render_template("erik_ethan.html")
+
+@create_task_bp.route("/SamuelIsaac")
+def SamuelIsaac():
+    return render_template("Samuel_Isaac.html")
