@@ -23,8 +23,8 @@
             <br>
             <br>
             <button class="box" style='transform: scale(1.02); position: center;' onclick="myfunction()">
-                <div id="clickerImage">
-                    <img src="../static/assets/images/catanthony.png">
+                <div>
+                    <img id="anthonyphoto" src="../static/assets/images/catanthony.png">
                 </div>
             </button>
             <br>
@@ -223,7 +223,7 @@
     }
 
     function buybruhPhoto() {
-        if (e >= 1000000 && bruhPhoto == 0) {
+        if (e >= 1 && bruhPhoto == 0) {
             e = e - 1000000;
             bruhPhoto++;
             BRUHH.innerHTML = "You have bought Bruh Anthony!";
