@@ -2,7 +2,7 @@
 
 {% block content %}
 <head>
-    <script LANGUAGE="Javascript" TYPE="text/javascript">
+    <script LANGUAGE="Javascript" type!="text/javascript">
 
     var country = new Array(180);
 
@@ -187,32 +187,18 @@
     country[178] = "ZAMBIA";
     country[179] = "ZIMBABWE";
 
-    /* generates a random integer between 0 to 179 */
 
     var sr = Math.floor(Math.random() * 180);
-
-    /* stores the country name */
-
     var temp = country[sr];
-
-    /* declaring and initializing tries */
-
     var tries = 0;
-
-    /* the main function */
 
     function guessit()
     {
-
         var guess = document.form1.guess1.value;
-
         tries++;
-
         window.status = "tries : " + tries + " ";
-
         switch(tries)
         {
-
             case 1:
                 document.form1.hint.value = "First Hint : The country name starts with " + temp.charAt(0);
                 break;
@@ -227,113 +213,87 @@
 
             default:
                 document.form1.hint.value = "No hints are available";
-
         }
-
         if(guess.toUpperCase() == temp)
         {
-
             if(window.confirm("Absolutely Right ! Yes the country was " + temp + "\nDo you want to play again?"))
-                window.location.reload();     /* reloads the page for a new game */
-
+                window.location.reload();
         }
-
         else
         {
-
             if(tries == 5)
             {
-
                 if(window.confirm("Sorry ! Your chances over. The country was  " + temp + "\nDo you want to play again?"))
                 {
-                    window.location.reload(); /* reloads the page for a new game */
-
+                    window.location.reload();
                     document.form1.hint.value = "Enter your guess below and click on Guess!";
-
                 }
-
             }
-
         }
-
     }
-    
     </script>
 
     <script>
-
-    function catchKeyCode() //calls when the user press the RETURN key
+    function catchKeyCode()
     {
-
         if(event.keyCode == 13)
             guessit();
-
     }
-
     function stat()
     {
-
         window.status = "tries : " + tries + "   ";
-
     }
-
     function clearBox()
     {
-
         document.form1.guess1.value = "";
-
     }
-
     function newGame()
     {
-
-        if(window.confirm("Do you want to start a new game?"))
+        if(window.confirm("Do you want to start a new game? If so click New Game"))
         {
-
-            window.location.reload();  /* reloads the page for a new game */
-
+            window.location.reload();
             document.form1.hint.value = "Enter your guess below and click on Guess!";
-
         }
-
     }
 
     </script>
+
+<h2> Guess That Country </h2>
+<h5> You have 5 attempts to guess the name of a country. Throughout these 5 attempts you will obtain 3 hints that will help you figure out the county. Good luck and have fun.</h5>
 
 </head>
 
 <body onLoad=stat() onKeyPress=catchKeyCode()>
 
-
-<form NAME=form1>
-    <table CLASS=tab BORDER=0 BGCOLOR=#FF9900 CELLPADDING=20 CELLSPACING=15>
+<form name=form1>
+    <table class=tab BORDER=0 BGCOLOR=#00a6ff CELLPADDING=20 CELLSPACING=15>
         <tr>
-            <td CLASS=td1>
-                <input TYPE=text SIZE=36 NAME=hint VALUE="Enter your guess below and click on Guess!" READONLY CLASS=txt1>
+            <td class=td1>
+                <input type!=text size=36 name=hint value="Enter your guess below and click on Guess!" READONLY class=txt1>
             </td>
         </tr>
         <tr>
-            <td CLASS=td1>
-                <input TYPE=text NAME=guess1 SIZE=50 CLASS=txt2 TITLE="Enter your guess here.">
+            <td class=td1>
+                <input type!!=text name=guess1 size=50 class=txt2 title="Enter your guess here.">
             </td>
         </tr>
         <tr>
-            <td CALSS=td1 ALIGN=left>
+            <td class=td1 ALIGN=left>
 
-                <input TYPE=button VALUE=Guess! onClick=guessit() CLASS=btn TITLE="Click here to get a hint or check your guess.">
+                <input type!=button value=Guess! onClick=guessit() class=btn title="Click here to get a hint or check your guess.">
 
-            </td>
-        </tr>
-        <tr>
-            <td CALSS=td1 ALIGN=left>
-
-                <input TYPE=button VALUE=Clear onClick=clearBox() CLASS=btn TITLE="Click here to clear the text box.">
             </td>
         </tr>
         <tr>
             <td CALSS=td1 ALIGN=left>
 
-                <input TYPE=button VALUE=New onClick=newGame() CLASS=btn TITLE="Click here to start a new game.">
+                <input type!=button value=Clear onClick=clearBox() class=btn title="Click here to clear the text box.">
+            </td>
+        </tr>
+        <tr>
+            <td CALSS=td1 ALIGN=left>
+
+                <input type!=button value=New onClick=newGame() class=btn title="Click here to start a new game.">
             </td>
         </tr>
     </table>
