@@ -2,6 +2,53 @@
 
 {% block content %}
 <head>
+<style>
+    h2 {
+        font-size:50px;
+        font-weight: bold;
+    }
+    div.form
+    {
+        display: block;
+        text-align: center;
+    }
+    form
+    {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        max-width:500px;
+    }
+    .td2 {
+        display:block;
+        position:relative;
+        font-style:normal;
+        font-weight:normal;
+        font-family:"Open Sans";
+        font-size:20px;
+        outline:none;
+        color: #000000;
+        border:3px solid black;
+        text-decoration:none;
+        text-align:center;
+        cursor:pointer;
+        -webkit-border-radius:2px;
+        -moz-border-radius:2px;
+        border-radius:25px;
+        background-color:#fc78b7;
+        padding: 1em 3.5em;
+        margin: 20px auto;
+    }
+    .td2:hover {
+        background-color: rgb(255, 142, 194)
+    }
+    .td1 {
+        margin: 10px auto;
+        font-size:20px;
+    }
+
+</style>
     <script LANGUAGE="Javascript" type!="text/javascript">
 
     var country = new Array(180);
@@ -223,7 +270,7 @@
         {
             if(tries == 5)
             {
-                if(window.confirm("Sorry ! Your chances over. The country was  " + temp + "\nDo you want to play again?"))
+                if(window.confirm("Sorry ! You've used up your 5 tries. The country was  " + temp + "\nDo you want to play again?"))
                 {
                     window.location.reload();
                     document.form1.hint.value = "Enter your guess below and click on Guess!";
@@ -259,44 +306,33 @@
     </script>
 
 <h2> Guess That Country </h2>
-<h5> You have 5 attempts to guess the name of a country. Throughout these 5 attempts you will obtain 3 hints that will help you figure out the county. Good luck and have fun.</h5>
-
+<br>
+<h5> You have 5 attempts to guess the name of a country. Throughout these 5 attempts you will obtain 3 hints that will help you figure out the country. The button "guess" is for you to submit your answer. The button "clear" will clear whatever you typed into the textbox, and the button "new" will restart the game and give a new country for you to guess. Good luck and have fun!</h5>
+<br>
 </head>
 
 <body onLoad=stat() onKeyPress=catchKeyCode()>
 
-<form name=form1>
-    <table class=tab BORDER=0 BGCOLOR=#00a6ff CELLPADDING=20 CELLSPACING=15>
-        <tr>
-            <td class=td1>
-                <input type!=text size=36 name=hint value="Enter your guess below and click on Guess!" READONLY class=txt1>
-            </td>
-        </tr>
-        <tr>
-            <td class=td1>
-                <input type!!=text name=guess1 size=50 class=txt2 title="Enter your guess here.">
-            </td>
-        </tr>
-        <tr>
-            <td class=td1 ALIGN=left>
-
-                <input type!=button value=Guess! onClick=guessit() class=btn title="Click here to get a hint or check your guess.">
-
-            </td>
-        </tr>
-        <tr>
-            <td CALSS=td1 ALIGN=left>
-
-                <input type!=button value=Clear onClick=clearBox() class=btn title="Click here to clear the text box.">
-            </td>
-        </tr>
-        <tr>
-            <td CALSS=td1 ALIGN=left>
-
-                <input type!=button value=New onClick=newGame() class=btn title="Click here to start a new game.">
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="form">
+    <form name=form1>
+        <div class=td1>
+        <input type=text size=40 name=hint value="Enter your guess below and click on Guess!" READONLY class=txt1>
+        </div>
+        <div class=td1>
+            <input type=text name=guess1 size=50 placeholder="Enter your guess here.">
+        </div>
+        <br>
+        <div>
+            <input type=button  class=td2 value=Guess! onClick=guessit()
+                   title="Click here to get a hint or check your guess.">
+        </div>
+        <div>
+            <input type=button  class=td2 value=Clear onClick=clearBox() title="Click here to clear the text box.">
+        </div>
+        <div>
+            <input type=button  class=td2 value=New onClick=newGame() title="Click here to start a new game.">
+        </div>
+    </form>
+</div>
 
 {% endblock %}
