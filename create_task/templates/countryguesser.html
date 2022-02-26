@@ -3,9 +3,15 @@
 {% block content %}
 <head>
 <style>
+    h5 {
+        font-family:"DengXian Light";
+    }
     h2 {
         font-size:50px;
         font-weight: bold;
+        text-align:left;
+        display:inline-block;
+        margin-top:20px;
     }
     div.form
     {
@@ -46,6 +52,14 @@
     .td1 {
         margin: 10px auto;
         font-size:20px;
+    }
+    img {
+        height: auto;
+        width: auto;
+        max-width: 100px;
+        max-height: 100px;
+        margin-right:10px;
+        margin-bottom:10px;
     }
 
 </style>
@@ -301,7 +315,9 @@
     }
 
     </script>
-
+<div style="display:inline-block;vertical-align:top;">
+    <img src="/static/assets/images/globe.png">
+</div>
 <h2> Guess That Country </h2>
 <br>
 <h5> You have 5 attempts to guess the name of a country. Throughout these 5 attempts you will obtain 3 hints that will help you figure out the country. The button "guess" is for you to submit your answer. The button "clear" will clear whatever you typed into the textbox, and the button "new" will restart the game and give a new country for you to guess. Good luck and have fun!</h5>
