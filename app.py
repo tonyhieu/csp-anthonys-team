@@ -172,6 +172,7 @@ app.register_blueprint(ethan_bp)
 app.register_blueprint(isaac_bp)
 app.register_blueprint(create_task_bp)
 
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=6969, debug=True)
 
