@@ -1,0 +1,534 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<head>
+<style>
+    h5 {
+        font-family:"DengXian Light";
+    }
+    h2 {
+        font-size:50px;
+        font-weight: bold;
+        text-align:left;
+        display:inline-block;
+        margin-top:20px;
+    }
+    div.form
+    {
+        display: block;
+        text-align: center;
+    }
+    form
+    {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        max-width:500px;
+    }
+    .td2 {
+        display:block;
+        position:relative;
+        font-style:normal;
+        font-weight:normal;
+        font-family:"Open Sans";
+        font-size:20px;
+        outline:none;
+        color: #000000;
+        border:3px solid black;
+        text-decoration:none;
+        text-align:center;
+        cursor:pointer;
+        -webkit-border-radius:2px;
+        -moz-border-radius:2px;
+        border-radius:25px;
+        background-color:#fc78b7;
+        padding: 1em 3.5em;
+        margin: 20px auto;
+    }
+    .td2:hover {
+        background-color: rgb(255, 142, 194)
+    }
+    .td1 {
+        margin: 10px auto;
+        font-size:20px;
+    }
+    img {
+        height: auto;
+        width: auto;
+        max-width: 100px;
+        max-height: 100px;
+        margin-right:10px;
+        margin-bottom:10px;
+    }
+
+</style>
+    <script LANGUAGE="Javascript" type!="text/javascript">
+
+    var country = new Array(177);
+
+    country[0] = "AFGHANISTAN";
+    country[1] = "ALBANIA";
+    country[2] = "ALGERIA";
+    country[3] = "AMERICA";
+    country[4] = "ANDORRA";
+    country[5] = "ANGOLA";
+    country[6] = "ARGENTINA";
+    country[7] = "ARMENIA";
+    country[8] = "AUStrALIA";
+    country[9] = "AUStrIA";
+    country[10] = "AZERBAIJAN";
+    country[11] = "BAHAMAS";
+    country[12] = "BAHRAIN";
+    country[13] = "BANGLADESH";
+    country[14] = "BARBADOS";
+    country[15] = "BELARUS";
+    country[16] = "BELGIUM";
+    country[17] = "BELIZE";
+    country[18] = "BENIN";
+    country[19] = "BHUTAN";
+    country[20] = "BOLIVIA";
+    country[21] = "BOSNIA HERZEGOVINA";
+    country[22] = "BOTSWANA";
+    country[23] = "BRAZIL";
+    country[24] = "BRUNEI";
+    country[25] = "BULGARIA";
+    country[26] = "BURKINA";
+    country[27] = "BURUNDI";
+    country[28] = "CAMBODIA";
+    country[29] = "CAMEROON";
+    country[30] = "CANADA";
+    country[31] = "CAPE VERDE ISLANDS";
+    country[32] = "CHAD";
+    country[33] = "CHILE";
+    country[34] = "CHINA";
+    country[35] = "COLOMBIA";
+    country[36] = "COMOROS";
+    country[37] = "CONGO";
+    country[38] = "COSTA RICA";
+    country[39] = "CROATIA";
+    country[40] = "CUBA";
+    country[41] = "CYPRUS";
+    country[42] = "CZECH REPUBLIC";
+    country[43] = "DENMARK";
+    country[44] = "DJIBOUTI";
+    country[45] = "DOMINICAN REPUBLIC";
+    country[46] = "ECUADOR";
+    country[47] = "EGYPT";
+    country[48] = "EL SALVADOR";
+    country[49] = "ERItrEA";
+    country[50] = "ESTONIA";
+    country[51] = "ETHIOPIA";
+    country[52] = "FIJI";
+    country[53] = "FINLAND";
+    country[54] = "FRANCE";
+    country[55] = "GABON";
+    country[56] = "GAMBIA";
+    country[57] = "GEORGIA";
+    country[58] = "GERMANY";
+    country[59] = "GHANA";
+    country[60] = "GREECE";
+    country[61] ="GRENADA";
+    country[62] = "GUATEMALA";
+    country[63] = "GUINEA";
+    country[64] = "HAITI";
+    country[65] = "HOLLAND";
+    country[66] = "HONDURAS";
+    country[67] = "HONG KONG";
+    country[68] = "HUNGARY";
+    country[69] = "ICELAND";
+    country[70] = "INDIA";
+    country[71] = "INDONESIA";
+    country[72] = "IRAN";
+    country[73] = "IRAQ";
+    country[74] = "ISRAEL";
+    country[75] = "ITALY";
+    country[76] = "JAMAICA";
+    country[77] = "JAPAN";
+    country[78] = "JORDAN";
+    country[79] = "KAZAKHSTAN";
+    country[80] = "KENYA";
+    country[81] = "KYRGYZSTAN";
+    country[82] = "KIRIBATI";
+    country[83] = "KOREA";
+    country[84] = "KUWAIT";
+    country[85] = "LAOS";
+    country[86] = "LATVIA";
+    country[87] = "LEBANON";
+    country[88] = "LESOTHO";
+    country[89] = "LIBERIA";
+    country[90] = "LIBYA";
+    country[91] = "LIECHTENSTEIN";
+    country[92] = "LITHUANIA";
+    country[93] = "LUXEMBOURG";
+    country[94] = "MADAGASCAR";
+    country[95] = "MALAWI";
+    country[96] = "MALAYSIA";
+    country[97] = "MALDIVES";
+    country[98] = "MALI";
+    country[99] = "MALTA";
+    country[100] = "MAURITANIA";
+    country[101] = "MAURITIUS";
+    country[102] = "MEXICO";
+    country[103] = "MOLDOVA";
+    country[104] = "MONACO";
+    country[105] = "MONGOLIA";
+    country[106] = "MONTENEGRO";
+    country[107] = "MOROCCO";
+    country[108] = "MOZAMBIQUE";
+    country[109] = "MYANMAR";
+    country[110] = "NAMIBIA";
+    country[111] = "NAURU";
+    country[112] = "NEPAL";
+    country[113] = "NETHERLANDS";
+    country[114] = "NEW ZEALAND";
+    country[115] = "NICARAGUA";
+    country[116] = "NIGERIA";
+    country[117] = "NORWAY";
+    country[118] = "OMAN";
+    country[119] = "PAKISTAN";
+    country[120] = "PANAMA";
+    country[121] = "PAPUA NEW GUINEA";
+    country[122] = "PARAGUAY";
+    country[123] = "PERU";
+    country[124] = "PHILIPPINES";
+    country[125] = "POLAND";
+    country[126] = "PORTUGAL";
+    country[127] = "QATAR";
+    country[128] = "ROMANIA";
+    country[129] = "RUSSIA";
+    country[130] = "RWANDA";
+    country[131] = "SAN MARINO";
+    country[132] = "SAUDI ARABIA";
+    country[133] = "SENEGAL";
+    country[134] = "SEYCHELLES";
+    country[135] = "SIERRA LEONE";
+    country[136] = "SINGAPORE";
+    country[137] = "SLOVAKIA";
+    country[138] = "SLOVENIA";
+    country[139] = "SOLOMON ISLANDS";
+    country[140] = "SOMALIA";
+    country[141] = "SOUTH AFRICA";
+    country[142] = "SPAIN";
+    country[143] = "SRI LANKA";
+    country[144] = "SUDAN";
+    country[145] = "SURINAME";
+    country[146] = "SWAZILAND";
+    country[147] = "SWEDEN";
+    country[148] = "SWITZERLAND";
+    country[149] = "SYRIA";
+    country[150] = "TAIWAN";
+    country[151] = "TAJIKISTAN";
+    country[152] = "TANZANIA";
+    country[153] = "THAILAND";
+    country[154] = "TOGO";
+    country[155] = "TONGA";
+    country[156] = "TRINIDAD AND TOBAGO";
+    country[157] = "TUNISIA";
+    country[158] = "TURKEY";
+    country[159] = "TURKMENISTAN";
+    country[160] = "TUVALU";
+    country[161] = "UGANDA";
+    country[162] = "UKRAINE";
+    country[163] = "UNITED ARAB EMIRATES";
+    country[164] = "URUGUAY";
+    country[165] = "UZBEKISTAN";
+    country[166] = "VANUATU";
+    country[167] = "VATICAN CITY";
+    country[168] = "VENEZUELA";
+    country[169] = "VIETNAM";
+    country[170] = "WEST INDIES";
+    country[171] = "WESTERN SAMOA";
+    country[172] = "YEMEN";
+    country[173] = "YUGOSLAVIA";
+    country[174] = "ZAIRE";
+    country[175] = "ZAMBIA";
+    country[176] = "ZIMBABWE";
+
+    var continent = new Array(177);
+    continent[0] = "Asia";
+    continent[1] = "Europe";
+    continent[2] = "Africa";
+    continent[3] = "North America";
+    continent[4] = "Europe";
+    continent[5] = "Africa";
+    continent[6] = "South America";
+    continent[7] = "Asia";
+    continent[8] = "Oceania";
+    continent[9] = "Europe";
+    continent[10] = "Eurasia";
+    continent[11] = "North America";
+    continent[12] = "Asia";
+    continent[13] = "Asia";
+    continent[14] = "North America";
+    continent[15] = "Europe";
+    continent[16] = "Europe";
+    continent[17] = "North America";
+    continent[18] = "Africa";
+    continent[19] = "Asia";
+    continent[20] = "South America";
+    continent[21] = "Europe";
+    continent[22] = "Africa";
+    continent[23] = "South America";
+    continent[24] = "Asia";
+    continent[25] = "Europe";
+    continent[26] = "Africa";
+    continent[27] = "Africa";
+    continent[28] = "Asia";
+    continent[29] = "Africa";
+    continent[30] = "North America";
+    continent[31] = "Africa";
+    continent[32] = "Africa";
+    continent[33] = "South America";
+    continent[34] = "Asia";
+    continent[35] = "South America";
+    continent[36] = "Africa";
+    continent[37] = "Africa";
+    continent[38] = "North America";
+    continent[39] = "Europe";
+    continent[40] = "North America";
+    continent[41] = "Europe";
+    continent[42] = "Europe";
+    continent[43] = "Europe";
+    continent[44] = "Africa";
+    continent[45] = "North America";
+    continent[46] = "South America";
+    continent[47] = "Africa";
+    continent[48] = "North America";
+    continent[49] = "Africa";
+    continent[50] = "Europe";
+    continent[51] = "Africa";
+    continent[52] = "Oceania";
+    continent[53] = "Europe";
+    continent[54] = "Europe";
+    continent[55] = "Africa";
+    continent[56] = "Africa";
+    continent[57] = "Eurasia";
+    continent[58] = "Europe";
+    continent[59] = "Africa";
+    continent[60] = "Europe";
+    continent[61] ="North America";
+    continent[62] = "North America";
+    continent[63] = "Africa";
+    continent[64] = "North America";
+    continent[65] = "Europe";
+    continent[66] = "North America";
+    continent[67] = "Asia";
+    continent[68] = "Europe";
+    continent[69] = "Europe";
+    continent[70] = "Asia";
+    continent[71] = "Asia";
+    continent[72] = "Asia";
+    continent[73] = "Asia";
+    continent[74] = "Asia";
+    continent[75] = "Europe";
+    continent[76] = "North America";
+    continent[77] = "Asia";
+    continent[78] = "Asia";
+    continent[79] = "Eurasia";
+    continent[80] = "Africa";
+    continent[81] = "Asia";
+    continent[82] = "Oceania";
+    continent[83] = "Asia";
+    continent[84] = "Asia";
+    continent[85] = "Asia";
+    continent[86] = "Europe";
+    continent[87] = "Asia";
+    continent[88] = "Africa";
+    continent[89] = "Africa";
+    continent[90] = "Africa";
+    continent[91] = "Europe";
+    continent[92] = "Europe";
+    continent[93] = "Europe";
+    continent[94] = "Africa";
+    continent[95] = "Africa";
+    continent[96] = "Asia";
+    continent[97] = "Asia";
+    continent[98] = "Africa";
+    continent[99] = "Europe";
+    continent[100] = "Africa";
+    continent[101] = "Africa";
+    continent[102] = "North America";
+    continent[103] = "Europe";
+    continent[104] = "Europe";
+    continent[105] = "Asia";
+    continent[106] = "Europe";
+    continent[107] = "Africa";
+    continent[108] = "Africa";
+    continent[109] = "Asia";
+    continent[110] = "Africa";
+    continent[111] = "Oceania";
+    continent[112] = "Asia";
+    continent[113] = "Europe";
+    continent[114] = "Europe";
+    continent[115] = "North America";
+    continent[116] = "Africa";
+    continent[117] = "Europe";
+    continent[118] = "Asia";
+    continent[119] = "Asia";
+    continent[120] = "North America";
+    continent[121] = "Oceania";
+    continent[122] = "South America";
+    continent[123] = "South America";
+    continent[124] = "Asia";
+    continent[125] = "Europe";
+    continent[126] = "Europe";
+    continent[127] = "Asia";
+    continent[128] = "Europe";
+    continent[129] = "Eurasia";
+    continent[130] = "Africa";
+    continent[131] = "Europe";
+    continent[132] = "Asia";
+    continent[133] = "Africa";
+    continent[134] = "Africa";
+    continent[135] = "Africa";
+    continent[136] = "Asia";
+    continent[137] = "Europe";
+    continent[138] = "Europe";
+    continent[139] = "Oceania";
+    continent[140] = "Africa";
+    continent[141] = "Africa";
+    continent[142] = "Europe";
+    continent[143] = "Asia";
+    continent[144] = "Africa";
+    continent[145] = "South America";
+    continent[146] = "Africa";
+    continent[147] = "Europe";
+    continent[148] = "Europe";
+    continent[149] = "Asia";
+    continent[150] = "Asia";
+    continent[151] = "Asia";
+    continent[152] = "Africa";
+    continent[153] = "Asia";
+    continent[154] = "Africa";
+    continent[155] = "Oceania";
+    continent[156] = "North America";
+    continent[157] = "Africa";
+    continent[158] = "Eurasia";
+    continent[159] = "Asia";
+    continent[160] = "Oceania";
+    continent[161] = "Africa";
+    continent[162] = "Europe";
+    continent[163] = "Asia";
+    continent[164] = "South America";
+    continent[165] = "Asia";
+    continent[166] = "Oceania";
+    continent[167] = "Europe";
+    continent[168] = "South America";
+    continent[169] = "Asia";
+    continent[170] = "North America";
+    continent[171] = "Oceania";
+    continent[172] = "Asia";
+    continent[173] = "Europe";
+    continent[174] = "Africa";
+    continent[175] = "Africa";
+    continent[176] = "Africa";
+
+    var sr = Math.floor(Math.random() * 177);
+    var temp = country[sr];
+    var temp2 = continent[sr];
+    var tries = 0;
+
+    function guessit()
+    {
+        var guess = document.form1.guess1.value;
+        tries++;
+        window.status = "tries : " + tries + " ";
+        switch(tries)
+        {
+            case 1:
+                document.form1.hint.value = "First Hint : The country name starts with " + temp.charAt(0);
+                break;
+
+            case 2:
+                document.form1.hint.value = "Second Hint : The country name ends with " + temp.charAt(temp.length - 1);
+                break;
+
+            case 3:
+                document.form1.hint.value = "Third Hint : The country name has " + temp.length + " characters";
+                break;
+
+            case 4:
+                document.form1.hint.value = "Last Hint : The country is in " + temp2;
+                break;
+
+            default:
+                document.form1.hint.value = "No hints are available";
+        }
+        if(guess.toUpperCase() == temp)
+        {
+            if(window.confirm("Absolutely Right! Yes the country was " + temp + ". This took " + tries + " tries.\nDo you want to play again?"))
+                window.location.reload();
+        }
+        else
+        {
+            if(tries == 5)
+            {
+                if(window.confirm("Sorry ! You've used up your 5 tries. The country was  " + temp + "\nDo you want to play again?"))
+                {
+                    window.location.reload();
+                    document.form1.hint.value = "Enter your guess below and click on Guess!";
+                }
+            }
+        }
+    }
+    </script>
+
+    <script>
+    function catchKeyCode()
+    {
+        if(event.keyCode == 13)
+            guessit();
+    }
+    function stat()
+    {
+        window.status = "tries : " + tries + "   ";
+    }
+    function clearBox()
+    {
+        document.form1.guess1.value = "";
+    }
+    function newGame()
+    {
+        if(window.confirm("Do you want to start a new game? If so click New Game"))
+        {
+            window.location.reload();
+            document.form1.hint.value = "Enter your guess below and click on Guess!";
+        }
+    }
+
+    </script>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="/static/assets/images/globe.png">
+</div>
+<h2> Guess That Country </h2>
+<br>
+<h5> You have 5 attempts to guess the name of a country. Throughout these 5 attempts you will obtain 4 hints that will help you figure out the country. Try to remember the hints, as after each guess, the hint will be replaced with another. There are 3 buttons that you can use. The button "guess" is for you to submit your answer. The button "clear" will clear whatever you typed into the textbox. The button "new" will restart the game and give a new country for you to guess. Good luck and have fun!</h5>
+<br>
+</head>
+
+<body onLoad=stat() onKeyPress=catchKeyCode()>
+
+<div class="form">
+    <form name=form1>
+        <div class=td1>
+        <input type=text size=40 name=hint value="Enter your guess below and click on Guess!" READONLY class=txt1>
+        </div>
+        <div class=td1>
+            <input type=text name=guess1 size=50 placeholder="Enter your guess here.">
+        </div>
+        <br>
+        <div>
+            <input type=button  class=td2 value=Guess! onClick=guessit()
+                   title="Click here to get a hint or check your guess.">
+        </div>
+        <div>
+            <input type=button  class=td2 value=Clear onClick=clearBox() title="Click here to clear the text box.">
+        </div>
+        <div>
+            <input type=button  class=td2 value=New onClick=newGame() title="Click here to start a new game.">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

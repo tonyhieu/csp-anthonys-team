@@ -27,6 +27,58 @@
     </head>
 
     <body class="baseNav base"> 
+        
+        <nav class="navbar navbar-expand-lg navbar-custom ">
+
+            <a class="navbar-brand" style="margin-left: 1em;" href={{ url_for('index') }}>Anthony's Harem</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href={{ url_for('about') }}>About Us</a>
+                    </li>
+
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href={{ url_for('games') }}>Games</a>
+                    </li>
+
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href={{ url_for('games_database') }}>Games Database</a>
+                    </li>
+
+                    <li class="nav-item dropdown navbar-text">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton1" type="button">Individual Labs </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/isaac">Isaac Le</a></li>
+                            <li><a class="dropdown-item" href="/erik">Erik Peterson</a></li>
+                            <li><a class="dropdown-item" href="/ethan">Ethan Gravin</a></li>
+                            <li><a class="dropdown-item" href="/anthony">Anthony Vo</a></li>
+                            <li><a class="dropdown-item" href="/samuel">Samuel Wang</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item navbar-text">
+                        <a class ="nav-link" href={{ url_for('log1') }}>Login</a>
+                    </li>
+
+                    <li class="nav-item navbar-text">
+                        <a class ="nav-link" href="/create-task">Create Task</a>
+                    </li>
+
+                    <li class="nav-item navbar-text">
+                        <input class="searchbar vertical-center" id="search" type="search" placeholder="Search" aria-label="Search">
+                    </li>
+                </ul> 
+            </div>
+
+            <button style="margin-right: 2em" onclick="toggleMode()" id="toggler">Light Mode</button>
+        </nav> 
+
         <script>
             function toggleMode() {
                 let mode = getCookie("mode");
@@ -73,54 +125,22 @@
             if (mode == "light") {
                 document.body.classList.add("light");
             }
+
+            const search = document.getElementById('search');
+            const google = 'https://www.google.com/search?q=site%3A+';
+            const site = 'https://www.anthonysharem.cf/';
+
+            function submitted(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const url = google + site + '+' + search.value;
+                    const win = window.open(url, '_blank');
+                    win.focus();
+                }
+            }
+            search.addEventListener('keypress', submitted);
         </script>
-        
-        <nav class="navbar navbar-expand-lg navbar-custom ">
 
-            <a class="navbar-brand" style="margin-left: 1em;" href={{ url_for('index') }}>Anthony's Harem</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav mr-auto">
-
-                    <li class="nav-item navbar-text">
-                        <a class="nav-link" href={{ url_for('about') }}>About Us</a>
-                    </li>
-
-                    <li class="nav-item navbar-text">
-                        <a class="nav-link" href={{ url_for('games') }}>Games</a>
-                    </li>
-
-                    <li class="nav-item navbar-text">
-                        <a class="nav-link" href={{ url_for('games_database') }}>Games Database</a>
-                    </li>
-
-                    <li class="nav-item dropdown navbar-text">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton1" type="button">Individual Labs </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="/isaac">Isaac Le</a></li>
-                            <li><a class="dropdown-item" href="/erik">Erik Peterson</a></li>
-                            <li><a class="dropdown-item" href="/ethan">Ethan Gravin</a></li>
-                            <li><a class="dropdown-item" href="/anthony">Anthony Vo</a></li>
-                            <li><a class="dropdown-item" href="/samuel">Samuel Wang</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item navbar-text">
-                        <a class ="nav-link" href={{ url_for('log1') }}>Login</a>
-                    </li>
-
-                    <li class="nav-item navbar-text">
-                        <a class ="nav-link" href="/create-task">Create Task</a>
-                    </li>
-                </ul> 
-            </div>
-
-            <button style="margin-right: 2em" onclick="toggleMode()" id="toggler">Light Mode</button>
-        </nav> 
         <div class="container-fluid content">
             {% block content %}{% endblock %}
         </div>

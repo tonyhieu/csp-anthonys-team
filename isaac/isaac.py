@@ -16,7 +16,7 @@ def isaac_index():
                 "Accept-Language": "en-US,en;q=0.9",
                 "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
                 "Origin": "https://developer.riotgames.com",
-                "X-Riot-Token": "RGAPI-b6d7f5aa-a41c-44e8-a47e-e772e9506d16"
+                "X-Riot-Token": "RGAPI-93f39c71-ed40-40f4-8cdf-46539b837822"
             }
 
     response = requests.request("GET", url, headers=headers)
