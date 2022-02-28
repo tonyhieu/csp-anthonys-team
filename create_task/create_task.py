@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template, request, json
 import requests
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
 
 create_task_bp = Blueprint('create_task_home', __name__,
                        url_prefix='/create-task',
