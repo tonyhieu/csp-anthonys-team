@@ -99,6 +99,9 @@
     var bracesPhoto = 0;
     var currentPhoto = 0;
     var tempPhoto = 0
+    var catPhoto = 1
+    const photos = [];
+    photos[0] = "catPhoto";
 
     var buttonvalue = 1;
     var hide = document.getElementById("hiddentest");
@@ -228,25 +231,27 @@
     }
 
     function buybruhPhoto() {
-        if (e >= 1000000 && bruhPhoto == 0) {
-            e = e - 1000000;
+        if (e >= 1 && bruhPhoto == 0) {
+            e = e - 1;
             bruhPhoto++;
             BRUHH.innerHTML = "You have bought Bruh Anthony!";
+            photos[2] = bruhPhoto
             updac();
         }
     }
 
     function buybracesPhoto() {
-        if (e >= 10000 && bracesPhoto == 0) {
-            e = e - 10000;
+        if (e >= 1 && bracesPhoto == 0) {
+            e = e - 1;
             bracesPhoto++;
             Braces.innerHTML = "You have bought Braces Anthony!";
+            photos[1] = bracesPhoto
             updac();
         }
     }
 
     function swapAnthonyPhoto() {
-        if (bruhPhoto == 0 && bracesPhoto == 1) {
+        if (photos[2] == 0 && photos[1] == 1) {
             if (currentPhoto == 0) {
                 document.getElementById("anthonyphoto").src = "../static/assets/images/bracesanthony.png";
                 currentPhoto++;
@@ -258,7 +263,7 @@
             }
             tempPhoto++;
         }
-        if (bruhPhoto == 1 && bracesPhoto == 0) {
+        if (photos[2] == 1 && photos[1] == 0) {
             if (currentPhoto == 0) {
                     document.getElementById("anthonyphoto").src = "../static/assets/images/bruhAnthony.jpg";
                     currentPhoto++;
@@ -270,7 +275,7 @@
             }
             tempPhoto++;
         }
-        if (bruhPhoto == 1 && bracesPhoto == 1) {
+        if (photos[2] == 1 && photos[1] == 1) {
             if (currentPhoto == 0) {
                 document.getElementById("anthonyphoto").src = "../static/assets/images/bracesanthony.png";
                 currentPhoto++;
