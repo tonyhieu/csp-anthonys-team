@@ -104,4 +104,8 @@ html, body {
 .base table tr, .base table th, .base table td {
   border: 1px solid var(--content-text-color);
 }
+
+.base .searchbar {
+  font-size: 0.75em;
+}
 /*# sourceMappingURL=default.css.map */
