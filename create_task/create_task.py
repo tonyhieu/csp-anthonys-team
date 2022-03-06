@@ -41,3 +41,7 @@ def spotifyfinder():
 @create_task_bp.route("/erik_ethan")
 def erik_ethan():
     return render_template("erik_ethan.html")
+
+@create_task_bp.route("/ethanredo")
+def ethan_redo():
+    return render_template("ethanredo.html")

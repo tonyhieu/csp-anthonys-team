@@ -1,0 +1,633 @@
+{% extends "layouts/base.html" %}
+
+{% block meta %}
+    <title>Diet Calculator</title>
+{% endblock %}
+
+{% block content %}
+<html>
+    <body>
+        <style>
+            {
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
+
+            button {
+                background-color: dimgray;
+                color: white;
+            }
+        </style>
+        <div style="text-align: center;">
+            <br>
+            <h1> Diet Calculator </h1>
+            <h2 style="font-size: 20px"> To use the diet calculator, navigate towards each meal of the day, choose which foods you eat along with the amount. Each food item equals 1 serving. Cereal includes milk.</h2>
+            <br>
+            <div class="row">
+                <div class="col-sm">
+                    <p style="font-size: 30px"> Breakfast </p>
+                    <select name="breakfastfoods" id="BFoods">
+                        <option value=" Pancake">Pancakes</option>
+                        <option value=" Egg">Eggs</option>
+                        <option value=" Waffle">Waffles</option>
+                        <option value=" Granola Bar">Granola Bar</option>
+                        <option value=" Healthy Cereal">Healthy Cereal (Cheerios)</option>
+                        <option value=" Sugar Cereal">Unhealthy Cereal (Lucky Charms)</option>
+                        <option value=" Assorted Fruit">Assorted Fruits</option>
+                        <option value=" Plain Toast">Plain Toast</option>
+                        <option value=" Buttered Toast">Buttered Toast</option>
+                        <option value=" Plain Bagel">Plain Bagel</option>
+                        <option value=" Cream Cheese Bagel">Bagel with Cream Cheese</option>
+                        <option value=" PBJ">PBJ</option>
+                    </select>
+                    <button onclick="addBreakfast()">Add to meal</button>
+                    <button onclick="removeBreakfast()">Remove last item</button>
+                    <br>
+                    <p id="UpdatedBFoodList">You don't have any food yet.</p>
+                    <p id="UpdatedBCalories">0 calories.</p>
+                </div>
+                <div class="col-sm">
+                    <p style="font-size: 30px"> Lunch </p>
+                    <select name="lunchfoods" id="LFoods">
+                        <option value=" Turkey Sandwich">Turkey Sandwich</option>
+                        <option value=" Salad">Salad</option>
+                        <option value=" Chicken Salad">Chicken Salad</option>
+                        <option value=" Grilled Cheese">Grilled Cheese</option>
+                        <option value=" Slice of Pizza">Slice of Pizza</option>
+                        <option value=" Assorted Vegetables">Assorted Vegetables</option>
+                        <option value=" Assorted Fruits">Assorted Fruits</option>
+                        <option value=" Bowl of Rice">Bowl of Rice</option>
+                        <option value=" Bag of Chips">Bag of Chips</option>
+                        <option value=" Granola Bar">Granola Bar</option>
+                        <option value=" Hogdog">Hot Dog</option>
+                        <option value=" Spaghetti">Spaghetti</option>
+                        <option value=" Tomato Soup">Tomato Soup</option>
+                        <option value=" Chicken Soup">Chicken Soup</option>
+                        <option value=" PBJ">PBJ</option>
+                        <option value=" Taco">Taco</option>
+                        <option value=" Burrito">Burrito</option>
+                        <option value=" Chicken">Chicken</option>
+                        <option value=" Steak">Steak</option>
+                        <option value=" Pork">Pork</option>
+                        <option value=" Fish">Fish</option>
+                    </select>
+                    <button onclick="addLunch()">Add to meal</button>
+                    <button onclick="removeLunch()">Remove last item</button>
+                    <br>
+                    <p id="UpdatedLFoodList">You don't have any food yet.</p>
+                    <p id="UpdatedLCalories">0 calories.</p>
+                </div>
+                <div class="col-sm">
+                    <p style="font-size: 30px"> Dinner </p>
+                    <select name="dinnerfoods" id="DFoods">
+                        <option value=" Turkey Sandwich">Turkey Sandwich</option>
+                        <option value=" Salad">Salad</option>
+                        <option value=" Chicken Salad">Chicken Salad</option>
+                        <option value=" Grilled Cheese">Grilled Cheese</option>
+                        <option value=" Slice of Pizza">Slice of Pizza</option>
+                        <option value=" Assorted Vegetables">Assorted Vegetables</option>
+                        <option value=" Assorted Fruits">Assorted Fruits</option>
+                        <option value=" Bowl of Rice">Bowl of Rice</option>
+                        <option value=" Bag of Chips">Bag of Chips</option>
+                        <option value=" Granola Bar">Granola Bar</option>
+                        <option value=" Hogdog">Hot Dog</option>
+                        <option value=" Spaghetti">Spaghetti</option>
+                        <option value=" Tomato Soup">Tomato Soup</option>
+                        <option value=" Chicken Soup">Chicken Soup</option>
+                        <option value=" PBJ">PBJ</option>
+                        <option value=" Taco">Taco</option>
+                        <option value=" Burrito">Burrito</option>
+                        <option value=" Chicken">Chicken</option>
+                        <option value=" Steak">Steak</option>
+                        <option value=" Pork">Pork</option>
+                        <option value=" Fish">Fish</option>
+                    </select>
+                    <button onclick="addDinner()">Add to meal</button>
+                    <button onclick="removeDinner()">Remove last item</button>
+                    <br>
+                    <p id="UpdatedDFoodList">You don't have any food yet.</p>
+                    <p id="UpdatedDCalories">0 calories.</p>
+                </div>
+                <h4 id="addedCalories">Your total calorie intake for today is nothing because you haven't selected any food yet.</h4>
+            </div>
+    </body>
+<script>
+    const listBFoods = [];
+    const listLFoods = [];
+    const listDFoods = [];
+    var calories = " calories."
+    var totalcaloriesdisplaylow = " is your total calories consumed today. Eat up! You're below the recommended 1600-3000 calories per day."
+    var totalcaloriesdisplaymedium = " is your total calories consumed today. You're right in the perfect range, continue what you're doing."
+    var totalcaloriesdisplayhigh = " is your total calories consumed today. Don't you think that's a little much? You're over the recommended 1600-3000 calories per day."
+    var BCalories = 0
+    var LCalories = 0
+    var DCalories = 0
+    var TCalories = 0
+    var tempDelFood = "nada"
+    var BFoodListLength = listBFoods.length
+    var LFoodListLength = listLFoods.length
+    var DFoodListLength = listDFoods.length
+
+    function upB() {
+        document.getElementById("UpdatedBFoodList").innerHTML = listBFoods;
+        if (listBFoods[BFoodListLength] === " Pancake") {
+            BCalories = BCalories + 172
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Egg") {
+            BCalories = BCalories + 156
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Waffle") {
+            BCalories = BCalories + 164
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Granola Bar") {
+            BCalories = BCalories + 132
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Healthy Cereal") {
+            BCalories = BCalories + 102
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Sugar Cereal") {
+            BCalories = BCalories + 190
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Assorted Fruit") {
+            BCalories = BCalories + 130
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Plain Toast") {
+            BCalories = BCalories + 86
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Buttered Toast") {
+            BCalories = BCalories + 120
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Plain Bagel") {
+            BCalories = BCalories + 246
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " Cream Cheese Bagel") {
+            BCalories = BCalories + 348
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (listBFoods[BFoodListLength] === " PBJ") {
+            BCalories = BCalories + 390
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        addAllCalories();
+    }
+
+    function upL() {
+        document.getElementById("UpdatedLFoodList").innerHTML = listLFoods;
+        if (listLFoods[LFoodListLength] === " Turkey Sandwich") {
+            LCalories = LCalories + 308
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Salad") {
+            LCalories = LCalories + 320
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Chicken Salad") {
+            LCalories = LCalories + 610
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Grilled Cheese") {
+            LCalories = LCalories + 440
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Slice of Pizza") {
+            LCalories = LCalories + 286
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Assorted Vegetables") {
+            LCalories = LCalories + 60
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Assorted Fruits") {
+            LCalories = LCalories + 130
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Bowl of Rice") {
+            LCalories = LCalories + 136
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Bag of Chips") {
+            LCalories = LCalories + 150
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Granola Bar") {
+            LCalories = LCalories + 132
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Hotdog") {
+            LCalories = LCalories + 150
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Spaghetti") {
+            LCalories = LCalories + 670
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Tomato Soup") {
+            LCalories = LCalories + 80
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Chicken Soup") {
+            LCalories = LCalories + 80
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " PBJ") {
+            LCalories = LCalories + 390
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Taco") {
+            LCalories = LCalories + 156
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Burrito") {
+            LCalories = LCalories + 446
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Chicken") {
+            LCalories = LCalories + 336
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Steak") {
+            LCalories = LCalories + 680
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Pork") {
+            LCalories = LCalories + 206
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (listLFoods[LFoodListLength] === " Fish") {
+            LCalories = LCalories + 366
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        addAllCalories();
+    }
+
+    function upD() {
+        document.getElementById("UpdatedDFoodList").innerHTML = listDFoods;
+        if (listDFoods[DFoodListLength] === " Turkey Sandwich") {
+            DCalories = DCalories + 308
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Salad") {
+            DCalories = DCalories + 320
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Chicken Salad") {
+            DCalories = DCalories + 610
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Grilled Cheese") {
+            DCalories = DCalories + 440
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Slice of Pizza") {
+            DCalories = DCalories + 286
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Assorted Vegetables") {
+            DCalories = DCalories + 60
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Assorted Fruits") {
+            DCalories = DCalories + 130
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Bowl of Rice") {
+            DCalories = DCalories + 136
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Bag of Chips") {
+            DCalories = DCalories + 150
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Granola Bar") {
+            DCalories = DCalories + 132
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Hotdog") {
+            DCalories = DCalories + 150
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Spaghetti") {
+            DCalories = DCalories + 670
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Tomato Soup") {
+            DCalories = DCalories + 80
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Chicken Soup") {
+            DCalories = DCalories + 80
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " PBJ") {
+            DCalories = DCalories + 390
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Taco") {
+            DCalories = DCalories + 156
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Burrito") {
+            DCalories = DCalories + 446
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Chicken") {
+            DCalories = DCalories + 336
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Steak") {
+            DCalories = DCalories + 680
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Pork") {
+            DCalories = DCalories + 206
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (listDFoods[DFoodListLength] === " Fish") {
+            DCalories = DCalories + 366
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        addAllCalories();
+    }
+
+    function removeBreakfast() {
+        tempDelFood = listBFoods[BFoodListLength - 1]
+        listBFoods.pop();
+        upB();
+        BFoodListLength = listBFoods.length
+        if (tempDelFood === " Pancake") {
+            BCalories = BCalories - 172
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Egg") {
+            BCalories = BCalories - 156
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Waffle") {
+            BCalories = BCalories - 164
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Granola Bar") {
+            BCalories = BCalories - 132
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Healthy Cereal") {
+            BCalories = BCalories - 102
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Sugar Cereal") {
+            BCalories = BCalories - 190
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Assorted Fruit") {
+            BCalories = BCalories - 130
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Plain Toast") {
+            BCalories = BCalories - 86
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Buttered Toast") {
+            BCalories = BCalories - 120
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Plain Bagel") {
+            BCalories = BCalories - 246
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " Cream Cheese Bagel") {
+            BCalories = BCalories - 348
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        if (tempDelFood === " PBJ") {
+            BCalories = BCalories - 390
+            document.getElementById("UpdatedBCalories").innerHTML = BCalories + calories
+        }
+        addAllCalories();
+    }
+
+    function removeLunch() {
+        tempDelFood = listLFoods[LFoodListLength - 1]
+        listLFoods.pop();
+        upL();
+        LFoodListLength = listLFoods.length
+        if (tempDelFood === " Turkey Sandwich") {
+            LCalories = LCalories - 308
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Salad") {
+            LCalories = LCalories - 320
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Chicken Salad") {
+            LCalories = LCalories - 610
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Grilled Cheese") {
+            LCalories = LCalories - 440
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Slice of Pizza") {
+            LCalories = LCalories - 286
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Assorted Vegetables") {
+            LCalories = LCalories - 60
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Assorted Fruits") {
+            LCalories = LCalories - 130
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Bowl of Rice") {
+            LCalories = LCalories - 136
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Bag of Chips") {
+            LCalories = LCalories - 150
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Granola Bar") {
+            LCalories = LCalories - 132
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Hotdog") {
+            LCalories = LCalories - 150
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Spaghetti") {
+            LCalories = LCalories - 670
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Tomato Soup") {
+            LCalories = LCalories - 80
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Chicken Soup") {
+            LCalories = LCalories - 80
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " PBJ") {
+            LCalories = LCalories - 390
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Taco") {
+            LCalories = LCalories - 156
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Burrito") {
+            LCalories = LCalories - 446
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Chicken") {
+            LCalories = LCalories - 336
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Steak") {
+            LCalories = LCalories - 680
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Pork") {
+            LCalories = LCalories - 206
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        if (tempDelFood === " Fish") {
+            LCalories = LCalories - 366
+            document.getElementById("UpdatedLCalories").innerHTML = LCalories + calories
+        }
+        addAllCalories();
+    }
+
+    function removeDinner() {
+        tempDelFood = listDFoods[DFoodListLength - 1]
+        listDFoods.pop();
+        upD();
+        DFoodListLength = listDFoods.length
+        if (tempDelFood === " Turkey Sandwich") {
+            DCalories = DCalories - 308
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Salad") {
+            DCalories = DCalories - 320
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Chicken Salad") {
+            DCalories = DCalories - 610
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Grilled Cheese") {
+            DCalories = DCalories - 440
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Slice of Pizza") {
+            DCalories = DCalories - 286
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Assorted Vegetables") {
+            DCalories = DCalories - 60
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Assorted Fruits") {
+            DCalories = DCalories - 130
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Bowl of Rice") {
+            DCalories = DCalories - 136
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Bag of Chips") {
+            DCalories = DCalories - 150
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Granola Bar") {
+            DCalories = DCalories - 132
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Hotdog") {
+            DCalories = DCalories - 150
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Spaghetti") {
+            DCalories = DCalories - 670
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Tomato Soup") {
+            DCalories = DCalories - 80
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Chicken Soup") {
+            DCalories = DCalories - 80
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " PBJ") {
+            DCalories = DCalories - 390
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Taco") {
+            DCalories = DCalories - 156
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Burrito") {
+            DCalories = DCalories - 446
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Chicken") {
+            DCalories = DCalories - 336
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Steak") {
+            DCalories = DCalories - 680
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Pork") {
+            DCalories = DCalories - 206
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        if (tempDelFood === " Fish") {
+            DCalories = DCalories - 366
+            document.getElementById("UpdatedDCalories").innerHTML = DCalories + calories
+        }
+        addAllCalories();
+    }
+
+    function addBreakfast() {
+        listBFoods.push(document.getElementById("BFoods").value);
+        upB();
+        BFoodListLength = listBFoods.length
+    }
+
+    function addLunch() {
+        listLFoods.push(document.getElementById("LFoods").value);
+        upL();
+        LFoodListLength = listLFoods.length
+    }
+
+    function addDinner() {
+        listDFoods.push(document.getElementById("DFoods").value);
+        upD();
+        DFoodListLength = listDFoods.length
+    }
+
+    function addAllCalories() {
+        TCalories = BCalories + LCalories + DCalories
+        if (TCalories <1600)
+            document.getElementById("addedCalories").innerHTML = TCalories + totalcaloriesdisplaylow
+        if (TCalories <=3000 & TCalories >=1600)
+            document.getElementById("addedCalories").innerHTML = TCalories + totalcaloriesdisplaymedium
+        if (TCalories >3000)
+            document.getElementById("addedCalories").innerHTML = TCalories + totalcaloriesdisplayhigh
+    }
+
+</script>
+</html>
+{% endblock %}
